@@ -9,6 +9,7 @@ use Rector\Set\ValueObject\LevelSetList;
 use RectorLaravel\Set\LaravelLevelSetList;
 use RectorLaravel\Set\Packages\Faker\FakerSetList;
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
+use RectorLaravel\Rector\ArrayDimFetch\EnvVariableToEnvHelperRector;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
@@ -21,6 +22,16 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->removeUnusedImports();
+
+    // tests/bootstrap.php intentionally writes to the $_ENV superglobal before
+    // the framework boots so Laravel's immutable env repository can read the
+    // testing values. This rule rewrites those writes to Env::get($key) = ...,
+    // which is invalid PHP (assigning to a method return value), so skip it there.
+    $rectorConfig->skip([
+        EnvVariableToEnvHelperRector::class => [
+            __DIR__ . '/tests/bootstrap.php',
+        ],
+    ]);
 
     // define sets of rules
     $rectorConfig->sets([

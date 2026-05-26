@@ -16,7 +16,7 @@ foreach ([
     'APP_ENV' => 'testing',
     'DB_CONNECTION' => 'pgsql-test',
 ] as $key => $value) {
-    \Illuminate\Support\Env::get($key)    = $value;
+    $_ENV[$key]    = $value;
     $_SERVER[$key] = $value;
     putenv(sprintf('%s=%s', $key, $value));
 }
