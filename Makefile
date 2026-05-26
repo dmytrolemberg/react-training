@@ -67,14 +67,23 @@ api-migrations:
 api-seed:
 	docker compose run --rm api php artisan db:seed --force
 
-api-check: api-lint-check api-test
-api-fix: api-lint-fix
+api-check: api-lint-check api-stan api-rector-check api-test
+api-fix: api-rector-fix api-lint-fix
 
 api-lint-check:
-	docker compose run --rm api vendor/bin/pint --test
+	docker compose run --rm api vendor/bin/php-cs-fixer check --diff
 
 api-lint-fix:
-	docker compose run --rm api vendor/bin/pint
+	docker compose run --rm api vendor/bin/php-cs-fixer fix
+
+api-stan:
+	docker compose run --rm api vendor/bin/phpstan analyse --no-progress --memory-limit=512M
+
+api-rector-check:
+	docker compose run --rm api vendor/bin/rector process --dry-run
+
+api-rector-fix:
+	docker compose run --rm api vendor/bin/rector process
 
 api-clear-cache:
 	docker compose run --rm api php artisan optimize:clear

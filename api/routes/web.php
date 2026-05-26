@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+declare(strict_types = 1);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Route;
+use Illuminate\Contracts\View\Factory;
+
+Route::get('/', fn(): Factory|\Illuminate\Contracts\View\View => view('welcome'));
