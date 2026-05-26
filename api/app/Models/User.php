@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -22,8 +21,6 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
-     * Get the attributes that should be cast.
-     *
      * @return array<string, string>
      */
     #[\Override]
