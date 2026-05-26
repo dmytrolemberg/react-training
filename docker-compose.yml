@@ -2,81 +2,46 @@ services:
   api:
     build:
       context: api/docker
-      dockerfile: development/php-fpm/Dockerfile
+      dockerfile: development/php/Dockerfile
     environment:
-      APP_ENV: dev
-      APP_SECRET: secret
-      APP_DEBUG: 1
-      PHP_IDE_CONFIG: serverName=SYMFONY_SHOP
+      APP_ENV: local
+      APP_DEBUG: "true"
+      PHP_IDE_CONFIG: serverName=LARAVEL_API
+      DB_CONNECTION: pgsql
       DB_HOST: api-postgres
-      DB_USER: app
-      DB_PASSWORD_FILE: /run/secrets/api_db_password
-      DB_NAME: app
-      MAILER_HOST: mailer
-      MAILER_PORT: 1025
-      MAILER_USERNAME: app
-      MAILER_PASSWORD_FILE: /run/secrets/api_mailer_password
-      MAILER_ENCRYPTION: tcp
-      MAILER_FROM_EMAIL: mail@app.test
+      DB_PORT: 5432
+      DB_DATABASE: app
+      DB_USERNAME: app
+      DB_PASSWORD: secret
+    ports:
+      - "8001:8000"
     volumes:
       - ./api:/app
-    secrets:
-      - api_db_password
-      - api_mailer_password
+    depends_on:
+      - api-postgres
 
   api-postgres:
     image: postgres:18.4-alpine
     environment:
       POSTGRES_USER: app
-      POSTGRES_PASSWORD_FILE: /run/secrets/api_db_password
+      POSTGRES_PASSWORD: secret
       POSTGRES_DB: app
-    secrets:
-      - api_db_password
     volumes:
-      - api-postgres:/var/lib/postgresql/data
+      - api-postgres:/var/lib/postgresql
     ports:
-      - "54321:5432"
+      - "54301:5432"
 
   api-postgres-test:
     image: postgres:18.4-alpine
     environment:
       POSTGRES_USER: app
-      POSTGRES_PASSWORD_FILE: /run/secrets/api_db_password_test
+      POSTGRES_PASSWORD: secret
       POSTGRES_DB: app
-    secrets:
-      - api_db_password_test
     volumes:
-      - api-postgres-test:/var/lib/postgresql/data
+      - api-postgres-test:/var/lib/postgresql
     ports:
-      - "54322:5432"
-
-  mailer:
-    image: mailhog/mailhog
-    platform: linux/amd64
-    networks:
-      - traefik-public
-      - default
-    ports:
-      - "8026:8025"
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik-public
-      - traefik.http.routers.mailer.rule=Host(`mailer.localhost`)
-      - traefik.http.routers.mailer.entryPoints=http
-      - traefik.http.services.mailer.loadBalancer.server.port=8025
+      - "54302:5432"
 
 volumes:
   api-postgres:
   api-postgres-test:
-
-networks:
-  traefik-public:
-    name: traefik-public
-
-secrets:
-  api_db_password:
-    file: ./docker/development/secrets/api_db_password
-  api_db_password_test:
-    file: ./docker/development/secrets/api_db_password_test
-  api_mailer_password:
-    file: ./docker/development/secrets/api_mailer_password
