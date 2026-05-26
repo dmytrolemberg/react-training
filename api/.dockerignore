@@ -1,0 +1,7 @@
+/.idea
+/vendor
+/var/cache/*
+/var/log/*
+/var/sass
+/.ready
+/storage
