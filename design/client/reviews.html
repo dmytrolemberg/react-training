@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Shop — Reviews</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="index.html"><span class="brand-mark">N</span><span class="brand-text">North Shop</span></a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link" href="brands.html">Brands</a>
+          <a class="nav-link" href="orders.html">Orders</a>
+          <a class="nav-link is-active" href="reviews.html">Reviews</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-button" href="profile.html" aria-label="Profile">◌</a>
+          <a class="icon-button" href="cart.html" aria-label="Cart">⌁<span class="cart-count">2</span></a>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <section>
+          <p class="eyebrow">Reviews & ratings</p>
+          <h1 class="title-lg">Feedback that helps shoppers decide.</h1>
+          <p class="lead">Product reviews, rating distribution, filters, and a small write-review form.</p>
+        </section>
+
+        <section class="reviews-layout section">
+          <aside class="card card-pad">
+            <h2 class="title-sm">Average rating</h2>
+            <div class="rating-score section"><strong>4.8</strong><span class="muted">out of 5</span></div>
+            <p class="rating"><span class="stars">★★★★★</span> Based on 452 reviews</p>
+            <div class="divider"></div>
+            <div class="rating-bar"><span>5 stars</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width: 84%;"></div></div><span>84%</span></div>
+            <div class="rating-bar"><span>4 stars</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width: 12%;"></div></div><span>12%</span></div>
+            <div class="rating-bar"><span>3 stars</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width: 3%;"></div></div><span>3%</span></div>
+            <div class="rating-bar"><span>2 stars</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width: 1%;"></div></div><span>1%</span></div>
+            <div class="rating-bar"><span>1 star</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width: 0%;"></div></div><span>0%</span></div>
+          </aside>
+
+          <div class="stack">
+            <div class="card card-pad">
+              <div class="split">
+                <h2 class="title-sm">Customer reviews</h2>
+                <div class="custom-select review-filter-select" data-custom-select>
+                  <input type="hidden" id="reviewFilter" value="all" />
+                  <button class="custom-select-button" type="button" aria-haspopup="listbox" aria-expanded="false">
+                    <span data-selected-label>All ratings</span>
+                  </button>
+                  <div class="custom-select-menu custom-select-menu-right" role="listbox" aria-label="Review rating filter">
+                    <button class="custom-select-option is-selected" type="button" data-value="all" role="option" aria-selected="true">All ratings</button>
+                    <button class="custom-select-option" type="button" data-value="5" role="option">5 stars</button>
+                    <button class="custom-select-option" type="button" data-value="4" role="option">4 stars</button>
+                  </div>
+                </div>
+              </div>
+              <div class="stack section" id="reviewList"></div>
+            </div>
+
+            <form class="card card-pad" id="reviewForm">
+              <h2 class="title-sm">Write a review</h2>
+              <div class="form-field section">
+                <label>Rating</label>
+                <div class="star-input" id="starInput">
+                  <button class="star-choice" type="button" data-value="1">★</button>
+                  <button class="star-choice" type="button" data-value="2">★</button>
+                  <button class="star-choice" type="button" data-value="3">★</button>
+                  <button class="star-choice" type="button" data-value="4">★</button>
+                  <button class="star-choice" type="button" data-value="5">★</button>
+                </div>
+              </div>
+              <div class="form-field section"><label for="reviewText">Review</label><textarea class="textarea" id="reviewText" placeholder="Share your experience..." required></textarea></div>
+              <button class="primary-button section" type="submit">Submit review</button>
+              <p class="muted text-small" id="reviewMessage"></p>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const reviews = [
+      { rating: 5, name: 'Anna', product: 'Everyday Carry Pack', text: 'Very clean product details. Filters helped me find the right size and material fast.' },
+      { rating: 5, name: 'Mark', product: 'Aero Knit Jacket', text: 'Minimal design, fast checkout, and product attributes were clear.' },
+      { rating: 4, name: 'Sofia', product: 'Modular Desk Lamp', text: 'Good product page and very helpful rating overview.' }
+    ];
+
+    const list = document.getElementById('reviewList');
+    const filter = document.getElementById('reviewFilter');
+    const stars = document.querySelectorAll('.star-choice');
+    let selectedRating = 0;
+
+    function setupCustomSelect(select) {
+      const input = select.querySelector('input[type="hidden"]');
+      const button = select.querySelector('.custom-select-button');
+      const label = select.querySelector('[data-selected-label]');
+      const options = Array.from(select.querySelectorAll('.custom-select-option'));
+
+      button.addEventListener('click', event => {
+        event.stopPropagation();
+        const open = select.classList.toggle('is-open');
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          input.value = option.dataset.value;
+          label.textContent = option.textContent.trim();
+          options.forEach(item => {
+            const active = item === option;
+            item.classList.toggle('is-selected', active);
+            item.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          select.classList.remove('is-open');
+          button.setAttribute('aria-expanded', 'false');
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+      });
+    }
+
+    document.querySelectorAll('[data-custom-select]').forEach(setupCustomSelect);
+    document.addEventListener('click', () => {
+      document.querySelectorAll('[data-custom-select].is-open').forEach(select => {
+        select.classList.remove('is-open');
+        select.querySelector('.custom-select-button').setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    function renderReviews() {
+      const value = filter.value;
+      const visible = value === 'all' ? reviews : reviews.filter(review => String(review.rating) === value);
+      list.innerHTML = visible.map(review => `
+        <article class="review-card">
+          <div class="split">
+            <div><strong>${review.name}</strong><p class="product-meta">${review.product}</p></div>
+            <span class="rating"><span class="stars">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span></span>
+          </div>
+          <p class="muted text-small section">“${review.text}”</p>
+        </article>
+      `).join('');
+    }
+
+    filter.addEventListener('input', renderReviews);
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        selectedRating = Number(star.dataset.value);
+        stars.forEach(item => item.classList.toggle('is-active', Number(item.dataset.value) <= selectedRating));
+      });
+    });
+
+    document.getElementById('reviewForm').addEventListener('submit', event => {
+      event.preventDefault();
+      document.getElementById('reviewMessage').textContent = selectedRating ? `Review submitted with ${selectedRating} stars. This is a prototype state.` : 'Please choose a rating first.';
+    });
+
+    renderReviews();
+  </script>
+</body>
+</html>

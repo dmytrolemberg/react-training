@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Shop — Checkout</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="index.html"><span class="brand-mark">N</span><span class="brand-text">North Shop</span></a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link" href="brands.html">Brands</a>
+          <a class="nav-link" href="orders.html">Orders</a>
+          <a class="nav-link" href="reviews.html">Reviews</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-button" href="profile.html" aria-label="Profile">◌</a>
+          <a class="icon-button" href="cart.html" aria-label="Cart">⌁<span class="cart-count">2</span></a>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <section>
+          <p class="eyebrow">Checkout</p>
+          <h1 class="title-lg">Secure checkout.</h1>
+          <p class="lead">A clean form flow for contact details, shipping address, delivery method, and payment.</p>
+        </section>
+
+        <section class="checkout-layout section">
+          <form class="card card-pad" id="checkoutForm">
+            <div class="checkout-stepper">
+              <div class="checkout-step is-active">1. Contact</div>
+              <div class="checkout-step is-active">2. Delivery</div>
+              <div class="checkout-step is-active">3. Payment</div>
+            </div>
+
+            <h2 class="title-sm">Contact details</h2>
+            <div class="form-grid section">
+              <div class="form-field"><label for="email">Email</label><input class="input" id="email" type="email" value="dmytro@example.com" required /></div>
+              <div class="form-field"><label for="phone">Phone</label><input class="input" id="phone" type="tel" placeholder="+380..." /></div>
+            </div>
+
+            <div class="divider"></div>
+            <h2 class="title-sm">Shipping address</h2>
+            <div class="form-grid section">
+              <div class="form-field"><label for="firstName">First name</label><input class="input" id="firstName" value="Dmytro" required /></div>
+              <div class="form-field"><label for="lastName">Last name</label><input class="input" id="lastName" value="Orikhovskyi" required /></div>
+              <div class="form-field"><label for="city">City</label><input class="input" id="city" value="Kyiv" required /></div>
+              <div class="form-field"><label for="postal">Postal code</label><input class="input" id="postal" placeholder="01001" required /></div>
+              <div class="form-field" style="grid-column: 1 / -1;"><label for="address">Address</label><input class="input" id="address" placeholder="Street, building, apartment" required /></div>
+            </div>
+
+            <div class="divider"></div>
+            <h2 class="title-sm">Delivery method</h2>
+            <div class="form-field section">
+              <label>Method</label>
+              <div class="custom-select" data-custom-select>
+                <input type="hidden" id="deliveryMethod" value="standard" />
+                <button class="custom-select-button" type="button" aria-haspopup="listbox" aria-expanded="false">
+                  <span data-selected-label>Standard delivery · Free</span>
+                </button>
+                <div class="custom-select-menu" role="listbox" aria-label="Delivery method">
+                  <button class="custom-select-option is-selected" type="button" data-value="standard" role="option" aria-selected="true">Standard delivery · Free</button>
+                  <button class="custom-select-option" type="button" data-value="express" role="option">Express delivery · $12</button>
+                  <button class="custom-select-option" type="button" data-value="pickup" role="option">Pickup point · Free</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <h2 class="title-sm">Payment</h2>
+            <div class="stack section">
+              <label class="payment-option">
+                <span><strong>Saved card ending 4242</strong><small>Default payment method</small></span>
+                <span class="choice choice-radio choice-inline"><input type="radio" name="payment" checked /><span class="choice-box" aria-hidden="true"></span></span>
+              </label>
+              <label class="payment-option">
+                <span><strong>New card</strong><small>Add card details during payment</small></span>
+                <span class="choice choice-radio choice-inline"><input type="radio" name="payment" /><span class="choice-box" aria-hidden="true"></span></span>
+              </label>
+            </div>
+
+            <button class="primary-button button-full section" type="submit">Place order</button>
+            <div class="confirmation-box" id="confirmationBox">Order placed. This is a prototype confirmation state.</div>
+          </form>
+
+          <aside class="card card-pad">
+            <h2 class="title-sm">Summary</h2>
+            <div class="divider"></div>
+            <div class="stack">
+              <div class="split"><div><p class="product-title">Everyday Carry Pack</p><p class="product-meta">Qty 1</p></div><strong>$112</strong></div>
+              <div class="split"><div><p class="product-title">Modular Desk Lamp</p><p class="product-meta">Qty 1</p></div><strong>$89</strong></div>
+            </div>
+            <div class="divider"></div>
+            <div class="summary-row"><span>Subtotal</span><strong>$201</strong></div>
+            <div class="summary-row"><span>Delivery</span><strong>Free</strong></div>
+            <div class="summary-row"><span>Tax estimate</span><strong>$16</strong></div>
+            <div class="divider"></div>
+            <div class="summary-row"><span>Total</span><strong class="summary-total">$217</strong></div>
+            <p class="muted text-small section">Payment data is not processed. This page is only a static prototype.</p>
+          </aside>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    function setupCustomSelect(select) {
+      const input = select.querySelector('input[type="hidden"]');
+      const button = select.querySelector('.custom-select-button');
+      const label = select.querySelector('[data-selected-label]');
+      const options = Array.from(select.querySelectorAll('.custom-select-option'));
+
+      button.addEventListener('click', event => {
+        event.stopPropagation();
+        const open = select.classList.toggle('is-open');
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          input.value = option.dataset.value;
+          label.textContent = option.textContent.trim();
+          options.forEach(item => {
+            const active = item === option;
+            item.classList.toggle('is-selected', active);
+            item.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          select.classList.remove('is-open');
+          button.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    document.querySelectorAll('[data-custom-select]').forEach(setupCustomSelect);
+    document.addEventListener('click', () => {
+      document.querySelectorAll('[data-custom-select].is-open').forEach(select => {
+        select.classList.remove('is-open');
+        select.querySelector('.custom-select-button').setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.getElementById('checkoutForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      document.getElementById('confirmationBox').classList.add('is-visible');
+    });
+  </script>
+</body>
+</html>

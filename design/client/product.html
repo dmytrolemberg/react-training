@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Shop — Product Details</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="index.html"><span class="brand-mark">N</span><span class="brand-text">North Shop</span></a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link is-active" href="products.html">Products</a>
+          <a class="nav-link" href="brands.html">Brands</a>
+          <a class="nav-link" href="orders.html">Orders</a>
+          <a class="nav-link" href="reviews.html">Reviews</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-button" href="profile.html" aria-label="Profile">◌</a>
+          <a class="icon-button" href="cart.html" aria-label="Cart">⌁<span class="cart-count" id="cartCount">2</span></a>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <a class="ghost-button" href="products.html">← Back to catalog</a>
+
+        <section class="product-detail-layout section">
+          <div class="product-gallery">
+            <div class="product-media large"></div>
+            <div class="gallery-thumbs">
+              <button class="gallery-thumb is-active" type="button" aria-label="Preview image 1"></button>
+              <button class="gallery-thumb" type="button" aria-label="Preview image 2"></button>
+              <button class="gallery-thumb" type="button" aria-label="Preview image 3"></button>
+              <button class="gallery-thumb" type="button" aria-label="Preview image 4"></button>
+            </div>
+          </div>
+
+          <aside class="product-detail-panel">
+            <div class="cluster">
+              <span class="badge">Mori</span>
+              <span class="badge">Bags</span>
+              <span class="badge status-success">In stock</span>
+            </div>
+            <h1 class="title-lg section">Everyday Carry Pack</h1>
+            <p class="lead product-short-description">A minimal 18L pack built from recycled textile, designed for everyday work, travel, and clean organization.</p>
+            <div class="split section product-buy-row">
+              <span class="product-price-xl">$112</span>
+              <span class="rating"><span class="stars">★★★★★</span> 4.9 · 219 reviews</span>
+            </div>
+
+            <div class="attribute-list attribute-list-scroll" id="productAttributes" aria-label="Product attributes"></div>
+
+            <div class="section split product-action-row">
+              <div class="quantity-control" aria-label="Quantity selector">
+                <button class="quantity-button" type="button" id="minus">−</button>
+                <span class="quantity-value" id="quantity">1</span>
+                <button class="quantity-button" type="button" id="plus">+</button>
+              </div>
+              <button class="primary-button" type="button" id="addToCart">Add to cart</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="tab-list" role="tablist" aria-label="Product information tabs">
+              <button class="tab-button is-active" type="button" data-tab="details">Details</button>
+              <button class="tab-button" type="button" data-tab="attributes">Attributes</button>
+              <button class="tab-button" type="button" data-tab="shipping">Shipping</button>
+            </div>
+
+            <div class="tab-panel is-active" id="details">
+              <div class="rich-text wysiwyg-content long-content" id="descriptionContent">
+                <p><strong>Clean structure, padded laptop section, front organizer, soft back panel, and a balanced shape for everyday use.</strong></p>
+                <p>This content block is designed to support a long description coming from a WYSIWYG editor. It can contain paragraphs, headings, lists, links, and formatted text without breaking the page layout or forcing the buy panel to become too tall.</p>
+                <h3>Product story</h3>
+                <p>The Everyday Carry Pack is built for work days, short trips, and daily commuting. The shape is intentionally simple, the pocket layout is predictable, and the materials are selected for durability and low visual noise.</p>
+                <ul>
+                  <li>Separate laptop area with padded back support.</li>
+                  <li>Front organizer for cables, cards, keys, and small accessories.</li>
+                  <li>Soft textile surface with water-resistant finish.</li>
+                  <li>Internal volume that stays useful without looking bulky.</li>
+                </ul>
+                <h3>WYSIWYG example</h3>
+                <p>A real product page may include a very long marketing description, care instructions, warranty text, sustainability notes, size guide content, or SEO text. The layout below keeps it readable and collapsible, so the customer still sees price, quantity, and checkout actions quickly.</p>
+                <p>You can replace this whole block with dynamic HTML from a CMS. The CSS uses safe spacing, line height, list indentation, table overflow, and long-word wrapping to avoid layout issues.</p>
+              </div>
+              <button class="ghost-button content-toggle" type="button" data-toggle-content="descriptionContent">Show more</button>
+            </div>
+
+            <div class="tab-panel" id="attributes">
+              <p class="muted text-small">The design supports from 1 to 50 attributes. The list becomes scrollable when it is long, while short lists stay compact.</p>
+              <div class="attributes-panel section">
+                <div class="attributes-grid" id="attributeTable"></div>
+              </div>
+            </div>
+
+            <div class="tab-panel" id="shipping">
+              <div class="rich-text">
+                <p>Free delivery from $100. Standard delivery takes 2–4 business days. Returns are accepted within 30 days if the product is unused and in original packaging.</p>
+                <ul>
+                  <li>Delivery method: courier or pickup point.</li>
+                  <li>Tracking number is sent after dispatch.</li>
+                  <li>Warranty and invoice are available in the order detail page.</li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="section product-content-layout">
+          <article class="card card-pad">
+            <p class="eyebrow">Long description block</p>
+            <h2 class="title-md">CMS-ready product content.</h2>
+            <div class="rich-text wysiwyg-content section">
+              <p>This section demonstrates how the page behaves when the description is larger than usual. In a real shop, this may be content entered through a WYSIWYG editor: headings, paragraphs, bullet lists, links, product care details, or brand notes.</p>
+              <h3>Care instructions</h3>
+              <p>Clean with a soft damp cloth. Do not machine wash. Let the textile dry naturally before storage. Avoid prolonged contact with sharp objects or aggressive chemicals.</p>
+              <h3>Size and fit</h3>
+              <p>The bag is suitable for daily carry, office equipment, light travel, and compact packing. The main compartment is intentionally open, so users can organize it with pouches or inserts.</p>
+              <ul>
+                <li>Height: 44 cm</li>
+                <li>Width: 29 cm</li>
+                <li>Depth: 14 cm</li>
+                <li>Capacity: 18L</li>
+              </ul>
+            </div>
+          </article>
+
+          <aside class="card card-pad">
+            <p class="eyebrow">Attribute capacity</p>
+            <h2 class="title-sm">50 attributes safe.</h2>
+            <p class="muted text-small">Long attribute groups are handled with internal scrolling and compact two-column specs.</p>
+            <div class="attributes-panel section compact" id="attributeCapacityPreview"></div>
+          </aside>
+        </section>
+
+        <section class="section">
+          <div class="split">
+            <div>
+              <p class="eyebrow">Related</p>
+              <h2 class="title-md">You may also like</h2>
+            </div>
+            <a class="ghost-button" href="products.html">View more →</a>
+          </div>
+          <div class="grid grid-3 section">
+            <article class="product-card"><div class="product-media"></div><div class="split"><div><h3 class="product-title">Travel Tech Pouch</h3><p class="product-meta">Mori · Bags</p></div><span class="price">$58</span></div><div class="attribute-list"><span class="badge">2L</span><span class="badge">Organizer</span></div></article>
+            <article class="product-card"><div class="product-media"></div><div class="split"><div><h3 class="product-title">Aero Knit Jacket</h3><p class="product-meta">Northline · Outerwear</p></div><span class="price">$148</span></div><div class="attribute-list"><span class="badge">Graphite</span><span class="badge">Waterproof</span></div></article>
+            <article class="product-card"><div class="product-media"></div><div class="split"><div><h3 class="product-title">Soft Wool Beanie</h3><p class="product-meta">Northline · Accessories</p></div><span class="price">$36</span></div><div class="attribute-list"><span class="badge">Merino</span><span class="badge">One size</span></div></article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const quantity = document.getElementById('quantity');
+    const cartCount = document.getElementById('cartCount');
+
+    const attributeData = [
+      ['Volume', '18L'], ['Laptop size', 'Up to 15”'], ['Material', 'Recycled textile'], ['Color', 'Graphite'],
+      ['Finish', 'Water resistant'], ['Weight', '720g'], ['Height', '44 cm'], ['Width', '29 cm'], ['Depth', '14 cm'],
+      ['Main pocket', 'Open storage'], ['Laptop pocket', 'Padded'], ['Front pocket', 'Organizer'], ['Back panel', 'Soft padded'],
+      ['Straps', 'Adjustable'], ['Closure', 'Two-way zipper'], ['Lining', 'Recycled polyester'], ['Warranty', '2 years'],
+      ['Season', 'All season'], ['Use case', 'Work / travel'], ['Fit', 'Unisex'], ['SKU', 'MORI-18-GR'], ['Origin', 'EU'],
+      ['Care', 'Wipe clean'], ['Return window', '30 days'], ['Availability', 'In stock'], ['Rating', '4.9'], ['Reviews', '219'],
+      ['Brand', 'Mori'], ['Category', 'Bags'], ['Collection', 'Everyday'], ['Sustainability', 'Recycled'], ['Hardware', 'Matte black'],
+      ['Internal pockets', '4'], ['External pockets', '2'], ['Bottle holder', 'Internal'], ['Security pocket', 'Back zip'],
+      ['Key loop', 'Included'], ['Compression', 'No'], ['Expandable', 'No'], ['Rain cover', 'Optional'], ['Gift wrap', 'Available'],
+      ['Delivery', '2–4 days'], ['Package', 'Recyclable box'], ['Recommended for', 'Commuting'], ['Style', 'Minimal'],
+      ['Texture', 'Soft matte'], ['Shape', 'Structured'], ['Load comfort', 'Medium'], ['Stock level', '24 items'], ['Last updated', 'Today']
+    ];
+
+    function renderAttributes() {
+      const attributePills = document.getElementById('productAttributes');
+      const attributeTable = document.getElementById('attributeTable');
+      const capacityPreview = document.getElementById('attributeCapacityPreview');
+
+      attributePills.innerHTML = attributeData.map(([name, value]) => `<span class="badge">${name}: ${value}</span>`).join('');
+      attributeTable.innerHTML = attributeData.map(([name, value]) => `<div class="attribute-item"><span>${name}</span><strong>${value}</strong></div>`).join('');
+      capacityPreview.innerHTML = attributeData.map(([name, value]) => `<div class="attribute-compact-row"><span>${name}</span><strong>${value}</strong></div>`).join('');
+    }
+
+    document.getElementById('minus').addEventListener('click', () => {
+      quantity.textContent = String(Math.max(1, Number(quantity.textContent) - 1));
+    });
+
+    document.getElementById('plus').addEventListener('click', () => {
+      quantity.textContent = String(Number(quantity.textContent) + 1);
+    });
+
+    document.getElementById('addToCart').addEventListener('click', () => {
+      cartCount.textContent = String(Number(cartCount.textContent) + Number(quantity.textContent));
+    });
+
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(item => item.classList.remove('is-active'));
+        document.querySelectorAll('.tab-panel').forEach(item => item.classList.remove('is-active'));
+        button.classList.add('is-active');
+        document.getElementById(button.dataset.tab).classList.add('is-active');
+      });
+    });
+
+    document.querySelectorAll('[data-toggle-content]').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = document.getElementById(button.dataset.toggleContent);
+        content.classList.toggle('is-expanded');
+        button.textContent = content.classList.contains('is-expanded') ? 'Show less' : 'Show more';
+      });
+    });
+
+    document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-thumb').forEach(item => item.classList.remove('is-active'));
+        thumb.classList.add('is-active');
+      });
+    });
+
+    renderAttributes();
+  </script>
+</body>
+</html>

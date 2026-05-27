@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Guidelines · Minimal Shop UI Kit</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">D</span>
+        <span><span class="brand-title">Design Guidelines</span><span class="brand-subtitle">Shared shop + admin system</span></span>
+      </a>
+      <nav class="nav" aria-label="Guideline sections">
+        <a href="#tokens">Tokens</a>
+        <a href="#buttons">Buttons</a>
+        <a href="#forms">Forms</a>
+        <a href="#cards">Cards</a>
+        <a href="#tables">Tables</a>
+        <a href="#charts">Charts</a>
+        <a href="#patterns">Patterns</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <p class="eyebrow">Minimal e-commerce system</p>
+        <h1>One visual language for shop and admin.</h1>
+        <p class="lead">Warm off-white background, white cards, black primary actions, soft borders, large radius, compact data tables, readable forms, custom controls, and responsive layouts for desktop, tablet, and phones.</p>
+      </div>
+      <div class="card">
+        <p class="card-title">Quick links</p>
+        <p class="card-text">Use these pages to compare the customer shop and the admin portal with the same design direction.</p>
+        <div class="cluster" style="margin-top: 16px;">
+          <a class="btn btn-primary" href="../shop/index.html">Open shop</a>
+          <a class="btn btn-secondary" href="../admin/index.html">Open admin</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tokens">
+      <div class="section-header">
+        <div><p class="eyebrow">01</p><h2>Colors and tokens</h2><p class="section-subtitle">These values should be used in both the public shop and the admin portal.</p></div>
+      </div>
+      <div class="color-row">
+        <article class="card swatch"><div class="swatch-box" style="background:#f6f5f1"></div><div><p class="card-title">Background</p><p class="code">#F6F5F1</p></div></article>
+        <article class="card swatch"><div class="swatch-box" style="background:#ffffff"></div><div><p class="card-title">Surface</p><p class="code">#FFFFFF</p></div></article>
+        <article class="card swatch"><div class="swatch-box" style="background:#faf9f6"></div><div><p class="card-title">Soft surface</p><p class="code">#FAF9F6</p></div></article>
+        <article class="card swatch"><div class="swatch-box" style="background:#dedad0"></div><div><p class="card-title">Border</p><p class="code">#DEDAD0</p></div></article>
+        <article class="card swatch"><div class="swatch-box" style="background:#101010"></div><div><p class="card-title">Primary text</p><p class="code">#101010</p></div></article>
+        <article class="card swatch"><div class="swatch-box" style="background:#67645f"></div><div><p class="card-title">Muted text</p><p class="code">#67645F</p></div></article>
+      </div>
+      <div class="grid grid-4" style="margin-top:14px">
+        <article class="card"><p class="card-title">Radius</p><p class="card-text">Large: 26–34px<br>Medium: 18px<br>Pill: 999px</p></article>
+        <article class="card"><p class="card-title">Shadow</p><p class="card-text">Very soft shadows only. Use borders first, shadows second.</p></article>
+        <article class="card"><p class="card-title">Typography</p><p class="card-text">System sans-serif, tight headlines, readable 1.5–1.7 line height.</p></article>
+        <article class="card"><p class="card-title">Spacing</p><div class="spacing-scale"><span style="height:12px"></span><span style="height:20px"></span><span style="height:32px"></span><span style="height:48px"></span><span style="height:64px"></span></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="buttons">
+      <div class="section-header"><div><p class="eyebrow">02</p><h2>Buttons and actions</h2><p class="section-subtitle">Primary actions are black. Secondary actions are white with a border. Dangerous actions use muted red.</p></div></div>
+      <div class="grid grid-3">
+        <article class="card"><p class="card-title">Button variants</p><div class="btn-row" style="margin-top:14px"><button class="btn btn-primary">Primary</button><button class="btn btn-secondary">Secondary</button><button class="btn btn-soft">Soft</button><button class="btn btn-danger">Delete</button><button class="btn" disabled>Disabled</button></div></article>
+        <article class="card"><p class="card-title">Icon buttons</p><div class="btn-row" style="margin-top:14px"><button class="icon-btn">⌕</button><button class="icon-btn">♡</button><button class="icon-btn">⚙</button><button class="icon-btn">＋</button></div></article>
+        <article class="card"><p class="card-title">Action rules</p><p class="card-text">One primary action per block. Secondary actions support navigation, filtering, export, or cancel actions.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="forms">
+      <div class="section-header"><div><p class="eyebrow">03</p><h2>Inputs, checkboxes, selects</h2><p class="section-subtitle">Use custom controls to avoid native browser UI differences and keep the same shop/admin look.</p></div></div>
+      <div class="component-board">
+        <article class="card span-4">
+          <p class="card-title">Inputs</p>
+          <div class="grid" style="margin-top:14px">
+            <label class="field"><span>Product name</span><input class="input" placeholder="Everyday Carry Pack" /></label>
+            <label class="field"><span>SKU</span><input class="input" placeholder="BAG-MORI-18L" /></label>
+            <label class="field error"><span>Price</span><input class="input" value="" placeholder="Required" /><span class="helper">Price is required.</span></label>
+            <label class="field"><span>Description</span><textarea class="textarea" placeholder="WYSIWYG or long product text..."></textarea></label>
+          </div>
+        </article>
+        <article class="card span-4">
+          <p class="card-title">Custom controls</p>
+          <div class="grid" style="margin-top:14px">
+            <label class="check"><input type="checkbox" checked><span class="check-mark"></span> In stock</label>
+            <label class="check"><input type="checkbox"><span class="check-mark"></span> Featured product</label>
+            <label class="radio"><input name="status" type="radio" checked><span class="radio-mark"></span> Published</label>
+            <label class="radio"><input name="status" type="radio"><span class="radio-mark"></span> Draft</label>
+            <label class="switch"><input type="checkbox" checked><span class="switch-track"></span> Visible in shop</label>
+            <div class="custom-select" data-select>
+              <button class="select-trigger" type="button" data-select-trigger><span data-select-label>Choose category</span></button>
+              <div class="select-menu"><button class="select-option active" type="button" data-select-option>Bags</button><button class="select-option" type="button" data-select-option>Home</button><button class="select-option" type="button" data-select-option>Outerwear</button></div>
+            </div>
+          </div>
+        </article>
+        <article class="card span-4">
+          <p class="card-title">WYSIWYG-safe content</p>
+          <div class="wysiwyg" style="margin-top:14px">
+            <h3>Product story</h3>
+            <p>Long content from CMS or WYSIWYG editors should scroll inside a readable block when needed and must not break the product buy panel.</p>
+            <ul><li>Safe line height and spacing.</li><li>Long-word wrapping.</li><li>Scrollable content blocks.</li><li>Lists, links, headings, and tables.</li></ul>
+            <p>Use this pattern for product details, attribute explanations, shipping rules, privacy text, and admin notes.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="cards">
+      <div class="section-header"><div><p class="eyebrow">04</p><h2>Cards, tags, product blocks</h2><p class="section-subtitle">Cards use white surfaces, soft border, large radius, and minimal visual noise.</p></div></div>
+      <div class="grid grid-4">
+        <article class="card kpi-card"><div class="kpi-top"><span class="kpi-icon">$</span><span class="trend">↗ 14.8%</span></div><div><p class="kpi-value">$56.2k</p><p class="kpi-label">Gross sales</p></div></article>
+        <article class="card product-card"><div class="media"></div><h3>Everyday Carry Pack</h3><p class="card-text">Mori · Bags</p><div class="cluster" style="margin-top:10px"><span class="tag">18L</span><span class="tag">Recycled</span><span class="tag">Graphite</span></div><p class="rating" style="margin:14px 0 0">★★★★★ <span class="card-text">4.9</span></p></article>
+        <article class="card"><p class="card-title">Status badges</p><div class="cluster" style="margin-top:14px"><span class="badge badge-success">Paid</span><span class="badge badge-warning">Pending</span><span class="badge badge-info">Shipped</span><span class="badge badge-danger">Refund</span><span class="badge">Draft</span></div></article>
+        <article class="card"><p class="card-title">Avatar and media</p><div class="cluster" style="margin-top:14px"><span class="avatar">DL</span><span class="thumb">SKU</span><span class="image-box" style="width:90px;height:70px"></span></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="tables">
+      <div class="section-header"><div><p class="eyebrow">05</p><h2>Tables and lists</h2><p class="section-subtitle">Admin tables should stay horizontally scrollable on phones and readable on desktop.</p></div></div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Product</th><th>Brand</th><th>Category</th><th>Status</th><th>Stock</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><div class="entity-cell"><span class="thumb">P</span><span><span class="entity-title">Everyday Carry Pack</span><span class="entity-subtitle">BAG-MORI-18L</span></span></div></td><td>Mori</td><td>Bags</td><td><span class="badge badge-success">Active</span></td><td>42</td><td><a class="btn btn-secondary" href="../admin/product.html">View</a></td></tr>
+            <tr><td><div class="entity-cell"><span class="thumb">L</span><span><span class="entity-title">Modular Desk Lamp</span><span class="entity-subtitle">HOME-LUMA-LAMP</span></span></div></td><td>Luma</td><td>Home</td><td><span class="badge badge-warning">Draft</span></td><td>7</td><td><a class="btn btn-secondary" href="../admin/product.html">View</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="charts">
+      <div class="section-header"><div><p class="eyebrow">06</p><h2>Charts and graphics</h2><p class="section-subtitle">Keep charts monochrome or near-monochrome. Use shape, spacing, and labels instead of many colors.</p></div></div>
+      <div class="grid grid-3">
+        <article class="card"><p class="card-title">Revenue line</p><svg class="chart-svg" viewBox="0 0 720 260"><path class="chart-grid-line" d="M40 40H700M40 100H700M40 160H700M40 220H700"/><path class="chart-area" d="M40 190 L145 152 L250 165 L355 105 L460 88 L565 55 L680 72 L680 220 L40 220 Z"/><path class="chart-line" d="M40 190 L145 152 L250 165 L355 105 L460 88 L565 55 L680 72"/></svg></article>
+        <article class="card"><p class="card-title">Orders bars</p><div class="bar-chart"><div class="bar"><span style="--h:48%"></span>Mon</div><div class="bar"><span style="--h:62%"></span>Tue</div><div class="bar"><span style="--h:56%"></span>Wed</div><div class="bar"><span style="--h:78%"></span>Thu</div><div class="bar"><span style="--h:84%"></span>Fri</div><div class="bar"><span style="--h:96%"></span>Sat</div><div class="bar"><span style="--h:88%"></span>Sun</div></div></article>
+        <article class="card"><p class="card-title">Category donut</p><div class="donut-wrap"><div class="donut"></div><div class="legend"><div class="legend-item"><span>Bags</span><strong>36%</strong></div><div class="legend-item"><span>Home</span><strong>24%</strong></div><div class="legend-item"><span>Outerwear</span><strong>22%</strong></div></div></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="patterns">
+      <div class="section-header"><div><p class="eyebrow">07</p><h2>Navigation, tooltips, toasts, modals</h2><p class="section-subtitle">These patterns cover common shop and admin needs.</p></div></div>
+      <div class="component-board">
+        <article class="card span-3"><p class="card-title">Admin sidebar</p><div class="sidebar-preview" style="margin-top:14px"><a class="active" href="../admin/index.html">▦ Dashboard</a><a href="../admin/products.html">◫ Products</a><a href="../admin/orders.html">◉ Orders</a><a href="../admin/customers.html">☻ Customers</a><a href="../admin/settings.html">⚙ Settings</a></div></article>
+        <article class="card span-3"><p class="card-title">Shop nav</p><div class="cluster" style="margin-top:14px"><a class="btn btn-secondary" href="../shop/products.html">Catalog</a><a class="btn btn-secondary" href="../shop/brands.html">Brands</a><a class="btn btn-secondary" href="../shop/cart.html">Cart</a><a class="btn btn-secondary" href="../shop/profile.html">Profile</a></div></article>
+        <article class="card span-3"><p class="card-title">Tooltip</p><p class="card-text">Hover this action to see a compact helper.</p><div style="margin-top:18px"><span class="tooltip-demo" data-tip="Save changes"><button class="btn btn-primary">Save</button></span></div></article>
+        <article class="card span-3"><p class="card-title">Toast</p><div class="toast" style="margin-top:14px"><span>✓</span><div><strong>Product saved</strong><p class="card-text">Changes are visible in the catalog.</p></div></div></article>
+        <article class="card span-6"><p class="card-title">Modal / confirmation</p><div class="modal-demo" style="margin-top:14px"><p class="card-title">Archive product?</p><p class="card-text">The product will be hidden from the public catalog but existing orders stay unchanged.</p><div class="btn-row" style="margin-top:16px"><button class="btn btn-danger">Archive</button><button class="btn btn-secondary">Cancel</button></div></div></article>
+        <article class="card span-6"><p class="card-title">Responsive rule</p><p class="card-text">Desktop: sidebar + large grids. Tablet: two-column cards. Mobile: single column, horizontal nav, scrollable tables, compact filters, and full-width form controls.</p></article>
+      </div>
+    </section>
+
+    <footer>Minimal Shop UI Kit · Shared design guidelines for customer shop and admin portal.</footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('[data-select]').forEach((select) => {
+      const trigger = select.querySelector('[data-select-trigger]');
+      const label = select.querySelector('[data-select-label]');
+      const options = select.querySelectorAll('[data-select-option]');
+      trigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        document.querySelectorAll('[data-select].open').forEach((item) => { if (item !== select) item.classList.remove('open'); });
+        select.classList.toggle('open');
+      });
+      options.forEach((option) => option.addEventListener('click', () => {
+        options.forEach((item) => item.classList.remove('active'));
+        option.classList.add('active');
+        label.textContent = option.textContent.trim();
+        select.classList.remove('open');
+      }));
+    });
+    document.addEventListener('click', () => document.querySelectorAll('[data-select].open').forEach((select) => select.classList.remove('open')));
+  </script>
+</body>
+</html>

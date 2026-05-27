@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Shop — Brands & Categories</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="index.html"><span class="brand-mark">N</span><span class="brand-text">North Shop</span></a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link is-active" href="brands.html">Brands</a>
+          <a class="nav-link" href="orders.html">Orders</a>
+          <a class="nav-link" href="reviews.html">Reviews</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-button" href="profile.html" aria-label="Profile">◌</a>
+          <a class="icon-button" href="cart.html" aria-label="Cart">⌁<span class="cart-count">2</span></a>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <section class="split">
+          <div>
+            <p class="eyebrow">Brands & categories</p>
+            <h1 class="title-lg">A simple structure for discovery.</h1>
+            <p class="lead">Use this page as a directory for categories, brands, and key product attributes.</p>
+          </div>
+          <a class="primary-button" href="products.html">Open catalog</a>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Categories</p>
+          <div class="category-strip">
+            <a class="category-pill-card" href="products.html"><strong>Outerwear</strong><p class="muted text-small">Jackets, layers, weather pieces</p></a>
+            <a class="category-pill-card" href="products.html"><strong>Home</strong><p class="muted text-small">Lighting, desk, storage</p></a>
+            <a class="category-pill-card" href="products.html"><strong>Bags</strong><p class="muted text-small">Backpacks, pouches, carry</p></a>
+            <a class="category-pill-card" href="products.html"><strong>Accessories</strong><p class="muted text-small">Beanies, wallets, small goods</p></a>
+            <a class="category-pill-card" href="products.html"><strong>Electronics</strong><p class="muted text-small">Cables, docks, essentials</p></a>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="split">
+            <div>
+              <p class="eyebrow">Brands</p>
+              <h2 class="title-md">Focused brand cards.</h2>
+            </div>
+            <div class="search-box" style="max-width: 360px;">
+              <span aria-hidden="true">⌕</span>
+              <input type="search" id="brandSearch" placeholder="Search brand..." />
+            </div>
+          </div>
+          <div class="brand-directory section" id="brandDirectory">
+            <a class="brand-card" href="products.html" data-brand="Northline"><div class="brand-logo">N</div><h3 class="title-sm">Northline</h3><p class="muted text-small">Outerwear and accessories focused on calm utility.</p><div class="attribute-list"><span class="badge">Outerwear</span><span class="badge">Accessories</span></div></a>
+            <a class="brand-card" href="products.html" data-brand="Luma"><div class="brand-logo">L</div><h3 class="title-sm">Luma</h3><p class="muted text-small">Minimal home objects, lamps, and warm lighting.</p><div class="attribute-list"><span class="badge">Home</span><span class="badge">Lighting</span></div></a>
+            <a class="brand-card" href="products.html" data-brand="Mori"><div class="brand-logo">M</div><h3 class="title-sm">Mori</h3><p class="muted text-small">Daily carry bags with recycled materials.</p><div class="attribute-list"><span class="badge">Bags</span><span class="badge">Travel</span></div></a>
+            <a class="brand-card" href="products.html" data-brand="Studio Base"><div class="brand-logo">S</div><h3 class="title-sm">Studio Base</h3><p class="muted text-small">Desk tools, organizers, and quiet workspace details.</p><div class="attribute-list"><span class="badge">Desk</span><span class="badge">Home</span></div></a>
+            <a class="brand-card" href="products.html" data-brand="Ever"><div class="brand-logo">E</div><h3 class="title-sm">Ever</h3><p class="muted text-small">Timeless essentials for everyday use.</p><div class="attribute-list"><span class="badge">Essentials</span><span class="badge">Basics</span></div></a>
+            <a class="brand-card" href="products.html" data-brand="Plain Works"><div class="brand-logo">P</div><h3 class="title-sm">Plain Works</h3><p class="muted text-small">Clear, simple objects with practical attributes.</p><div class="attribute-list"><span class="badge">Objects</span><span class="badge">Utility</span></div></a>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const search = document.getElementById('brandSearch');
+    const cards = document.querySelectorAll('[data-brand]');
+
+    search.addEventListener('input', () => {
+      const query = search.value.trim().toLowerCase();
+      cards.forEach(card => {
+        card.style.display = card.dataset.brand.toLowerCase().includes(query) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

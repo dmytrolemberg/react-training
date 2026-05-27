@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Shop — Cart</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="index.html"><span class="brand-mark">N</span><span class="brand-text">North Shop</span></a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link" href="brands.html">Brands</a>
+          <a class="nav-link" href="orders.html">Orders</a>
+          <a class="nav-link" href="reviews.html">Reviews</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-button" href="profile.html" aria-label="Profile">◌</a>
+          <a class="icon-button" href="cart.html" aria-label="Cart">⌁<span class="cart-count" id="cartCount">2</span></a>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <section class="split">
+          <div>
+            <p class="eyebrow">Cart</p>
+            <h1 class="title-lg">Review your items.</h1>
+            <p class="lead">Adjust quantities before moving to checkout.</p>
+          </div>
+          <a class="secondary-button" href="products.html">Continue shopping</a>
+        </section>
+
+        <section class="cart-layout section">
+          <div class="stack" id="cartItems"></div>
+          <aside class="card card-pad">
+            <h2 class="title-sm">Order summary</h2>
+            <div class="divider"></div>
+            <div class="stack">
+              <div class="summary-row"><span>Subtotal</span><strong id="subtotal">$0</strong></div>
+              <div class="summary-row"><span>Delivery</span><strong id="delivery">Free</strong></div>
+              <div class="summary-row"><span>Tax estimate</span><strong id="tax">$0</strong></div>
+            </div>
+            <div class="divider"></div>
+            <div class="summary-row"><span>Total</span><strong class="summary-total" id="total">$0</strong></div>
+            <a class="primary-button button-full section" href="checkout.html">Checkout</a>
+            <p class="muted text-small">Secure payment, saved address, and order tracking.</p>
+          </aside>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const cart = [
+      { name: 'Everyday Carry Pack', meta: 'Mori · Bags · Graphite', price: 112, qty: 1 },
+      { name: 'Modular Desk Lamp', meta: 'Luma · Home · Warm light', price: 89, qty: 1 }
+    ];
+
+    const cartItems = document.getElementById('cartItems');
+    const subtotalEl = document.getElementById('subtotal');
+    const taxEl = document.getElementById('tax');
+    const totalEl = document.getElementById('total');
+    const cartCount = document.getElementById('cartCount');
+
+    function renderCart() {
+      cartItems.innerHTML = cart.map((item, index) => `
+        <article class="cart-item">
+          <div class="product-media small"></div>
+          <div>
+            <h2 class="product-title">${item.name}</h2>
+            <p class="product-meta">${item.meta}</p>
+            <button class="ghost-button" type="button" data-remove="${index}">Remove</button>
+          </div>
+          <div class="stack" style="justify-items: end;">
+            <strong>$${item.price}</strong>
+            <div class="quantity-control">
+              <button class="quantity-button" type="button" data-minus="${index}">−</button>
+              <span class="quantity-value">${item.qty}</span>
+              <button class="quantity-button" type="button" data-plus="${index}">+</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const tax = Math.round(subtotal * 0.08);
+      subtotalEl.textContent = `$${subtotal}`;
+      taxEl.textContent = `$${tax}`;
+      totalEl.textContent = `$${subtotal + tax}`;
+      cartCount.textContent = String(cart.reduce((sum, item) => sum + item.qty, 0));
+
+      if (!cart.length) {
+        cartItems.innerHTML = '<div class="empty-state card"><h2 class="title-sm">Your cart is empty</h2><p class="muted">Add products from the catalog.</p></div>';
+      }
+
+      document.querySelectorAll('[data-minus]').forEach(button => button.addEventListener('click', () => {
+        const item = cart[Number(button.dataset.minus)];
+        item.qty = Math.max(1, item.qty - 1);
+        renderCart();
+      }));
+      document.querySelectorAll('[data-plus]').forEach(button => button.addEventListener('click', () => {
+        cart[Number(button.dataset.plus)].qty += 1;
+        renderCart();
+      }));
+      document.querySelectorAll('[data-remove]').forEach(button => button.addEventListener('click', () => {
+        cart.splice(Number(button.dataset.remove), 1);
+        renderCart();
+      }));
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

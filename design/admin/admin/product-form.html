@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product form · Minimal Shop Admin</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="sidebar-overlay" data-sidebar-overlay></div>
+  <div class="admin-shell">
+    <aside class="sidebar" data-sidebar>
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span><span class="brand-title">Shop Admin</span><span class="brand-subtitle">Shop management</span></span>
+      </a>
+      <div class="sidebar-label">Overview</div>
+<div class="sidebar-group">
+<a class="nav-link" href="index.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+</div>
+<div class="sidebar-label">Catalog</div>
+<div class="sidebar-group">
+<a class="nav-link" href="products.html"><span class="nav-icon">◫</span><span>Products</span></a>
+<a class="nav-link" href="categories.html"><span class="nav-icon">◧</span><span>Categories</span></a>
+<a class="nav-link" href="brands.html"><span class="nav-icon">◇</span><span>Brands</span></a>
+<a class="nav-link" href="attributes.html"><span class="nav-icon">▤</span><span>Attributes</span></a>
+<a class="nav-link" href="inventory.html"><span class="nav-icon">▥</span><span>Inventory</span></a>
+</div>
+<div class="sidebar-label">Sales</div>
+<div class="sidebar-group">
+<a class="nav-link" href="orders.html"><span class="nav-icon">◉</span><span>Orders</span></a>
+<a class="nav-link" href="carts.html"><span class="nav-icon">◌</span><span>Carts</span></a>
+<a class="nav-link" href="checkouts.html"><span class="nav-icon">✓</span><span>Checkouts</span></a>
+<a class="nav-link" href="coupons.html"><span class="nav-icon">％</span><span>Coupons</span></a>
+</div>
+<div class="sidebar-label">People</div>
+<div class="sidebar-group">
+<a class="nav-link" href="customers.html"><span class="nav-icon">☻</span><span>Customers</span></a>
+<a class="nav-link" href="reviews.html"><span class="nav-icon">★</span><span>Reviews & Ratings</span></a>
+</div>
+<div class="sidebar-label">Admin</div>
+<div class="sidebar-group">
+<a class="nav-link" href="admin-users.html"><span class="nav-icon">♙</span><span>Admin Users</span></a>
+<a class="nav-link" href="settings.html"><span class="nav-icon">⚙</span><span>Settings</span></a>
+</div>
+      <div class="sidebar-footer">
+        <p class="text-small"><strong>Admin scope</strong></p>
+        <p class="text-tiny muted">Catalog, sales, customers, ratings, checkout, carts, users and settings.</p>
+      </div>
+    </aside>
+    <main class="page-content">
+      
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn mobile-menu-button" type="button" data-open-sidebar aria-label="Open menu">☰</button>
+        <nav class="breadcrumbs"><a href="index.html">Dashboard</a><span>/</span><span>Catalog</span><span>/</span><strong>Product form</strong></nav>
+      </div>
+      <div class="topbar-right">
+        <label class="search-box"><span>⌕</span><input type="search" placeholder="Search products, orders, customers..." /></label>
+        <button class="icon-btn" type="button" aria-label="Notifications">🔔</button>
+        <a class="btn btn-primary" href="product-form.html">＋ Add product</a>
+      </div>
+    </header>
+      <section class="hero-card">
+      <div class="split align-start">
+        <div>
+          <p class="eyebrow">Catalog form</p>
+          <h1 class="page-title">Product form</h1>
+          <p class="page-subtitle">Create or edit product data, media, category, brand, attributes, long description, inventory, variants and publish settings.</p>
+        </div>
+        <div class="cluster"><a class="btn btn-secondary" href="product.html">Cancel</a><a class="btn btn-primary" href="product.html">Save product</a></div>
+      </div>
+    </section>
+<section class="grid form-layout">
+  <div class="stack">
+    <article class="card"><div class="card-header"><div><h2 class="card-title">Basic information</h2><p class="card-subtitle">Main product fields.</p></div></div><div class="form-grid"><div class="field"><label>Product name</label><input class="input" value="Aero Knit Jacket"></div><div class="field"><label>SKU</label><input class="input" value="NK-JKT-0042"></div><div class="field"><label>Category</label><div class="custom-select" data-select>
+      <button type="button" class="select-trigger" data-select-trigger><span data-select-label>Outerwear</span></button>
+      <div class="select-menu"><button type="button" class="select-option active" data-select-option>Outerwear</button><button type="button" class="select-option" data-select-option>Bags</button><button type="button" class="select-option" data-select-option>Home</button><button type="button" class="select-option" data-select-option>Accessories</button></div>
+    </div></div><div class="field"><label>Brand</label><div class="custom-select" data-select>
+      <button type="button" class="select-trigger" data-select-trigger><span data-select-label>Northline</span></button>
+      <div class="select-menu"><button type="button" class="select-option active" data-select-option>Northline</button><button type="button" class="select-option" data-select-option>Mori</button><button type="button" class="select-option" data-select-option>Luma</button><button type="button" class="select-option" data-select-option>Studio Base</button></div>
+    </div></div></div></article>
+    <article class="card"><div class="card-header"><div><h2 class="card-title">Description</h2><p class="card-subtitle">WYSIWYG-ready area.</p></div></div><textarea class="textarea" style="min-height:260px">The Aero Knit Jacket is a lightweight technical outer layer designed for daily movement, travel and changing weather.</textarea><p class="helper">In a real app, replace this textarea with a WYSIWYG editor and store sanitized HTML.</p></article>
+    <article class="card"><div class="card-header"><div><h2 class="card-title">Product attributes</h2><p class="card-subtitle">Custom checkboxes. This list can contain many values.</p></div></div><div class="scroll-box"><div class="permissions-grid"><label class="check"><input type="checkbox" checked><span class="check-mark"></span><span>Waterproof</span></label><label class="check"><input type="checkbox" checked><span class="check-mark"></span><span>Graphite</span></label><label class="check"><input type="checkbox" checked><span class="check-mark"></span><span>XS</span></label><label class="check"><input type="checkbox" checked><span class="check-mark"></span><span>S</span></label><label class="check"><input type="checkbox" checked><span class="check-mark"></span><span>M</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>L</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>XL</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Recycled nylon</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Breathable</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Packable</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Two-way zipper</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Inside pocket</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Limited edition</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Machine washable</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Fall collection</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Technical knit</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Regular fit</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Unisex</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Hooded</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Wind resistant</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Organic cotton</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Matte black</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Blue</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Red</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Slim fit</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Oversized</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Metal</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Glass</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Ceramic</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>USB-C</span></label><label class="check"><input type="checkbox"><span class="check-mark"></span><span>Warm light</span></label></div></div></article>
+  </div>
+  <aside class="stack">
+    <article class="card"><div class="card-header"><div><h2 class="card-title">Publish</h2><p class="card-subtitle">Visibility and status.</p></div></div><div class="stack"><div class="custom-select" data-select>
+      <button type="button" class="select-trigger" data-select-trigger><span data-select-label>Active</span></button>
+      <div class="select-menu"><button type="button" class="select-option active" data-select-option>Active</button><button type="button" class="select-option" data-select-option>Draft</button><button type="button" class="select-option" data-select-option>Archived</button></div>
+    </div><label class="check"><input type="checkbox" checked><span class="check-mark"></span><span>Featured product</span></label><label class="check"><input type="checkbox" checked><span class="check-mark"></span><span>Visible in search</span></label><label class="check"><input type="checkbox" checked><span class="check-mark"></span><span>Allow reviews</span></label><a class="btn btn-primary" href="product.html">Save changes</a></div></article>
+    <article class="card"><div class="card-header"><div><h2 class="card-title">Pricing & inventory</h2></div></div><div class="stack"><div class="field"><label>Price</label><input class="input" value="$148"></div><div class="field"><label>Stock quantity</label><input class="input" value="42"></div><div class="field"><label>Low stock threshold</label><input class="input" value="10"></div></div></article>
+    <article class="card"><div class="card-header"><div><h2 class="card-title">Media</h2><p class="card-subtitle">Image slots.</p></div></div><div class="media-grid"><div class="media-thumb"></div><div class="media-thumb"></div><div class="media-thumb"></div><div class="media-thumb"></div></div></article>
+  </aside>
+</section>
+    </main>
+  </div>
+
+<script>
+  (function () {
+    const sidebar = document.querySelector('[data-sidebar]');
+    const overlay = document.querySelector('[data-sidebar-overlay]');
+    const openBtn = document.querySelector('[data-open-sidebar]');
+    const closeSidebar = () => {
+      document.body.classList.remove('sidebar-open');
+      if (sidebar) sidebar.classList.remove('is-open');
+    };
+    const openSidebar = () => {
+      document.body.classList.add('sidebar-open');
+      if (sidebar) sidebar.classList.add('is-open');
+    };
+    if (openBtn) openBtn.addEventListener('click', openSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeSidebar();
+    });
+
+    document.querySelectorAll('[data-select]').forEach((select) => {
+      const trigger = select.querySelector('[data-select-trigger]');
+      const label = select.querySelector('[data-select-label]');
+      const options = select.querySelectorAll('[data-select-option]');
+      if (!trigger || !label) return;
+      trigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        document.querySelectorAll('[data-select].open').forEach((item) => {
+          if (item !== select) item.classList.remove('open');
+        });
+        select.classList.toggle('open');
+      });
+      options.forEach((option) => {
+        option.addEventListener('click', () => {
+          options.forEach((item) => item.classList.remove('active'));
+          option.classList.add('active');
+          label.textContent = option.textContent.trim();
+          select.classList.remove('open');
+        });
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('[data-select].open').forEach((select) => select.classList.remove('open'));
+    });
+
+    document.querySelectorAll('[data-check-all]').forEach((master) => {
+      master.addEventListener('change', () => {
+        const target = master.getAttribute('data-check-all');
+        document.querySelectorAll('[data-check-group="' + target + '"]').forEach((checkbox) => {
+          checkbox.checked = master.checked;
+        });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

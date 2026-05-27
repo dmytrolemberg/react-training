@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Shop — Products</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="index.html"><span class="brand-mark">N</span><span class="brand-text">North Shop</span></a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link is-active" href="products.html">Products</a>
+          <a class="nav-link" href="brands.html">Brands</a>
+          <a class="nav-link" href="orders.html">Orders</a>
+          <a class="nav-link" href="reviews.html">Reviews</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-button" href="profile.html" aria-label="Profile">◌</a>
+          <a class="icon-button" href="cart.html" aria-label="Cart">⌁<span class="cart-count" id="cartCount">2</span></a>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <section class="split">
+          <div>
+            <p class="eyebrow">Catalog</p>
+            <h1 class="title-lg">Search, filter, compare.</h1>
+            <p class="lead">Products are structured by category, brand, price, material, attributes, availability, review count, and rating.</p>
+          </div>
+          <span class="badge badge-dark" id="resultCount">6 products</span>
+        </section>
+
+        <section class="catalog-layout section">
+          <aside class="filter-sidebar" aria-label="Product filters">
+            <div class="split filter-header">
+              <strong>Filters</strong>
+              <button class="ghost-button" type="button" id="clearFilters">Clear</button>
+            </div>
+
+            <div class="filter-group">
+              <span class="filter-title">Category</span>
+              <div class="filter-options" data-filter="category">
+                <label class="choice"><input type="checkbox" value="Outerwear" /><span class="choice-box" aria-hidden="true"></span><span>Outerwear</span></label>
+                <label class="choice"><input type="checkbox" value="Home" /><span class="choice-box" aria-hidden="true"></span><span>Home</span></label>
+                <label class="choice"><input type="checkbox" value="Bags" /><span class="choice-box" aria-hidden="true"></span><span>Bags</span></label>
+                <label class="choice"><input type="checkbox" value="Accessories" /><span class="choice-box" aria-hidden="true"></span><span>Accessories</span></label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <span class="filter-title">Brand</span>
+              <div class="filter-options" data-filter="brand">
+                <label class="choice"><input type="checkbox" value="Northline" /><span class="choice-box" aria-hidden="true"></span><span>Northline</span></label>
+                <label class="choice"><input type="checkbox" value="Luma" /><span class="choice-box" aria-hidden="true"></span><span>Luma</span></label>
+                <label class="choice"><input type="checkbox" value="Mori" /><span class="choice-box" aria-hidden="true"></span><span>Mori</span></label>
+                <label class="choice"><input type="checkbox" value="Studio Base" /><span class="choice-box" aria-hidden="true"></span><span>Studio Base</span></label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <span class="filter-title">Minimum rating</span>
+              <div class="custom-select" data-custom-select>
+                <input type="hidden" id="ratingFilter" value="0" />
+                <button class="custom-select-button" type="button" aria-haspopup="listbox" aria-expanded="false">
+                  <span data-selected-label>Any rating</span>
+                </button>
+                <div class="custom-select-menu" role="listbox" aria-label="Minimum rating">
+                  <button class="custom-select-option is-selected" type="button" data-value="0" role="option" aria-selected="true">Any rating</button>
+                  <button class="custom-select-option" type="button" data-value="4.5" role="option">4.5+</button>
+                  <button class="custom-select-option" type="button" data-value="4.7" role="option">4.7+</button>
+                  <button class="custom-select-option" type="button" data-value="4.8" role="option">4.8+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <span class="filter-title">Availability</span>
+              <label class="choice"><input type="checkbox" id="stockFilter" /><span class="choice-box" aria-hidden="true"></span><span>In stock only</span></label>
+            </div>
+          </aside>
+
+          <div class="catalog-results">
+            <div class="catalog-toolbar">
+              <div class="search-box" role="search">
+                <span aria-hidden="true">⌕</span>
+                <input id="searchInput" type="search" placeholder="Search by name, category, brand, material..." />
+              </div>
+
+              <div class="custom-select" data-custom-select>
+                <input type="hidden" id="sortSelect" value="featured" />
+                <button class="custom-select-button" type="button" aria-haspopup="listbox" aria-expanded="false">
+                  <span data-selected-label>Featured</span>
+                </button>
+                <div class="custom-select-menu custom-select-menu-right" role="listbox" aria-label="Sort products">
+                  <button class="custom-select-option is-selected" type="button" data-value="featured" role="option" aria-selected="true">Featured</button>
+                  <button class="custom-select-option" type="button" data-value="priceAsc" role="option">Price: low to high</button>
+                  <button class="custom-select-option" type="button" data-value="priceDesc" role="option">Price: high to low</button>
+                  <button class="custom-select-option" type="button" data-value="ratingDesc" role="option">Rating</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-grid" id="productGrid"></div>
+            <div class="empty-state card section" id="emptyState" hidden>
+              <h2 class="title-sm">No products found</h2>
+              <p class="muted">Try another search term or remove some filters.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { name: 'Aero Knit Jacket', category: 'Outerwear', brand: 'Northline', price: 148, rating: 4.8, reviews: 126, stock: true, attrs: ['Graphite', 'Waterproof', 'XS–XL'] },
+      { name: 'Modular Desk Lamp', category: 'Home', brand: 'Luma', price: 89, rating: 4.7, reviews: 84, stock: true, attrs: ['Aluminum', 'USB-C', 'Warm light'] },
+      { name: 'Everyday Carry Pack', category: 'Bags', brand: 'Mori', price: 112, rating: 4.9, reviews: 219, stock: true, attrs: ['18L', 'Recycled', 'Laptop 15”'] },
+      { name: 'Soft Wool Beanie', category: 'Accessories', brand: 'Northline', price: 36, rating: 4.5, reviews: 42, stock: true, attrs: ['Merino', 'Black', 'One size'] },
+      { name: 'Ceramic Cable Dock', category: 'Home', brand: 'Studio Base', price: 42, rating: 4.4, reviews: 31, stock: false, attrs: ['Ceramic', 'Matte', 'Desk'] },
+      { name: 'Travel Tech Pouch', category: 'Bags', brand: 'Mori', price: 58, rating: 4.6, reviews: 73, stock: true, attrs: ['2L', 'Organizer', 'Recycled'] }
+    ];
+
+    const grid = document.getElementById('productGrid');
+    const resultCount = document.getElementById('resultCount');
+    const emptyState = document.getElementById('emptyState');
+    const searchInput = document.getElementById('searchInput');
+    const ratingFilter = document.getElementById('ratingFilter');
+    const stockFilter = document.getElementById('stockFilter');
+    const sortSelect = document.getElementById('sortSelect');
+    const clearFilters = document.getElementById('clearFilters');
+    const cartCount = document.getElementById('cartCount');
+
+    function setupCustomSelect(select) {
+      const input = select.querySelector('input[type="hidden"]');
+      const button = select.querySelector('.custom-select-button');
+      const label = select.querySelector('[data-selected-label]');
+      const options = Array.from(select.querySelectorAll('.custom-select-option'));
+
+      function setValue(value, shouldDispatch = true) {
+        const option = options.find(item => item.dataset.value === value) || options[0];
+        input.value = option.dataset.value;
+        label.textContent = option.textContent.trim();
+        options.forEach(item => {
+          const active = item === option;
+          item.classList.toggle('is-selected', active);
+          item.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        if (shouldDispatch) input.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+
+      select.setCustomValue = setValue;
+
+      button.addEventListener('click', event => {
+        event.stopPropagation();
+        document.querySelectorAll('[data-custom-select].is-open').forEach(item => {
+          if (item !== select) {
+            item.classList.remove('is-open');
+            item.querySelector('.custom-select-button').setAttribute('aria-expanded', 'false');
+          }
+        });
+        const open = select.classList.toggle('is-open');
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          setValue(option.dataset.value);
+          select.classList.remove('is-open');
+          button.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    document.querySelectorAll('[data-custom-select]').forEach(setupCustomSelect);
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('[data-custom-select].is-open').forEach(select => {
+        select.classList.remove('is-open');
+        select.querySelector('.custom-select-button').setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        document.querySelectorAll('[data-custom-select].is-open').forEach(select => {
+          select.classList.remove('is-open');
+          select.querySelector('.custom-select-button').setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+
+    function setCustomSelectValue(inputId, value) {
+      const input = document.getElementById(inputId);
+      const select = input.closest('[data-custom-select]');
+      select.setCustomValue(value, false);
+    }
+
+    function getCheckedValues(filterName) {
+      return Array.from(document.querySelectorAll(`[data-filter="${filterName}"] input:checked`)).map(input => input.value);
+    }
+
+    function productCard(product) {
+      return `
+        <article class="product-card">
+          <a href="product.html" class="product-media" aria-label="View ${product.name}"></a>
+          <div class="split product-card-head">
+            <div>
+              <h2 class="product-title">${product.name}</h2>
+              <p class="product-meta">${product.brand} · ${product.category}</p>
+            </div>
+            <span class="price">$${product.price}</span>
+          </div>
+          <div class="attribute-list">${product.attrs.map(attr => `<span class="badge">${attr}</span>`).join('')}</div>
+          <div class="split product-card-meta">
+            <span class="rating"><span class="stars">★★★★★</span> ${product.rating} (${product.reviews})</span>
+            <span class="badge ${product.stock ? 'status-success' : 'status-danger'}">${product.stock ? 'In stock' : 'Out'}</span>
+          </div>
+          <div class="cluster" style="margin-top: 14px;">
+            <a class="secondary-button" href="product.html">Details</a>
+            <button class="primary-button add-to-cart" type="button" ${product.stock ? '' : 'disabled'}>Add</button>
+          </div>
+        </article>`;
+    }
+
+    function render() {
+      const query = searchInput.value.trim().toLowerCase();
+      const categories = getCheckedValues('category');
+      const brands = getCheckedValues('brand');
+      const minRating = Number(ratingFilter.value);
+      const inStockOnly = stockFilter.checked;
+
+      let filtered = products.filter(product => {
+        const searchText = [product.name, product.category, product.brand, product.attrs.join(' ')].join(' ').toLowerCase();
+        return (!query || searchText.includes(query))
+          && (!categories.length || categories.includes(product.category))
+          && (!brands.length || brands.includes(product.brand))
+          && product.rating >= minRating
+          && (!inStockOnly || product.stock);
+      });
+
+      const sort = sortSelect.value;
+      if (sort === 'priceAsc') filtered.sort((a, b) => a.price - b.price);
+      if (sort === 'priceDesc') filtered.sort((a, b) => b.price - a.price);
+      if (sort === 'ratingDesc') filtered.sort((a, b) => b.rating - a.rating);
+
+      grid.innerHTML = filtered.map(productCard).join('');
+      resultCount.textContent = `${filtered.length} product${filtered.length === 1 ? '' : 's'}`;
+      emptyState.hidden = filtered.length > 0;
+
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', () => {
+          cartCount.textContent = String(Number(cartCount.textContent) + 1);
+        });
+      });
+    }
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', render);
+      input.addEventListener('change', render);
+    });
+
+    clearFilters.addEventListener('click', () => {
+      document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
+      searchInput.value = '';
+      setCustomSelectValue('ratingFilter', '0');
+      setCustomSelectValue('sortSelect', 'featured');
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>

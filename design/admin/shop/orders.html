@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Shop — Orders</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="index.html"><span class="brand-mark">N</span><span class="brand-text">North Shop</span></a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link" href="brands.html">Brands</a>
+          <a class="nav-link is-active" href="orders.html">Orders</a>
+          <a class="nav-link" href="reviews.html">Reviews</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-button" href="profile.html" aria-label="Profile">◌</a>
+          <a class="icon-button" href="cart.html" aria-label="Cart">⌁<span class="cart-count">2</span></a>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <section class="split">
+          <div>
+            <p class="eyebrow">Orders</p>
+            <h1 class="title-lg">Track every order.</h1>
+            <p class="lead">Order list with status, items, total amount, delivery progress, and links to review products.</p>
+          </div>
+          <a class="secondary-button" href="products.html">Shop again</a>
+        </section>
+
+        <section class="section">
+          <div class="order-tabs" id="orderTabs">
+            <button class="filter-pill is-active" type="button" data-status="all">All</button>
+            <button class="filter-pill" type="button" data-status="processing">Processing</button>
+            <button class="filter-pill" type="button" data-status="shipped">Shipped</button>
+            <button class="filter-pill" type="button" data-status="delivered">Delivered</button>
+          </div>
+          <div class="stack" id="orderList"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const orders = [
+      { id: '#1048', date: 'May 26, 2026', status: 'processing', label: 'Processing', total: '$217', items: 'Everyday Carry Pack, Modular Desk Lamp' },
+      { id: '#1042', date: 'May 12, 2026', status: 'shipped', label: 'Shipped', total: '$148', items: 'Aero Knit Jacket' },
+      { id: '#1038', date: 'Apr 28, 2026', status: 'delivered', label: 'Delivered', total: '$94', items: 'Travel Tech Pouch, Soft Wool Beanie' }
+    ];
+
+    const list = document.getElementById('orderList');
+    const tabs = document.querySelectorAll('[data-status]');
+
+    function renderOrders(status = 'all') {
+      const visible = status === 'all' ? orders : orders.filter(order => order.status === status);
+      list.innerHTML = visible.map(order => `
+        <article class="order-card">
+          <div class="split">
+            <div>
+              <h2 class="product-title">Order ${order.id}</h2>
+              <p class="product-meta">${order.date} · ${order.items}</p>
+            </div>
+            <div class="cluster">
+              <span class="badge ${order.status === 'delivered' ? 'status-success' : order.status === 'shipped' ? 'status-warning' : ''}">${order.label}</span>
+              <strong>${order.total}</strong>
+            </div>
+          </div>
+          <div class="order-products"><span class="order-mini-product"></span><span class="order-mini-product"></span><span class="order-mini-product"></span></div>
+          <div class="cluster section">
+            <a class="secondary-button" href="order.html">View details</a>
+            <a class="ghost-button" href="reviews.html">Write review →</a>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(item => item.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        renderOrders(tab.dataset.status);
+      });
+    });
+
+    renderOrders();
+  </script>
+</body>
+</html>

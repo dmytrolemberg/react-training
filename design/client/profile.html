@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Shop — Profile</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="index.html"><span class="brand-mark">N</span><span class="brand-text">North Shop</span></a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link" href="brands.html">Brands</a>
+          <a class="nav-link" href="orders.html">Orders</a>
+          <a class="nav-link" href="reviews.html">Reviews</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-button" href="profile.html" aria-label="Profile">◌</a>
+          <a class="icon-button" href="cart.html" aria-label="Cart">⌁<span class="cart-count">2</span></a>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <section>
+          <p class="eyebrow">Profile</p>
+          <h1 class="title-lg">Account overview.</h1>
+          <p class="lead">User profile page with order history, saved addresses, payment methods, wishlist, and reviews.</p>
+        </section>
+
+        <section class="profile-layout section">
+          <aside class="profile-card">
+            <div class="avatar">D</div>
+            <h2 class="title-sm section">Dmytro Orikhovskyi</h2>
+            <p class="muted text-small">dmytro@example.com</p>
+            <div class="profile-list">
+              <a href="orders.html"><span>Orders</span><strong>12</strong></a>
+              <a href="reviews.html"><span>Reviews</span><strong>8</strong></a>
+              <a href="cart.html"><span>Cart</span><strong>2</strong></a>
+              <button type="button"><span>Wishlist</span><strong>5</strong></button>
+            </div>
+          </aside>
+
+          <div class="stack">
+            <div class="grid grid-3">
+              <div class="kpi-card"><span class="muted text-small">Total orders</span><span class="kpi-value">12</span></div>
+              <div class="kpi-card"><span class="muted text-small">Average rating</span><span class="kpi-value">4.8</span></div>
+              <div class="kpi-card"><span class="muted text-small">Saved items</span><span class="kpi-value">5</span></div>
+            </div>
+
+            <section class="card card-pad">
+              <div class="split"><h2 class="title-sm">Saved addresses</h2><button class="secondary-button" type="button">Add address</button></div>
+              <div class="grid grid-2 section">
+                <div class="soft-card card-pad"><span class="badge">Default</span><h3 class="product-title section">Home</h3><p class="muted text-small">Kyiv, Ukraine · Street address placeholder</p></div>
+                <div class="soft-card card-pad"><span class="badge">Work</span><h3 class="product-title section">Office</h3><p class="muted text-small">Kyiv, Ukraine · Office address placeholder</p></div>
+              </div>
+            </section>
+
+            <section class="card card-pad">
+              <div class="split"><h2 class="title-sm">Payment methods</h2><button class="secondary-button" type="button">Add card</button></div>
+              <div class="grid grid-2 section">
+                <div class="soft-card card-pad"><span class="badge">Visa</span><h3 class="product-title section">•••• 4242</h3><p class="muted text-small">Expires 12/28</p></div>
+                <div class="soft-card card-pad"><span class="badge">Mastercard</span><h3 class="product-title section">•••• 1881</h3><p class="muted text-small">Expires 09/27</p></div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

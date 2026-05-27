@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coverage check · Minimal Shop Admin</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="sidebar-overlay" data-sidebar-overlay></div>
+  <div class="admin-shell">
+    <aside class="sidebar" data-sidebar>
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span><span class="brand-title">Shop Admin</span><span class="brand-subtitle">Shop management</span></span>
+      </a>
+      <div class="sidebar-label">Overview</div>
+<div class="sidebar-group">
+<a class="nav-link" href="index.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+</div>
+<div class="sidebar-label">Catalog</div>
+<div class="sidebar-group">
+<a class="nav-link" href="products.html"><span class="nav-icon">◫</span><span>Products</span></a>
+<a class="nav-link" href="categories.html"><span class="nav-icon">◧</span><span>Categories</span></a>
+<a class="nav-link" href="brands.html"><span class="nav-icon">◇</span><span>Brands</span></a>
+<a class="nav-link" href="attributes.html"><span class="nav-icon">▤</span><span>Attributes</span></a>
+<a class="nav-link" href="inventory.html"><span class="nav-icon">▥</span><span>Inventory</span></a>
+</div>
+<div class="sidebar-label">Sales</div>
+<div class="sidebar-group">
+<a class="nav-link" href="orders.html"><span class="nav-icon">◉</span><span>Orders</span></a>
+<a class="nav-link" href="carts.html"><span class="nav-icon">◌</span><span>Carts</span></a>
+<a class="nav-link" href="checkouts.html"><span class="nav-icon">✓</span><span>Checkouts</span></a>
+<a class="nav-link" href="coupons.html"><span class="nav-icon">％</span><span>Coupons</span></a>
+</div>
+<div class="sidebar-label">People</div>
+<div class="sidebar-group">
+<a class="nav-link" href="customers.html"><span class="nav-icon">☻</span><span>Customers</span></a>
+<a class="nav-link" href="reviews.html"><span class="nav-icon">★</span><span>Reviews & Ratings</span></a>
+</div>
+<div class="sidebar-label">Admin</div>
+<div class="sidebar-group">
+<a class="nav-link" href="admin-users.html"><span class="nav-icon">♙</span><span>Admin Users</span></a>
+<a class="nav-link" href="settings.html"><span class="nav-icon">⚙</span><span>Settings</span></a>
+</div>
+      <div class="sidebar-footer">
+        <p class="text-small"><strong>Admin scope</strong></p>
+        <p class="text-tiny muted">Catalog, sales, customers, ratings, checkout, carts, users and settings.</p>
+      </div>
+    </aside>
+    <main class="page-content">
+      
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn mobile-menu-button" type="button" data-open-sidebar aria-label="Open menu">☰</button>
+        <nav class="breadcrumbs"><a href="index.html">Dashboard</a><span>/</span><span>Admin</span><span>/</span><strong>Coverage check</strong></nav>
+      </div>
+      <div class="topbar-right">
+        <label class="search-box"><span>⌕</span><input type="search" placeholder="Search products, orders, customers..." /></label>
+        <button class="icon-btn" type="button" aria-label="Notifications">🔔</button>
+        <a class="btn btn-primary" href="product-form.html">＋ Add product</a>
+      </div>
+    </header>
+      <section class="hero-card">
+      <div class="split align-start">
+        <div>
+          <p class="eyebrow">Project map</p>
+          <h1 class="page-title">Coverage check</h1>
+          <p class="page-subtitle">All shop entities from the customer-facing design are covered here with list, detail and form pages where needed. All rows link to real local HTML files.</p>
+        </div>
+        <div class="cluster"><a class="btn btn-secondary" href="index.html">Dashboard</a></div>
+      </div>
+    </section>
+<section class="card"><div class="card-header"><div><h2 class="card-title">Entity coverage</h2><p class="card-subtitle">Verified route map for the admin portal.</p></div></div><div class="table-scroll"><table class="data-table"><thead><tr><th>Entity / module</th><th>Page</th><th>Purpose</th></tr></thead><tbody><tr><td>Dashboard & analytics</td><td><a href="index.html">index.html</a></td><td>Revenue, orders, customers, charts, recent orders, low stock</td></tr><tr><td>Products - all</td><td><a href="products.html">products.html</a></td><td>List, filters, bulk checkboxes, status, ratings</td></tr><tr><td>Product - one</td><td><a href="product.html">product.html</a></td><td>Media, WYSIWYG description, attributes, relations</td></tr><tr><td>Product form</td><td><a href="product-form.html">product-form.html</a></td><td>Create/edit product, attributes, category, brand, media</td></tr><tr><td>Categories - all</td><td><a href="categories.html">categories.html</a></td><td>Category tree/list</td></tr><tr><td>Category - one</td><td><a href="category.html">category.html</a></td><td>Products, SEO, child categories</td></tr><tr><td>Category form</td><td><a href="category-form.html">category-form.html</a></td><td>Create/edit category</td></tr><tr><td>Brands - all</td><td><a href="brands.html">brands.html</a></td><td>Brand list/cards</td></tr><tr><td>Brand - one</td><td><a href="brand.html">brand.html</a></td><td>Brand detail and products</td></tr><tr><td>Brand form</td><td><a href="brand-form.html">brand-form.html</a></td><td>Create/edit brand</td></tr><tr><td>Attributes - all</td><td><a href="attributes.html">attributes.html</a></td><td>Attribute groups</td></tr><tr><td>Attribute - one</td><td><a href="attribute.html">attribute.html</a></td><td>Values, filters, linked products</td></tr><tr><td>Attribute form</td><td><a href="attribute-form.html">attribute-form.html</a></td><td>Create/edit attribute values</td></tr><tr><td>Orders - all</td><td><a href="orders.html">orders.html</a></td><td>Order management</td></tr><tr><td>Order - one</td><td><a href="order.html">order.html</a></td><td>Items, payment, fulfillment, timeline</td></tr><tr><td>Customers/profiles - all</td><td><a href="customers.html">customers.html</a></td><td>Customer accounts</td></tr><tr><td>Customer/profile - one</td><td><a href="customer.html">customer.html</a></td><td>Orders, reviews, carts</td></tr><tr><td>Reviews & ratings - all</td><td><a href="reviews.html">reviews.html</a></td><td>Moderation queue</td></tr><tr><td>Review/rating - one</td><td><a href="review.html">review.html</a></td><td>Approve/reject/reply</td></tr><tr><td>Carts - all</td><td><a href="carts.html">carts.html</a></td><td>Active/abandoned carts</td></tr><tr><td>Cart - one</td><td><a href="cart.html">cart.html</a></td><td>Items and recovery</td></tr><tr><td>Checkouts - all</td><td><a href="checkouts.html">checkouts.html</a></td><td>Checkout sessions</td></tr><tr><td>Checkout - one</td><td><a href="checkout.html">checkout.html</a></td><td>Steps, payment, order relation</td></tr><tr><td>Coupons - all</td><td><a href="coupons.html">coupons.html</a></td><td>Promotions</td></tr><tr><td>Coupon - one</td><td><a href="coupon.html">coupon.html</a></td><td>Rules and usage</td></tr><tr><td>Coupon form</td><td><a href="coupon-form.html">coupon-form.html</a></td><td>Create/edit coupon</td></tr><tr><td>Inventory - all</td><td><a href="inventory.html">inventory.html</a></td><td>SKUs and stock</td></tr><tr><td>Inventory item - one</td><td><a href="inventory-item.html">inventory-item.html</a></td><td>Stock movement</td></tr><tr><td>Admin users - all</td><td><a href="admin-users.html">admin-users.html</a></td><td>Users and roles</td></tr><tr><td>Admin user - one</td><td><a href="admin-user.html">admin-user.html</a></td><td>Permissions and activity</td></tr><tr><td>Settings</td><td><a href="settings.html">settings.html</a></td><td>Shop, checkout, search, reviews, notifications</td></tr></tbody></table></div></section>
+    </main>
+  </div>
+
+<script>
+  (function () {
+    const sidebar = document.querySelector('[data-sidebar]');
+    const overlay = document.querySelector('[data-sidebar-overlay]');
+    const openBtn = document.querySelector('[data-open-sidebar]');
+    const closeSidebar = () => {
+      document.body.classList.remove('sidebar-open');
+      if (sidebar) sidebar.classList.remove('is-open');
+    };
+    const openSidebar = () => {
+      document.body.classList.add('sidebar-open');
+      if (sidebar) sidebar.classList.add('is-open');
+    };
+    if (openBtn) openBtn.addEventListener('click', openSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeSidebar();
+    });
+
+    document.querySelectorAll('[data-select]').forEach((select) => {
+      const trigger = select.querySelector('[data-select-trigger]');
+      const label = select.querySelector('[data-select-label]');
+      const options = select.querySelectorAll('[data-select-option]');
+      if (!trigger || !label) return;
+      trigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        document.querySelectorAll('[data-select].open').forEach((item) => {
+          if (item !== select) item.classList.remove('open');
+        });
+        select.classList.toggle('open');
+      });
+      options.forEach((option) => {
+        option.addEventListener('click', () => {
+          options.forEach((item) => item.classList.remove('active'));
+          option.classList.add('active');
+          label.textContent = option.textContent.trim();
+          select.classList.remove('open');
+        });
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('[data-select].open').forEach((select) => select.classList.remove('open'));
+    });
+
+    document.querySelectorAll('[data-check-all]').forEach((master) => {
+      master.addEventListener('change', () => {
+        const target = master.getAttribute('data-check-all');
+        document.querySelectorAll('[data-check-group="' + target + '"]').forEach((checkbox) => {
+          checkbox.checked = master.checked;
+        });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

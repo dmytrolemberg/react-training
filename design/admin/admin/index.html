@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard · Minimal Shop Admin</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="sidebar-overlay" data-sidebar-overlay></div>
+  <div class="admin-shell">
+    <aside class="sidebar" data-sidebar>
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span><span class="brand-title">Shop Admin</span><span class="brand-subtitle">Shop management</span></span>
+      </a>
+      <div class="sidebar-label">Overview</div>
+<div class="sidebar-group">
+<a class="nav-link active" href="index.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+</div>
+<div class="sidebar-label">Catalog</div>
+<div class="sidebar-group">
+<a class="nav-link" href="products.html"><span class="nav-icon">◫</span><span>Products</span></a>
+<a class="nav-link" href="categories.html"><span class="nav-icon">◧</span><span>Categories</span></a>
+<a class="nav-link" href="brands.html"><span class="nav-icon">◇</span><span>Brands</span></a>
+<a class="nav-link" href="attributes.html"><span class="nav-icon">▤</span><span>Attributes</span></a>
+<a class="nav-link" href="inventory.html"><span class="nav-icon">▥</span><span>Inventory</span></a>
+</div>
+<div class="sidebar-label">Sales</div>
+<div class="sidebar-group">
+<a class="nav-link" href="orders.html"><span class="nav-icon">◉</span><span>Orders</span></a>
+<a class="nav-link" href="carts.html"><span class="nav-icon">◌</span><span>Carts</span></a>
+<a class="nav-link" href="checkouts.html"><span class="nav-icon">✓</span><span>Checkouts</span></a>
+<a class="nav-link" href="coupons.html"><span class="nav-icon">％</span><span>Coupons</span></a>
+</div>
+<div class="sidebar-label">People</div>
+<div class="sidebar-group">
+<a class="nav-link" href="customers.html"><span class="nav-icon">☻</span><span>Customers</span></a>
+<a class="nav-link" href="reviews.html"><span class="nav-icon">★</span><span>Reviews & Ratings</span></a>
+</div>
+<div class="sidebar-label">Admin</div>
+<div class="sidebar-group">
+<a class="nav-link" href="admin-users.html"><span class="nav-icon">♙</span><span>Admin Users</span></a>
+<a class="nav-link" href="settings.html"><span class="nav-icon">⚙</span><span>Settings</span></a>
+</div>
+      <div class="sidebar-footer">
+        <p class="text-small"><strong>Admin scope</strong></p>
+        <p class="text-tiny muted">Catalog, sales, customers, ratings, checkout, carts, users and settings.</p>
+      </div>
+    </aside>
+    <main class="page-content">
+      
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn mobile-menu-button" type="button" data-open-sidebar aria-label="Open menu">☰</button>
+        <nav class="breadcrumbs"><a href="index.html">Dashboard</a><span>/</span><span>Overview</span><span>/</span><strong>Dashboard</strong></nav>
+      </div>
+      <div class="topbar-right">
+        <label class="search-box"><span>⌕</span><input type="search" placeholder="Search products, orders, customers..." /></label>
+        <button class="icon-btn" type="button" aria-label="Notifications">🔔</button>
+        <a class="btn btn-primary" href="product-form.html">＋ Add product</a>
+      </div>
+    </header>
+      <section class="hero-card">
+      <div class="split align-start">
+        <div>
+          <p class="eyebrow">Overview</p>
+          <h1 class="page-title">Shop admin dashboard</h1>
+          <p class="page-subtitle">A responsive admin dashboard using the same warm minimal design system to manage catalog, orders, carts, checkout sessions, customers, reviews, ratings, coupons, inventory, admin users and shop settings.</p>
+        </div>
+        <div class="cluster"><a class="btn btn-secondary" href="coverage.html">Coverage check</a><a class="btn btn-primary" href="product-form.html">Create product</a></div>
+      </div>
+    </section>
+<section class="page-section">
+  
+<div class="grid grid-4">
+  <article class="card kpi-card"><div class="kpi-top"><span class="kpi-icon">$</span><span class="trend">↗ 14.8%</span></div><div><p class="kpi-value">$56.2k</p><p class="kpi-label">Gross sales</p></div></article>
+  <article class="card kpi-card"><div class="kpi-top"><span class="kpi-icon">◉</span><span class="trend">↗ 9.6%</span></div><div><p class="kpi-value">1,492</p><p class="kpi-label">Orders</p></div></article>
+  <article class="card kpi-card"><div class="kpi-top"><span class="kpi-icon">▤</span><span class="trend">↗ 5.7%</span></div><div><p class="kpi-value">824</p><p class="kpi-label">Products</p></div></article>
+  <article class="card kpi-card"><div class="kpi-top"><span class="kpi-icon">☻</span><span class="trend">↗ 6.1%</span></div><div><p class="kpi-value">12.4k</p><p class="kpi-label">Customers</p></div></article>
+</div>
+  <div class="grid dashboard-layout">
+    <div class="stack">
+      <article class="card"><div class="card-header"><div><h2 class="card-title">Sales analytics</h2><p class="card-subtitle">Revenue trend for the current week.</p></div><a class="btn btn-small btn-secondary" href="orders.html">View orders</a></div><svg class="chart-svg" viewBox="0 0 720 260" role="img" aria-label="Revenue chart">
+  <path class="chart-grid-line" d="M40 40H700M40 100H700M40 160H700M40 220H700" />
+  <path class="chart-area" d="M40 190 L145 152 L250 165 L355 105 L460 88 L565 55 L680 72 L680 220 L40 220 Z" />
+  <path class="chart-line" d="M40 190 L145 152 L250 165 L355 105 L460 88 L565 55 L680 72" />
+  <circle class="chart-point" cx="40" cy="190" r="5"/><circle class="chart-point" cx="145" cy="152" r="5"/><circle class="chart-point" cx="250" cy="165" r="5"/><circle class="chart-point" cx="355" cy="105" r="5"/><circle class="chart-point" cx="460" cy="88" r="5"/><circle class="chart-point" cx="565" cy="55" r="5"/><circle class="chart-point" cx="680" cy="72" r="5"/>
+  <text x="40" y="247" fill="#9aa2ad" font-size="13">Mon</text><text x="145" y="247" fill="#9aa2ad" font-size="13">Tue</text><text x="250" y="247" fill="#9aa2ad" font-size="13">Wed</text><text x="355" y="247" fill="#9aa2ad" font-size="13">Thu</text><text x="460" y="247" fill="#9aa2ad" font-size="13">Fri</text><text x="565" y="247" fill="#9aa2ad" font-size="13">Sat</text><text x="680" y="247" fill="#9aa2ad" font-size="13">Sun</text>
+</svg></article>
+      <article class="card"><div class="card-header"><div><h2 class="card-title">Recent orders</h2><p class="card-subtitle">Operational overview for support and fulfillment.</p></div></div><div class="table-scroll"><table class="data-table"><thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody><tr><td><a href="order.html">#1048</a></td><td>Emma Lewis</td><td>$248</td><td><span class="badge badge-success">Paid</span></td><td>Today</td><td><div class="table-actions"><a class="btn btn-small btn-secondary" href="order.html">View</a></div></td></tr><tr><td><a href="order.html">#1047</a></td><td>Daniel Kim</td><td>$112</td><td><span class="badge badge-warning">Pending</span></td><td>Today</td><td><div class="table-actions"><a class="btn btn-small btn-secondary" href="order.html">View</a></div></td></tr><tr><td><a href="order.html">#1046</a></td><td>Sofia Grant</td><td>$386</td><td><span class="badge badge-info">Shipped</span></td><td>Yesterday</td><td><div class="table-actions"><a class="btn btn-small btn-secondary" href="order.html">View</a></div></td></tr><tr><td><a href="order.html">#1045</a></td><td>Alex Morgan</td><td>$89</td><td><span class="badge badge-danger">Refund</span></td><td>Yesterday</td><td><div class="table-actions"><a class="btn btn-small btn-secondary" href="order.html">View</a></div></td></tr></tbody></table></div></article>
+    </div>
+    <aside class="stack">
+      <article class="card"><div class="card-header"><div><h2 class="card-title">Orders by day</h2><p class="card-subtitle">Current week volume.</p></div></div><div class="bar-chart"><div class="bar"><span style="--h:48%"></span>Mon</div><div class="bar"><span style="--h:62%"></span>Tue</div><div class="bar"><span style="--h:56%"></span>Wed</div><div class="bar"><span style="--h:78%"></span>Thu</div><div class="bar"><span style="--h:84%"></span>Fri</div><div class="bar"><span style="--h:96%"></span>Sat</div><div class="bar"><span style="--h:88%"></span>Sun</div></div></article>
+      <article class="card"><div class="card-header"><div><h2 class="card-title">Category performance</h2><p class="card-subtitle">Revenue distribution.</p></div></div><div class="donut-wrap"><div class="donut"></div><div class="legend"><div class="legend-item"><span><span class="legend-dot"></span> Bags</span><strong>36%</strong></div><div class="legend-item"><span><span class="legend-dot gray"></span> Home</span><strong>24%</strong></div><div class="legend-item"><span><span class="legend-dot light"></span> Outerwear</span><strong>22%</strong></div><div class="legend-item"><span><span class="legend-dot soft"></span> Accessories</span><strong>18%</strong></div></div></div></article>
+      <article class="card"><div class="card-header"><div><h2 class="card-title">Low stock</h2><p class="card-subtitle">Products that need attention.</p></div></div><div class="stack"><a class="chip" href="inventory-item.html">Aero Knit Jacket · 4 left</a><a class="chip" href="inventory-item.html">Modular Desk Lamp · 7 left</a><a class="chip" href="inventory-item.html">Everyday Carry Pack · 9 left</a></div></article>
+    </aside>
+  </div>
+</section>
+    </main>
+  </div>
+
+<script>
+  (function () {
+    const sidebar = document.querySelector('[data-sidebar]');
+    const overlay = document.querySelector('[data-sidebar-overlay]');
+    const openBtn = document.querySelector('[data-open-sidebar]');
+    const closeSidebar = () => {
+      document.body.classList.remove('sidebar-open');
+      if (sidebar) sidebar.classList.remove('is-open');
+    };
+    const openSidebar = () => {
+      document.body.classList.add('sidebar-open');
+      if (sidebar) sidebar.classList.add('is-open');
+    };
+    if (openBtn) openBtn.addEventListener('click', openSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeSidebar();
+    });
+
+    document.querySelectorAll('[data-select]').forEach((select) => {
+      const trigger = select.querySelector('[data-select-trigger]');
+      const label = select.querySelector('[data-select-label]');
+      const options = select.querySelectorAll('[data-select-option]');
+      if (!trigger || !label) return;
+      trigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        document.querySelectorAll('[data-select].open').forEach((item) => {
+          if (item !== select) item.classList.remove('open');
+        });
+        select.classList.toggle('open');
+      });
+      options.forEach((option) => {
+        option.addEventListener('click', () => {
+          options.forEach((item) => item.classList.remove('active'));
+          option.classList.add('active');
+          label.textContent = option.textContent.trim();
+          select.classList.remove('open');
+        });
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('[data-select].open').forEach((select) => select.classList.remove('open'));
+    });
+
+    document.querySelectorAll('[data-check-all]').forEach((master) => {
+      master.addEventListener('change', () => {
+        const target = master.getAttribute('data-check-all');
+        document.querySelectorAll('[data-check-group="' + target + '"]').forEach((checkbox) => {
+          checkbox.checked = master.checked;
+        });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
