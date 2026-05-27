@@ -6,9 +6,17 @@ namespace Tests\Feature\Admin\Api\V1;
 
 use Tests\TestCase;
 use Illuminate\Support\Facades\Auth;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class AuthTest extends TestCase
 {
+    #[DataProvider('protectedAdminEndpoints')]
+    public function testAdminProtectedEndpointsRequireAuthentication(string $method, string $uri): void
+    {
+        $this->json($method, $uri)
+            ->assertUnauthorized();
+    }
+
     public function testRegularUserCanLogInThroughAdminApiButCannotAccessAdminResources(): void
     {
         $this->withHeader('Origin', 'http://localhost:8003')
@@ -54,5 +62,50 @@ class AuthTest extends TestCase
                 'section' => 'admin',
                 'version' => 'v1',
             ]);
+    }
+
+    public function testInvalidAdminCredentialsFailValidation(): void
+    {
+        $this->withHeader('Origin', 'http://localhost:8003')
+            ->postJson('/admin/api/v1/auth/login', [
+                'email' => 'admin@example.com',
+                'password' => 'wrong-password',
+            ])
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['email']);
+
+        $this->assertGuest();
+    }
+
+    public function testAdminLogoutInvalidatesSession(): void
+    {
+        $this->withHeader('Origin', 'http://localhost:8003')
+            ->postJson('/admin/api/v1/auth/login', [
+                'email' => 'admin@example.com',
+                'password' => 'password',
+            ])
+            ->assertOk();
+
+        $this->withHeader('Origin', 'http://localhost:8003')
+            ->postJson('/admin/api/v1/auth/logout')
+            ->assertNoContent();
+
+        Auth::forgetGuards();
+
+        $this->withHeader('Origin', 'http://localhost:8003')
+            ->getJson('/admin/api/v1/auth/user')
+            ->assertUnauthorized();
+    }
+
+    /**
+     * @return array<string, array{0: string, 1: string}>
+     */
+    public static function protectedAdminEndpoints(): array
+    {
+        return [
+            'auth logout' => ['POST', '/admin/api/v1/auth/logout'],
+            'auth user' => ['GET', '/admin/api/v1/auth/user'],
+            'admin ping' => ['GET', '/admin/api/v1/ping'],
+        ];
     }
 }

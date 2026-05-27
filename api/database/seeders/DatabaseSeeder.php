@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         User::query()->updateOrCreate(
             ['email' => 'user@example.com'],
             [
-                'name' => 'Test User',
+                'name' => 'Dmytro Orikhovskyi',
                 'password' => 'password',
                 'role' => UserRole::User->value,
                 'email_verified_at' => now(),
@@ -37,5 +37,7 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
             ],
         );
+
+        $this->call(ShopSeeder::class);
     }
 }
