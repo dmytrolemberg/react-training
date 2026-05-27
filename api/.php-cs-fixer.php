@@ -13,7 +13,7 @@ return
                 ->in(__DIR__)
                 ->ignoreDotFiles(true)
                 ->ignoreVCS(true)
-                ->ignoreVCSIgnored(false)
+                ->ignoreVCSIgnored(true)
                 ->ignoreUnreadableDirs()
                 ->files()
                 ->name('*.php')
@@ -25,6 +25,11 @@ return
                     'vendor',
                 ])
                 ->notName('*.blade.php') // Blade templates are matched by *.php
+                ->notName([ // generated IDE helper files
+                    '_ide_helper.php',
+                    '_ide_helper_models.php',
+                    '.phpstorm.meta.php',
+                ])
                 ->append([
                     __FILE__,
                 ]),

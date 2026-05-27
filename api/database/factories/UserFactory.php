@@ -4,8 +4,9 @@ declare(strict_types = 1);
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Support\Str;
+use App\Models\User\UserRole;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,6 +15,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class UserFactory extends Factory
 {
+    /**
+     * @var class-string<User>
+     */
+    protected $model = User::class;
+
     /**
      * The current password being used by the factory.
      */
@@ -31,8 +37,23 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'role' => UserRole::User->value,
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn(array $attributes): array => [
+            'role' => UserRole::Admin->value,
+        ]);
+    }
+
+    public function user(): static
+    {
+        return $this->state(fn(array $attributes): array => [
+            'role' => UserRole::User->value,
+        ]);
     }
 
     /**

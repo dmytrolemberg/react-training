@@ -12,5 +12,10 @@ final class AppServiceProvider extends ServiceProvider
      * Register any application services.
      */
     #[\Override]
-    public function register(): void {}
+    public function register(): void
+    {
+        if (! $this->app->environment('production') && class_exists(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class)) {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
+    }
 }

@@ -67,6 +67,9 @@ api-migrations:
 api-seed:
 	docker compose run --rm api php artisan db:seed --force
 
+api-ide-helper:
+	docker compose run --rm api composer ide-helper
+
 api-check: api-lint-check api-stan api-rector-check api-test
 api-fix: api-rector-fix api-lint-fix
 
@@ -88,8 +91,14 @@ api-rector-fix:
 api-clear-cache:
 	docker compose run --rm api php artisan optimize:clear
 
-api-test:
+api-test: api-test-db-up api-wait-test-db
 	docker compose run --rm api composer test
+
+api-test-db-up:
+	docker compose up -d api-postgres-test
+
+api-wait-test-db:
+	docker compose run --rm api wait-for-it api-postgres-test:5432 -t 30
 
 api-test-coverage:
 	docker compose run --rm api php artisan test --coverage
