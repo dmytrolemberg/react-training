@@ -45,8 +45,19 @@ class OpenApiDocsTest extends TestCase
                 'paths' => [
                     '/auth/login',
                     '/ping',
+                    '/dashboard',
+                    '/products',
+                    '/orders',
+                    '/checkout-sessions',
+                    '/settings',
+                    '/admin-users',
                 ],
             ]);
+
+        $paths = $this->getJson('/docs/admin.json')->json('paths');
+        $this->assertIsArray($paths);
+        $this->assertArrayNotHasKey('/coupons', $paths);
+        $this->assertArrayNotHasKey('/coupons/{coupon}', $paths);
     }
 
     public function testDefaultOpenApiDocumentIsDisabled(): void

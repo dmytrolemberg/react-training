@@ -47,6 +47,9 @@ class DatabaseSeeder extends Seeder
             ],
         );
 
-        $this->call(ShopSeeder::class);
+        $this->call([
+            ShopSettingSeeder::class,
+            ShopSeeder::class,
+        ]);
     }
 }

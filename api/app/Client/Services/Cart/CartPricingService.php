@@ -6,10 +6,11 @@ namespace App\Client\Services\Cart;
 
 use App\Models\Commerce\Cart;
 use App\Models\Commerce\DeliveryMethod;
+use App\Admin\Services\ShopSettingsService;
 
 class CartPricingService
 {
-    private const float TAX_RATE = 0.08;
+    public function __construct(private readonly ShopSettingsService $settings) {}
 
     /**
      * @return array{subtotal_cents: int, delivery_cents: int, tax_cents: int, total_cents: int, item_count: int}
@@ -29,7 +30,7 @@ class CartPricingService
         $delivery = $deliveryMethod instanceof DeliveryMethod
             ? $this->deliveryCents($deliveryMethod, $subtotal)
             : 0;
-        $tax = (int) round($subtotal * self::TAX_RATE);
+        $tax = (int) round($subtotal * $this->settings->taxRate());
 
         return [
             'subtotal_cents' => $subtotal,
@@ -42,10 +43,6 @@ class CartPricingService
 
     public function deliveryCents(DeliveryMethod $method, int $subtotalCents): int
     {
-        return match ($method) {
-            DeliveryMethod::Pickup => 0,
-            DeliveryMethod::Express => 1200,
-            DeliveryMethod::Standard => $subtotalCents >= 10000 ? 0 : 500,
-        };
+        return $this->settings->deliveryCents($method, $subtotalCents);
     }
 }

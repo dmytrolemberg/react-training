@@ -10,20 +10,22 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Commerce\DeliveryMethod;
 use App\Client\Services\Cart\CartResolver;
+use App\Admin\Services\ShopSettingsService;
+use Illuminate\Validation\ValidationException;
 use App\Client\Services\Cart\CartPricingService;
 use App\Client\UseCases\Checkout\CheckoutCartUseCase;
+use App\Client\Services\Checkout\CheckoutSessionRecorder;
 use App\Client\Resources\Api\V1\Order\OrderDetailResource;
 use App\Client\Requests\Api\V1\Checkout\CheckoutOrderRequest;
 use App\Client\Resources\Api\V1\Profile\PaymentMethodResource;
 
 class CheckoutController extends Controller
 {
-    public function options(Request $request, CartResolver $cartResolver, CartPricingService $pricingService): JsonResponse
+    public function options(Request $request, CartResolver $cartResolver, CartPricingService $pricingService, ShopSettingsService $settings): JsonResponse
     {
         $user = $this->user($request);
         $cart = $cartResolver->activeForUser($user)->load('items');
-        $configuredCurrency = config('app.currency', 'EUR');
-        $currency = is_string($configuredCurrency) ? $configuredCurrency : 'EUR';
+        $currency = $settings->currency();
         $paymentMethods = $user->paymentMethods()->orderByDesc('is_default')->orderBy('id')->get();
 
         $deliveryMethods = collect(DeliveryMethod::cases())->map(fn(DeliveryMethod $method): array => [
@@ -43,9 +45,22 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function store(CheckoutOrderRequest $request, CheckoutCartUseCase $useCase): JsonResponse
+    public function store(CheckoutOrderRequest $request, CheckoutCartUseCase $useCase, CheckoutSessionRecorder $recorder): JsonResponse
     {
-        $order = $useCase->execute($this->user($request), $request->validated());
+        $user = $this->user($request);
+        $payload = $request->validated();
+
+        try {
+            $order = $useCase->execute($user, $payload);
+        } catch (ValidationException $validationException) {
+            /** @var array<string, mixed> $errors */
+            $errors = $validationException->errors();
+            $recorder->failed($user, $payload, $errors);
+
+            throw $validationException;
+        }
+
+        $recorder->completed($user, $payload, $order);
 
         return new OrderDetailResource($order)->response()->setStatusCode(201);
     }

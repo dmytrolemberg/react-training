@@ -4,11 +4,10 @@ declare(strict_types = 1);
 
 namespace Tests\Feature\Admin\Api\V1;
 
-use Tests\TestCase;
 use Illuminate\Support\Facades\Auth;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-class AuthTest extends TestCase
+class AuthTest extends AdminApiTestCase
 {
     #[DataProvider('protectedAdminEndpoints')]
     public function testAdminProtectedEndpointsRequireAuthentication(string $method, string $uri): void
@@ -17,28 +16,22 @@ class AuthTest extends TestCase
             ->assertUnauthorized();
     }
 
-    public function testRegularUserCanLogInThroughAdminApiButCannotAccessAdminResources(): void
+    public function testRegularUserCannotLogInThroughAdminApi(): void
     {
         $this->withHeader('Origin', 'http://localhost:8003')
             ->postJson('/admin/api/v1/auth/login', [
                 'email' => 'user@example.com',
                 'password' => 'password',
             ])
-            ->assertOk()
-            ->assertJsonPath('data.email', 'user@example.com')
-            ->assertJsonPath('data.full_name', 'Dmytro Orikhovskyi')
-            ->assertJsonPath('data.role', 'user');
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['email']);
 
-        Auth::forgetGuards();
+        $this->assertGuest();
+    }
 
-        $this->withHeader('Origin', 'http://localhost:8003')
-            ->getJson('/admin/api/v1/auth/user')
-            ->assertOk()
-            ->assertJsonPath('data.email', 'user@example.com')
-            ->assertJsonPath('data.full_name', 'Dmytro Orikhovskyi')
-            ->assertJsonPath('data.role', 'user');
-
-        $this->withHeader('Origin', 'http://localhost:8003')
+    public function testRegularAuthenticatedUserCannotAccessAdminResources(): void
+    {
+        $this->actingAs($this->user())
             ->getJson('/admin/api/v1/ping')
             ->assertForbidden();
     }
@@ -109,6 +102,10 @@ class AuthTest extends TestCase
             'auth logout' => ['POST', '/admin/api/v1/auth/logout'],
             'auth user' => ['GET', '/admin/api/v1/auth/user'],
             'admin ping' => ['GET', '/admin/api/v1/ping'],
+            'dashboard' => ['GET', '/admin/api/v1/dashboard'],
+            'products' => ['GET', '/admin/api/v1/products'],
+            'orders' => ['GET', '/admin/api/v1/orders'],
+            'settings' => ['GET', '/admin/api/v1/settings'],
         ];
     }
 }

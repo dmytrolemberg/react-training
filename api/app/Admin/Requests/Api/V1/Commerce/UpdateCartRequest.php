@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace App\Admin\Requests\Api\V1\Commerce;
+
+use App\Models\Commerce\Cart;
+use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateCartRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function rules(): array
+    {
+        $cart = $this->route('cart');
+        $cartId = $cart instanceof Cart ? $cart->id : null;
+
+        return [
+            'user_id' => ['required', 'integer', Rule::exists('users', 'id'), Rule::unique('carts', 'user_id')->ignore($cartId)],
+        ];
+    }
+}

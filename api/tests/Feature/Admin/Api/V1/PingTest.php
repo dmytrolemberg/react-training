@@ -4,10 +4,9 @@ declare(strict_types = 1);
 
 namespace Tests\Feature\Admin\Api\V1;
 
-use Tests\TestCase;
 use App\Models\User\User;
 
-class PingTest extends TestCase
+class PingTest extends AdminApiTestCase
 {
     public function testGuestCannotAccessAdminPingEndpoint(): void
     {

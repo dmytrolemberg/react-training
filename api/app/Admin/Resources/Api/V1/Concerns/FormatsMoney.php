@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Client\Resources\Api\V1\Concerns;
+namespace App\Admin\Resources\Api\V1\Concerns;
 
 use App\Admin\Services\ShopSettingsService;
 
@@ -14,13 +14,11 @@ trait FormatsMoney
     private function money(int $cents): array
     {
         $currency = resolve(ShopSettingsService::class)->currency();
-        $amount = $cents / 100;
-        $formatted = number_format($amount, 2) . ' ' . $currency;
 
         return [
             'cents' => $cents,
             'currency' => $currency,
-            'formatted' => $formatted,
+            'formatted' => number_format($cents / 100, 2) . ' ' . $currency,
         ];
     }
 }
