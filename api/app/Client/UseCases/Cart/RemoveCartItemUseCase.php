@@ -19,6 +19,6 @@ class RemoveCartItemUseCase
 
         $cartItem->delete();
 
-        return $cart->refresh()->load(['items.product.brand', 'items.product.category', 'items.product.images']);
+        return $cart->refresh()->load(['items.product.images', 'items.product.attributes']);
     }
 }

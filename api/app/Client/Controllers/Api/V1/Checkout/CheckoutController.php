@@ -22,6 +22,8 @@ class CheckoutController extends Controller
     {
         $user = $this->user($request);
         $cart = $cartResolver->activeForUser($user)->load('items');
+        $configuredCurrency = config('app.currency', 'EUR');
+        $currency = is_string($configuredCurrency) ? $configuredCurrency : 'EUR';
         $paymentMethods = $user->paymentMethods()->orderByDesc('is_default')->orderBy('id')->get();
 
         $deliveryMethods = collect(DeliveryMethod::cases())->map(fn(DeliveryMethod $method): array => [
@@ -29,7 +31,7 @@ class CheckoutController extends Controller
             'label' => $method->label(),
             'price' => [
                 'cents' => $pricingService->deliveryCents($method, $pricingService->summarize($cart)['subtotal_cents']),
-                'currency' => 'USD',
+                'currency' => $currency,
             ],
         ])->values();
 

@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\Commerce\CartItem;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Client\Resources\Api\V1\Concerns\FormatsMoney;
-use App\Client\Resources\Api\V1\Catalog\ProductCardResource;
 
 class CartItemResource extends JsonResource
 {
@@ -26,9 +25,9 @@ class CartItemResource extends JsonResource
         return [
             'id' => $item->id,
             'quantity' => $item->quantity,
-            'unit_price' => $this->money($item->unit_price_cents, $item->currency),
-            'line_total' => $this->money($item->lineTotalCents(), $item->currency),
-            'product' => new ProductCardResource($item->product),
+            'unit_price' => $this->money($item->unit_price_cents),
+            'line_total' => $this->money($item->lineTotalCents()),
+            'product' => new CartProductResource($item->product),
         ];
     }
 }

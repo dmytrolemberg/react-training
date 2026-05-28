@@ -26,7 +26,6 @@ class CartItemFactory extends Factory
             'product_id' => Product::factory(),
             'quantity' => fake()->numberBetween(1, 3),
             'unit_price_cents' => fake()->numberBetween(1200, 20000),
-            'currency' => 'USD',
         ];
     }
 }

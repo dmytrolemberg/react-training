@@ -32,7 +32,6 @@ class OrderFactory extends Factory
             'number' => 'NS-' . now()->format('Ymd') . '-' . fake()->unique()->numberBetween(1000, 9999),
             'status' => OrderStatus::Processing->value,
             'payment_status' => PaymentStatus::Paid->value,
-            'currency' => 'USD',
             'subtotal_cents' => $subtotal,
             'delivery_cents' => $delivery,
             'tax_cents' => $tax,

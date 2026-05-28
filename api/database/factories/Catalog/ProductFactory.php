@@ -33,7 +33,6 @@ class ProductFactory extends Factory
             'short_description' => fake()->sentence(12),
             'description_html' => '<p>' . fake()->paragraph() . '</p>',
             'price_cents' => fake()->numberBetween(1200, 25000),
-            'currency' => 'USD',
             'stock_quantity' => fake()->numberBetween(1, 30),
             'is_active' => true,
             'rating_average' => fake()->randomFloat(1, 3.5, 5),

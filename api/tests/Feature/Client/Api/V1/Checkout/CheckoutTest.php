@@ -8,7 +8,6 @@ use Tests\TestCase;
 use App\Models\User\User;
 use App\Models\Commerce\Cart;
 use App\Models\Catalog\Product;
-use App\Models\Commerce\CartStatus;
 use App\Models\Account\PaymentMethod;
 
 class CheckoutTest extends TestCase
@@ -25,6 +24,7 @@ class CheckoutTest extends TestCase
             ->getJson('/api/v1/checkout/options')
             ->assertOk()
             ->assertJsonPath('data.delivery_methods.0.value', 'standard')
+            ->assertJsonPath('data.delivery_methods.0.price.currency', 'EUR')
             ->assertJsonPath('data.payment_methods.0.last_four', '4242');
     }
 
@@ -32,7 +32,6 @@ class CheckoutTest extends TestCase
     {
         $cart = Cart::query()
             ->where('user_id', $this->user()->id)
-            ->where('status', CartStatus::Active->value)
             ->firstOrFail();
         $cart->items()->delete();
 
@@ -117,6 +116,7 @@ class CheckoutTest extends TestCase
             ->assertCreated()
             ->assertJsonPath('data.status', 'processing')
             ->assertJsonPath('data.summary.subtotal.cents', 20100)
+            ->assertJsonPath('data.summary.subtotal.currency', 'EUR')
             ->assertJsonPath('data.payment.method_label', 'Visa ending 4242');
 
         $this->assertDatabaseHas('orders', [
@@ -124,10 +124,8 @@ class CheckoutTest extends TestCase
             'subtotal_cents' => 20100,
             'payment_status' => 'paid',
         ]);
-        $this->assertDatabaseMissing('carts', [
-            'user_id' => $this->user()->id,
-            'status' => CartStatus::Active->value,
-        ]);
+        $cart = Cart::query()->where('user_id', $this->user()->id)->firstOrFail();
+        $this->assertSame(0, $cart->items()->count());
         $this->assertSame($beforeStock - 1, $product->refresh()->stock_quantity);
     }
 

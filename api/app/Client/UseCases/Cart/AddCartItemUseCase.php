@@ -30,17 +30,15 @@ class AddCartItemUseCase
             $cartItem->forceFill([
                 'quantity' => $newQuantity,
                 'unit_price_cents' => $product->price_cents,
-                'currency' => $product->currency,
             ])->save();
         } else {
             $cart->items()->create([
                 'product_id' => $product->id,
                 'quantity' => $quantity,
                 'unit_price_cents' => $product->price_cents,
-                'currency' => $product->currency,
             ]);
         }
 
-        return $cart->refresh()->load(['items.product.brand', 'items.product.category', 'items.product.images']);
+        return $cart->refresh()->load(['items.product.images', 'items.product.attributes']);
     }
 }

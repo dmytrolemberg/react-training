@@ -44,10 +44,10 @@ class OrderDetailResource extends OrderSummaryResource
             'transaction_id' => $order->transaction_id,
         ];
         $data['summary'] = [
-            'subtotal' => $this->money($order->subtotal_cents, $order->currency),
-            'delivery' => $this->money($order->delivery_cents, $order->currency),
-            'tax' => $this->money($order->tax_cents, $order->currency),
-            'total' => $this->money($order->total_cents, $order->currency),
+            'subtotal' => $this->money($order->subtotal_cents),
+            'delivery' => $this->money($order->delivery_cents),
+            'tax' => $this->money($order->tax_cents),
+            'total' => $this->money($order->total_cents),
         ];
         $data['items'] = $order->relationLoaded('items') ? OrderItemResource::collection($order->items) : [];
         $data['timeline'] = $order->relationLoaded('statusEvents') ? OrderStatusEventResource::collection($order->statusEvents) : [];

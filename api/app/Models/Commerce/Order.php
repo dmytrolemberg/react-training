@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $number
  * @property OrderStatus $status
  * @property PaymentStatus $payment_status
- * @property string $currency
  * @property int $subtotal_cents
  * @property int $delivery_cents
  * @property int $tax_cents
@@ -44,7 +43,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     'number',
     'status',
     'payment_status',
-    'currency',
     'subtotal_cents',
     'delivery_cents',
     'tax_cents',

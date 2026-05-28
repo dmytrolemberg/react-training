@@ -30,7 +30,7 @@ class OrderSummaryResource extends JsonResource
             'placed_at' => $order->placed_at?->toISOString(),
             'items_count' => $order->relationLoaded('items') ? $order->items->sum('quantity') : null,
             'items_preview' => $order->relationLoaded('items') ? $order->items->pluck('name')->values()->all() : [],
-            'total' => $this->money($order->total_cents, $order->currency),
+            'total' => $this->money($order->total_cents),
         ];
     }
 }

@@ -7,7 +7,6 @@ namespace App\Client\Controllers\Api\V1\Profile;
 use App\Models\User\User;
 use Illuminate\Http\Request;
 use App\Models\Commerce\CartItem;
-use App\Models\Commerce\CartStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Account\PaymentMethod;
 use Illuminate\Database\Eloquent\Builder;
@@ -45,8 +44,7 @@ class ProfileController extends Controller
 
         $cartItemsCount = (int) CartItem::query()
             ->whereHas('cart', fn(Builder $query): Builder => $query
-                ->where('user_id', $user->id)
-                ->where('status', CartStatus::Active->value))
+                ->where('user_id', $user->id))
             ->sum('quantity');
 
         $user->setAttribute('cart_items_count', $cartItemsCount);

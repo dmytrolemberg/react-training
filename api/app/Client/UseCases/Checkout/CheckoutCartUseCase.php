@@ -8,7 +8,6 @@ use App\Models\User\User;
 use App\Models\Commerce\Order;
 use App\Models\Catalog\Product;
 use Illuminate\Support\Facades\DB;
-use App\Models\Commerce\CartStatus;
 use App\Models\Commerce\OrderStatus;
 use App\Models\Account\PaymentMethod;
 use App\Models\Commerce\DeliveryMethod;
@@ -60,7 +59,6 @@ class CheckoutCartUseCase
 
                 $item->forceFill([
                     'unit_price_cents' => $product->price_cents,
-                    'currency' => $product->currency,
                 ])->save();
                 $item->setRelation('product', $product);
             }
@@ -84,7 +82,6 @@ class CheckoutCartUseCase
                 'number' => $this->orderNumberGenerator->next(),
                 'status' => OrderStatus::Processing->value,
                 'payment_status' => $payment['status']->value,
-                'currency' => 'USD',
                 'subtotal_cents' => $totals['subtotal_cents'],
                 'delivery_cents' => $totals['delivery_cents'],
                 'tax_cents' => $totals['tax_cents'],
@@ -141,7 +138,6 @@ class CheckoutCartUseCase
             }
 
             $cart->items()->delete();
-            $cart->forceFill(['status' => CartStatus::CheckedOut->value])->save();
 
             return $order->refresh()->load(['items', 'statusEvents']);
         });

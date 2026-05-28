@@ -15,11 +15,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @property int $id
  * @property int $user_id
- * @property CartStatus $status
- * @property string $currency
  * @property User $user
  */
-#[Fillable(['user_id', 'status', 'currency'])]
+#[Fillable(['user_id'])]
 class Cart extends Model
 {
     /** @use HasFactory<CartFactory> */
@@ -44,16 +42,5 @@ class Cart extends Model
     public function items(): HasMany
     {
         return $this->hasMany(CartItem::class);
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    #[\Override]
-    protected function casts(): array
-    {
-        return [
-            'status' => CartStatus::class,
-        ];
     }
 }

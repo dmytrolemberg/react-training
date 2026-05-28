@@ -13,7 +13,6 @@ use App\Models\Catalog\Product;
 use Illuminate\Database\Seeder;
 use App\Models\Catalog\Category;
 use Illuminate\Support\Facades\DB;
-use App\Models\Commerce\CartStatus;
 use App\Models\Account\WishlistItem;
 use App\Models\Catalog\ReviewStatus;
 use App\Models\Commerce\OrderStatus;
@@ -207,7 +206,6 @@ class ShopSeeder extends Seeder
                     'short_description' => $item['short_description'],
                     'description_html' => $item['description_html'],
                     'price_cents' => $item['price_cents'],
-                    'currency' => 'USD',
                     'stock_quantity' => $item['stock_quantity'],
                     'is_active' => $item['is_active'] ?? true,
                     'rating_average' => $item['rating_average'],
@@ -298,8 +296,6 @@ class ShopSeeder extends Seeder
 
         $cart = Cart::query()->create([
             'user_id' => $user->id,
-            'status' => CartStatus::Active->value,
-            'currency' => 'USD',
         ]);
 
         foreach (['everyday-carry-pack', 'modular-desk-lamp'] as $slug) {
@@ -308,7 +304,6 @@ class ShopSeeder extends Seeder
                 'product_id' => $product->id,
                 'quantity' => 1,
                 'unit_price_cents' => $product->price_cents,
-                'currency' => $product->currency,
             ]);
         }
     }
@@ -325,7 +320,6 @@ class ShopSeeder extends Seeder
             'number' => '1048',
             'status' => OrderStatus::Processing->value,
             'payment_status' => PaymentStatus::Paid->value,
-            'currency' => 'USD',
             'subtotal_cents' => 20100,
             'delivery_cents' => 0,
             'tax_cents' => 1608,

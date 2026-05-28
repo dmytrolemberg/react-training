@@ -6,7 +6,6 @@ namespace Database\Factories\Commerce;
 
 use App\Models\User\User;
 use App\Models\Commerce\Cart;
-use App\Models\Commerce\CartStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,8 +22,6 @@ class CartFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'status' => CartStatus::Active->value,
-            'currency' => 'USD',
         ];
     }
 }

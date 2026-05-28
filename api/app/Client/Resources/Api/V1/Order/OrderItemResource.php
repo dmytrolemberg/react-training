@@ -31,8 +31,8 @@ class OrderItemResource extends JsonResource
             'brand_name' => $item->brand_name,
             'category_name' => $item->category_name,
             'quantity' => $item->quantity,
-            'unit_price' => $this->money($item->unit_price_cents, 'USD'),
-            'line_total' => $this->money($item->total_cents, 'USD'),
+            'unit_price' => $this->money($item->unit_price_cents),
+            'line_total' => $this->money($item->total_cents),
             'attributes' => $item->attributes,
         ];
     }

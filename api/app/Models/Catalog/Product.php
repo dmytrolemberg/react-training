@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $short_description
  * @property string $description_html
  * @property int $price_cents
- * @property string $currency
  * @property int $stock_quantity
  * @property bool $is_active
  * @property float $rating_average
@@ -38,7 +37,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     'short_description',
     'description_html',
     'price_cents',
-    'currency',
     'stock_quantity',
     'is_active',
     'rating_average',

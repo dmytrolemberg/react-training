@@ -9,12 +9,12 @@ trait FormatsMoney
     /**
      * @return array{cents: int, currency: string, formatted: string}
      */
-    private function money(int $cents, string $currency): array
+    private function money(int $cents): array
     {
+        $configuredCurrency = config('app.currency', 'EUR');
+        $currency = is_string($configuredCurrency) ? $configuredCurrency : 'EUR';
         $amount = $cents / 100;
-        $formatted = $currency === 'USD'
-            ? '$' . number_format($amount, 2)
-            : number_format($amount, 2) . ' ' . $currency;
+        $formatted = number_format($amount, 2) . ' ' . $currency;
 
         return [
             'cents' => $cents,

@@ -22,7 +22,12 @@ class CartTest extends TestCase
             ->getJson('/api/v1/cart')
             ->assertOk()
             ->assertJsonPath('data.item_count', 2)
-            ->assertJsonPath('data.summary.subtotal.cents', 20100);
+            ->assertJsonPath('data.summary.subtotal.cents', 20100)
+            ->assertJsonPath('data.summary.subtotal.currency', 'EUR')
+            ->assertJsonPath('data.currency', 'EUR')
+            ->assertJsonMissingPath('data.status')
+            ->assertJsonMissingPath('data.items.0.product.brand')
+            ->assertJsonMissingPath('data.items.0.product.category');
     }
 
     public function testAddingExistingProductMergesQuantity(): void

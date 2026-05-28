@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace App\Client\Resources\Api\V1\Catalog;
+namespace App\Client\Resources\Api\V1\Cart;
 
 use Illuminate\Http\Request;
 use App\Models\Catalog\Product;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Client\Resources\Api\V1\Concerns\FormatsMoney;
 
-class ProductCardResource extends JsonResource
+class CartProductResource extends JsonResource
 {
     use FormatsMoney;
 
@@ -31,8 +31,6 @@ class ProductCardResource extends JsonResource
             'sku' => $product->sku,
             'name' => $product->name,
             'short_description' => $product->short_description,
-            'brand' => $product->relationLoaded('brand') ? new BrandResource($product->brand) : null,
-            'category' => $product->relationLoaded('category') ? new CategoryResource($product->category) : null,
             'price' => $this->money($product->price_cents),
             'stock_quantity' => $product->stock_quantity,
             'in_stock' => $product->stock_quantity > 0,

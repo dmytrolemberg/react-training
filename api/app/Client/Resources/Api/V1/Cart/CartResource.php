@@ -21,7 +21,7 @@ class CartResource extends JsonResource
     {
         /** @var Cart $cart */
         $cart = $this->resource;
-        $cart->loadMissing(['items.product.brand', 'items.product.category', 'items.product.images', 'items.product.attributes']);
+        $cart->loadMissing(['items.product.images', 'items.product.attributes']);
 
         $subtotal = 0;
         $itemCount = 0;
@@ -31,18 +31,19 @@ class CartResource extends JsonResource
         }
 
         $tax = (int) round($subtotal * 0.08);
+        $configuredCurrency = config('app.currency', 'EUR');
+        $currency = is_string($configuredCurrency) ? $configuredCurrency : 'EUR';
 
         return [
             'id' => $cart->id,
-            'status' => $cart->status->value,
-            'currency' => $cart->currency,
+            'currency' => $currency,
             'item_count' => $itemCount,
             'items' => CartItemResource::collection($cart->items),
             'summary' => [
-                'subtotal' => $this->money($subtotal, $cart->currency),
-                'tax' => $this->money($tax, $cart->currency),
-                'delivery' => $this->money(0, $cart->currency),
-                'total' => $this->money($subtotal + $tax, $cart->currency),
+                'subtotal' => $this->money($subtotal),
+                'tax' => $this->money($tax),
+                'delivery' => $this->money(0),
+                'total' => $this->money($subtotal + $tax),
             ],
         ];
     }

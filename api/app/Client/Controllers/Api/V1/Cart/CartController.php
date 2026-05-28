@@ -24,7 +24,7 @@ class CartController extends Controller
     public function show(Request $request, CartResolver $cartResolver): CartResource
     {
         $cart = $cartResolver->activeForUser($this->user($request))
-            ->load(['items.product.brand', 'items.product.category', 'items.product.images', 'items.product.attributes']);
+            ->load(['items.product.images', 'items.product.attributes']);
 
         return new CartResource($cart);
     }

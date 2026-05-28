@@ -39,7 +39,6 @@ return new class extends Migration {
             $table->text('short_description');
             $table->longText('description_html');
             $table->unsignedInteger('price_cents');
-            $table->char('currency', 3)->default('USD');
             $table->unsignedInteger('stock_quantity')->default(0);
             $table->boolean('is_active')->default(true)->index();
             $table->decimal('rating_average', 3, 2)->default(0);
@@ -90,12 +89,8 @@ return new class extends Migration {
 
         Schema::create('carts', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('status')->index();
-            $table->char('currency', 3)->default('USD');
+            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
             $table->timestamps();
-
-            $table->index(['user_id', 'status']);
         });
 
         Schema::create('cart_items', function (Blueprint $table): void {
@@ -104,7 +99,6 @@ return new class extends Migration {
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->unsignedSmallInteger('quantity');
             $table->unsignedInteger('unit_price_cents');
-            $table->char('currency', 3)->default('USD');
             $table->timestamps();
 
             $table->unique(['cart_id', 'product_id']);
@@ -116,7 +110,6 @@ return new class extends Migration {
             $table->string('number')->unique();
             $table->string('status')->index();
             $table->string('payment_status')->index();
-            $table->char('currency', 3)->default('USD');
             $table->unsignedInteger('subtotal_cents');
             $table->unsignedInteger('delivery_cents');
             $table->unsignedInteger('tax_cents');

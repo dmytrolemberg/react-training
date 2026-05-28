@@ -17,11 +17,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $product_id
  * @property int $quantity
  * @property int $unit_price_cents
- * @property string $currency
  * @property Cart $cart
  * @property Product $product
  */
-#[Fillable(['cart_id', 'product_id', 'quantity', 'unit_price_cents', 'currency'])]
+#[Fillable(['cart_id', 'product_id', 'quantity', 'unit_price_cents'])]
 class CartItem extends Model
 {
     /** @use HasFactory<CartItemFactory> */

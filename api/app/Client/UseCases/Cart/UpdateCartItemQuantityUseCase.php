@@ -27,9 +27,8 @@ class UpdateCartItemQuantityUseCase
         $cartItem->forceFill([
             'quantity' => $quantity,
             'unit_price_cents' => $cartItem->product->price_cents,
-            'currency' => $cartItem->product->currency,
         ])->save();
 
-        return $cart->refresh()->load(['items.product.brand', 'items.product.category', 'items.product.images']);
+        return $cart->refresh()->load(['items.product.images', 'items.product.attributes']);
     }
 }
