@@ -26,6 +26,7 @@ class AuthTest extends TestCase
             ])
             ->assertOk()
             ->assertJsonPath('data.email', 'user@example.com')
+            ->assertJsonPath('data.full_name', 'Dmytro Orikhovskyi')
             ->assertJsonPath('data.role', 'user');
 
         Auth::forgetGuards();
@@ -34,6 +35,7 @@ class AuthTest extends TestCase
             ->getJson('/admin/api/v1/auth/user')
             ->assertOk()
             ->assertJsonPath('data.email', 'user@example.com')
+            ->assertJsonPath('data.full_name', 'Dmytro Orikhovskyi')
             ->assertJsonPath('data.role', 'user');
 
         $this->withHeader('Origin', 'http://localhost:8003')
@@ -50,6 +52,7 @@ class AuthTest extends TestCase
             ])
             ->assertOk()
             ->assertJsonPath('data.email', 'admin@example.com')
+            ->assertJsonPath('data.full_name', 'Test Admin')
             ->assertJsonPath('data.role', 'admin');
 
         Auth::forgetGuards();

@@ -9,7 +9,6 @@ use App\Client\Controllers\Api\V1\Cart\CartController;
 use App\Client\Controllers\Api\V1\Order\OrderController;
 use App\Client\Controllers\Api\V1\Review\ReviewController;
 use App\Client\Controllers\Api\V1\Catalog\CatalogController;
-use App\Client\Controllers\Api\V1\Profile\AddressController;
 use App\Client\Controllers\Api\V1\Profile\ProfileController;
 use App\Client\Controllers\Api\V1\Profile\WishlistController;
 use App\Client\Controllers\Api\V1\Checkout\CheckoutController;
@@ -52,10 +51,6 @@ Route::middleware('auth:sanctum')->group(function (): void {
 
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::patch('/profile', [ProfileController::class, 'update']);
-    Route::get('/profile/addresses', [AddressController::class, 'index']);
-    Route::post('/profile/addresses', [AddressController::class, 'store']);
-    Route::patch('/profile/addresses/{address}', [AddressController::class, 'update']);
-    Route::delete('/profile/addresses/{address}', [AddressController::class, 'destroy']);
     Route::get('/profile/payment-methods', [PaymentMethodController::class, 'index']);
     Route::post('/profile/payment-methods', [PaymentMethodController::class, 'store']);
     Route::delete('/profile/payment-methods/{paymentMethod}', [PaymentMethodController::class, 'destroy']);

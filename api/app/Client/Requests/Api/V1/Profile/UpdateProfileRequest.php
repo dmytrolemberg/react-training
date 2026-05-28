@@ -24,21 +24,23 @@ class UpdateProfileRequest extends FormRequest
         $user = $this->user();
 
         return [
-            'name' => ['required', 'string', 'max:120'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'first_name' => ['sometimes', 'string', 'max:120'],
+            'last_name' => ['sometimes', 'string', 'max:120'],
+            'email' => ['sometimes', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'avatar_path' => ['nullable', 'string', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:40'],
+            'country' => ['nullable', 'string', 'max:120'],
+            'city' => ['nullable', 'string', 'max:120'],
+            'postal_code' => ['nullable', 'string', 'max:32'],
+            'address_line' => ['nullable', 'string', 'max:255'],
         ];
     }
 
     /**
-     * @return array{name: string, email: string}
+     * @return array<string, mixed>
      */
     public function payload(): array
     {
-        $validated = $this->validated();
-
-        return [
-            'name' => is_string($validated['name'] ?? null) ? $validated['name'] : '',
-            'email' => is_string($validated['email'] ?? null) ? $validated['email'] : '',
-        ];
+        return $this->validated();
     }
 }

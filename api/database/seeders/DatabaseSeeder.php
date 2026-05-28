@@ -21,7 +21,14 @@ class DatabaseSeeder extends Seeder
         User::query()->updateOrCreate(
             ['email' => 'user@example.com'],
             [
-                'name' => 'Dmytro Orikhovskyi',
+                'first_name' => 'Dmytro',
+                'last_name' => 'Orikhovskyi',
+                'avatar_path' => '/images/profiles/dmytro-orikhovskyi.jpg',
+                'phone' => '+380000000000',
+                'country' => 'Ukraine',
+                'city' => 'Kyiv',
+                'postal_code' => '01001',
+                'address_line' => 'Street address placeholder',
                 'password' => 'password',
                 'role' => UserRole::User->value,
                 'email_verified_at' => now(),
@@ -31,7 +38,9 @@ class DatabaseSeeder extends Seeder
         User::query()->updateOrCreate(
             ['email' => 'admin@example.com'],
             [
-                'name' => 'Test Admin',
+                'first_name' => 'Test',
+                'last_name' => 'Admin',
+                'avatar_path' => '/images/profiles/test-admin.jpg',
                 'password' => 'password',
                 'role' => UserRole::Admin->value,
                 'email_verified_at' => now(),

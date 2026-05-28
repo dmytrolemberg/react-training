@@ -13,7 +13,7 @@ class OpenApiDocsTest extends TestCase
         $this->get('/docs/client')
             ->assertOk();
 
-        $this->getJson('/docs/client.json')
+        $response = $this->getJson('/docs/client.json')
             ->assertOk()
             ->assertJsonPath('info.title', 'North Shop Client API')
             ->assertJsonStructure([
@@ -21,9 +21,15 @@ class OpenApiDocsTest extends TestCase
                 'paths' => [
                     '/catalog/products',
                     '/cart',
+                    '/profile',
                     '/checkout/orders',
                 ],
             ]);
+
+        $paths = $response->json('paths');
+        $this->assertIsArray($paths);
+        $this->assertArrayHasKey('/profile', $paths);
+        $this->assertArrayNotHasKey('/profile/addresses', $paths);
     }
 
     public function testAdminOpenApiDocumentationIsAvailable(): void

@@ -6,7 +6,6 @@ namespace Tests\Feature\Client\Api\V1\Profile;
 
 use Tests\TestCase;
 use App\Models\User\User;
-use App\Models\Account\Address;
 use App\Models\Catalog\Product;
 use App\Models\Account\WishlistItem;
 use App\Models\Account\PaymentMethod;
@@ -24,28 +23,32 @@ class ProfileTest extends TestCase
             ->getJson('/api/v1/profile')
             ->assertOk()
             ->assertJsonPath('data.email', 'user@example.com')
+            ->assertJsonPath('data.first_name', 'Dmytro')
+            ->assertJsonPath('data.last_name', 'Orikhovskyi')
+            ->assertJsonPath('data.full_name', 'Dmytro Orikhovskyi')
+            ->assertJsonPath('data.avatar_path', '/images/profiles/dmytro-orikhovskyi.jpg')
+            ->assertJsonPath('data.phone', '+380000000000')
+            ->assertJsonPath('data.country', 'Ukraine')
+            ->assertJsonPath('data.city', 'Kyiv')
+            ->assertJsonPath('data.postal_code', '01001')
+            ->assertJsonPath('data.address_line', 'Street address placeholder')
             ->assertJsonPath('data.stats.orders_count', 1)
-            ->assertJsonPath('data.addresses.0.is_default', true)
             ->assertJsonPath('data.payment_methods.0.last_four', '4242');
     }
 
-    public function testAddressesCanBeListed(): void
+    public function testAddressRoutesAreRemoved(): void
     {
         $this->actingAs($this->user())
             ->getJson('/api/v1/profile/addresses')
-            ->assertOk()
-            ->assertJsonCount(2, 'data')
-            ->assertJsonPath('data.0.label', 'Home')
-            ->assertJsonPath('data.0.is_default', true);
+            ->assertNotFound();
     }
 
-    public function testProfileCanBeUpdatedAndValidatesUniqueEmail(): void
+    public function testProfileCanBeUpdatedWithFlatAddressFieldsAndValidatesUniqueEmail(): void
     {
         $other = User::factory()->create(['email' => 'taken@example.com']);
 
         $this->actingAs($this->user())
             ->patchJson('/api/v1/profile', [
-                'name' => 'Updated User',
                 'email' => $other->email,
             ])
             ->assertUnprocessable()
@@ -53,65 +56,62 @@ class ProfileTest extends TestCase
 
         $this->actingAs($this->user())
             ->patchJson('/api/v1/profile', [
-                'name' => 'Updated User',
+                'first_name' => 'Updated',
+                'last_name' => 'User',
                 'email' => 'updated@example.com',
-            ])
-            ->assertOk()
-            ->assertJsonPath('data.name', 'Updated User')
-            ->assertJsonPath('data.email', 'updated@example.com');
-    }
-
-    public function testAddressPayloadValidation(): void
-    {
-        $address = Address::query()->where('user_id', $this->user()->id)->firstOrFail();
-
-        $this->actingAs($this->user())
-            ->postJson('/api/v1/profile/addresses', [
-                'label' => str_repeat('a', 81),
-            ])
-            ->assertUnprocessable()
-            ->assertJsonValidationErrors(['label', 'first_name', 'last_name', 'city', 'postal_code', 'address_line']);
-
-        $this->actingAs($this->user())
-            ->patchJson('/api/v1/profile/addresses/' . $address->id, [
-                'is_default' => 'not-a-boolean',
-            ])
-            ->assertUnprocessable()
-            ->assertJsonValidationErrors(['is_default']);
-    }
-
-    public function testAddressesCanBeCreatedUpdatedAndDeletedWithSingleDefault(): void
-    {
-        $user = $this->user();
-        $existingDefault = Address::query()->where('user_id', $user->id)->where('is_default', true)->firstOrFail();
-
-        $response = $this->actingAs($user)
-            ->postJson('/api/v1/profile/addresses', [
-                'label' => 'Warehouse',
-                'first_name' => 'Dmytro',
-                'last_name' => 'Orikhovskyi',
+                'avatar_path' => '/images/profiles/updated-user.jpg',
+                'phone' => '+380111111111',
+                'country' => 'Ukraine',
                 'city' => 'Lviv',
                 'postal_code' => '79000',
                 'address_line' => 'Warehouse address',
-                'is_default' => true,
             ])
-            ->assertCreated()
-            ->assertJsonPath('data.is_default', true);
-
-        $this->assertDatabaseHas('addresses', [
-            'id' => $existingDefault->id,
-            'is_default' => false,
-        ]);
-
-        $addressId = (int) $response->json('data.id');
-        $this->actingAs($user)
-            ->patchJson('/api/v1/profile/addresses/' . $addressId, ['label' => 'Main warehouse'])
             ->assertOk()
-            ->assertJsonPath('data.label', 'Main warehouse');
+            ->assertJsonPath('data.first_name', 'Updated')
+            ->assertJsonPath('data.last_name', 'User')
+            ->assertJsonPath('data.full_name', 'Updated User')
+            ->assertJsonPath('data.email', 'updated@example.com')
+            ->assertJsonPath('data.avatar_path', '/images/profiles/updated-user.jpg')
+            ->assertJsonPath('data.phone', '+380111111111')
+            ->assertJsonPath('data.city', 'Lviv')
+            ->assertJsonPath('data.postal_code', '79000')
+            ->assertJsonPath('data.address_line', 'Warehouse address');
 
-        $this->actingAs($user)
-            ->deleteJson('/api/v1/profile/addresses/' . $addressId)
-            ->assertNoContent();
+        $this->assertDatabaseHas('users', [
+            'email' => 'updated@example.com',
+            'first_name' => 'Updated',
+            'last_name' => 'User',
+            'city' => 'Lviv',
+            'address_line' => 'Warehouse address',
+        ]);
+    }
+
+    public function testProfilePayloadValidation(): void
+    {
+        $this->actingAs($this->user())
+            ->patchJson('/api/v1/profile', [
+                'first_name' => str_repeat('a', 121),
+                'last_name' => str_repeat('a', 121),
+                'email' => 'not-an-email',
+                'avatar_path' => str_repeat('a', 256),
+                'phone' => str_repeat('1', 41),
+                'country' => str_repeat('a', 121),
+                'city' => str_repeat('a', 121),
+                'postal_code' => str_repeat('1', 33),
+                'address_line' => str_repeat('a', 256),
+            ])
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors([
+                'first_name',
+                'last_name',
+                'email',
+                'avatar_path',
+                'phone',
+                'country',
+                'city',
+                'postal_code',
+                'address_line',
+            ]);
     }
 
     public function testPaymentMethodsCanBeListedAndDefaultIsUnique(): void
@@ -224,17 +224,8 @@ class ProfileTest extends TestCase
     public function testOtherUsersSavedObjectsAreNotMutable(): void
     {
         $other = User::factory()->create();
-        $address = Address::factory()->for($other)->create();
         $paymentMethod = PaymentMethod::factory()->for($other)->create();
         $wishlistItem = WishlistItem::factory()->for($other)->create();
-
-        $this->actingAs($this->user())
-            ->patchJson('/api/v1/profile/addresses/' . $address->id, ['label' => 'Nope'])
-            ->assertNotFound();
-
-        $this->actingAs($this->user())
-            ->deleteJson('/api/v1/profile/addresses/' . $address->id)
-            ->assertNotFound();
 
         $this->actingAs($this->user())
             ->deleteJson('/api/v1/profile/payment-methods/' . $paymentMethod->id)

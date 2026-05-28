@@ -172,23 +172,6 @@ return new class extends Migration {
             $table->index(['order_id', 'position']);
         });
 
-        Schema::create('addresses', function (Blueprint $table): void {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('label');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone')->nullable();
-            $table->string('country')->default('Ukraine');
-            $table->string('city');
-            $table->string('postal_code');
-            $table->string('address_line');
-            $table->boolean('is_default')->default(false)->index();
-            $table->timestamps();
-
-            $table->index(['user_id', 'is_default']);
-        });
-
         Schema::create('payment_methods', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
@@ -219,7 +202,6 @@ return new class extends Migration {
     {
         Schema::dropIfExists('wishlist_items');
         Schema::dropIfExists('payment_methods');
-        Schema::dropIfExists('addresses');
         Schema::dropIfExists('order_status_events');
         Schema::table('reviews', function (Blueprint $table): void {
             $table->dropForeign(['order_item_id']);

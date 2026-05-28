@@ -9,7 +9,6 @@ use App\Models\Catalog\Brand;
 use App\Models\Commerce\Cart;
 use App\Models\Catalog\Review;
 use App\Models\Commerce\Order;
-use App\Models\Account\Address;
 use App\Models\Catalog\Product;
 use Illuminate\Database\Seeder;
 use App\Models\Catalog\Category;
@@ -246,31 +245,16 @@ class ShopSeeder extends Seeder
      */
     private function seedAccount(User $user, array $products): void
     {
-        Address::query()->where('user_id', $user->id)->delete();
-        Address::query()->create([
-            'user_id' => $user->id,
-            'label' => 'Home',
+        $user->forceFill([
             'first_name' => 'Dmytro',
             'last_name' => 'Orikhovskyi',
+            'avatar_path' => '/images/profiles/dmytro-orikhovskyi.jpg',
             'phone' => '+380000000000',
             'country' => 'Ukraine',
             'city' => 'Kyiv',
             'postal_code' => '01001',
             'address_line' => 'Street address placeholder',
-            'is_default' => true,
-        ]);
-        Address::query()->create([
-            'user_id' => $user->id,
-            'label' => 'Office',
-            'first_name' => 'Dmytro',
-            'last_name' => 'Orikhovskyi',
-            'phone' => '+380000000000',
-            'country' => 'Ukraine',
-            'city' => 'Kyiv',
-            'postal_code' => '01001',
-            'address_line' => 'Office address placeholder',
-            'is_default' => false,
-        ]);
+        ])->save();
 
         PaymentMethod::query()->where('user_id', $user->id)->delete();
         PaymentMethod::query()->create([

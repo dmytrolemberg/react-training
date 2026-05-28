@@ -9,7 +9,7 @@ use App\Models\User\User;
 class UpdateProfileUseCase
 {
     /**
-     * @param array{name: string, email: string} $data
+     * @param array<string, mixed> $data
      */
     public function execute(User $user, array $data): User
     {

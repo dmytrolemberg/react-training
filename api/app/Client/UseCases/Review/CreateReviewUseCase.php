@@ -37,7 +37,7 @@ class CreateReviewUseCase
             'order_item_id' => $orderItem?->id,
             'rating' => $data['rating'],
             'body' => $data['body'],
-            'author_name' => $user->name,
+            'author_name' => $user->full_name,
             'status' => ReviewStatus::Approved->value,
             'is_verified_purchase' => $orderItem instanceof OrderItem,
         ]);

@@ -32,6 +32,10 @@ class AuthTest extends TestCase
             ])
             ->assertOk()
             ->assertJsonPath('data.email', 'user@example.com')
+            ->assertJsonPath('data.first_name', 'Dmytro')
+            ->assertJsonPath('data.last_name', 'Orikhovskyi')
+            ->assertJsonPath('data.full_name', 'Dmytro Orikhovskyi')
+            ->assertJsonPath('data.avatar_path', '/images/profiles/dmytro-orikhovskyi.jpg')
             ->assertJsonPath('data.role', 'user');
 
         $this->assertAuthenticatedAs($user);
@@ -60,6 +64,10 @@ class AuthTest extends TestCase
             ->assertOk()
             ->assertJsonPath('data.id', $user->getKey())
             ->assertJsonPath('data.email', 'user@example.com')
+            ->assertJsonPath('data.first_name', 'Dmytro')
+            ->assertJsonPath('data.last_name', 'Orikhovskyi')
+            ->assertJsonPath('data.full_name', 'Dmytro Orikhovskyi')
+            ->assertJsonPath('data.avatar_path', '/images/profiles/dmytro-orikhovskyi.jpg')
             ->assertJsonPath('data.role', 'user');
     }
 
@@ -102,11 +110,7 @@ class AuthTest extends TestCase
             'order detail' => ['GET', '/api/v1/orders/1048', []],
             'order tracking' => ['GET', '/api/v1/orders/1048/tracking', []],
             'profile show' => ['GET', '/api/v1/profile', []],
-            'profile update' => ['PATCH', '/api/v1/profile', ['name' => 'Test User', 'email' => 'test@example.com']],
-            'addresses index' => ['GET', '/api/v1/profile/addresses', []],
-            'addresses store' => ['POST', '/api/v1/profile/addresses', []],
-            'addresses update' => ['PATCH', '/api/v1/profile/addresses/1', ['label' => 'Home']],
-            'addresses delete' => ['DELETE', '/api/v1/profile/addresses/1', []],
+            'profile update' => ['PATCH', '/api/v1/profile', ['first_name' => 'Test', 'last_name' => 'User', 'email' => 'test@example.com']],
             'payment methods index' => ['GET', '/api/v1/profile/payment-methods', []],
             'payment methods store' => ['POST', '/api/v1/profile/payment-methods', ['mock_token' => 'pm_mock_visa_1111']],
             'payment methods delete' => ['DELETE', '/api/v1/profile/payment-methods/1', []],

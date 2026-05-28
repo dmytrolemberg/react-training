@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class UserResource extends JsonResource
 {
     /**
-     * @return array{id: mixed, name: string, email: string, role: string}
+     * @return array{id: mixed, first_name: string, last_name: string, full_name: string, email: string, avatar_path: string|null, role: string}
      */
     #[\Override]
     public function toArray(Request $request): array
@@ -21,8 +21,11 @@ class UserResource extends JsonResource
 
         return [
             'id' => $user->getKey(),
-            'name' => $user->name,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'full_name' => $user->full_name,
             'email' => $user->email,
+            'avatar_path' => $user->avatar_path,
             'role' => $user->role,
         ];
     }

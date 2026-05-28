@@ -8,12 +8,12 @@ use App\Models\Commerce\Cart;
 use App\Models\Catalog\Review;
 use App\Models\Commerce\Order;
 use Illuminate\Support\Carbon;
-use App\Models\Account\Address;
 use Laravel\Sanctum\HasApiTokens;
 use Database\Factories\UserFactory;
 use App\Models\Account\WishlistItem;
 use App\Models\Account\PaymentMethod;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -22,8 +22,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @property int $id
- * @property string $name
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $full_name
  * @property string $email
+ * @property string|null $avatar_path
+ * @property string|null $phone
+ * @property string|null $country
+ * @property string|null $city
+ * @property string|null $postal_code
+ * @property string|null $address_line
  * @property Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
@@ -31,7 +39,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property Carbon|null $updated_at
  * @property string $role
  */
-#[Fillable(['name', 'email', 'password', 'role'])]
+#[Fillable([
+    'first_name',
+    'last_name',
+    'email',
+    'avatar_path',
+    'phone',
+    'country',
+    'city',
+    'postal_code',
+    'address_line',
+    'password',
+    'role',
+])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -64,14 +84,6 @@ class User extends Authenticatable
     }
 
     /**
-     * @return HasMany<Address, $this>
-     */
-    public function addresses(): HasMany
-    {
-        return $this->hasMany(Address::class);
-    }
-
-    /**
      * @return HasMany<PaymentMethod, $this>
      */
     public function paymentMethods(): HasMany
@@ -93,6 +105,14 @@ class User extends Authenticatable
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    /**
+     * @return Attribute<string, never>
+     */
+    protected function fullName(): Attribute
+    {
+        return Attribute::get(fn(): string => trim($this->first_name . ' ' . $this->last_name));
     }
 
     /**

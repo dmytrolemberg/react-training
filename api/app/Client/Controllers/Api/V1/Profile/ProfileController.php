@@ -6,7 +6,6 @@ namespace App\Client\Controllers\Api\V1\Profile;
 
 use App\Models\User\User;
 use Illuminate\Http\Request;
-use App\Models\Account\Address;
 use App\Models\Commerce\CartItem;
 use App\Models\Commerce\CartStatus;
 use App\Http\Controllers\Controller;
@@ -37,11 +36,6 @@ class ProfileController extends Controller
         $user = $request->user();
         abort_unless($user instanceof User, 401);
 
-        $user->setRelation('addresses', Address::query()
-            ->where('user_id', $user->id)
-            ->orderByDesc('is_default')
-            ->orderBy('id')
-            ->get());
         $user->setRelation('paymentMethods', PaymentMethod::query()
             ->where('user_id', $user->id)
             ->orderByDesc('is_default')

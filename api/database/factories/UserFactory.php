@@ -33,8 +33,15 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
+            'avatar_path' => fake()->optional()->imageUrl(320, 320),
+            'phone' => '+380000000000',
+            'country' => 'Ukraine',
+            'city' => 'Kyiv',
+            'postal_code' => '01001',
+            'address_line' => fake()->streetAddress(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'role' => UserRole::User->value,

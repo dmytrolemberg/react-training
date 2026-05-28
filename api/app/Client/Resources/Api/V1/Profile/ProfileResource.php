@@ -21,8 +21,16 @@ class ProfileResource extends JsonResource
 
         return [
             'id' => $user->id,
-            'name' => $user->name,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'full_name' => $user->full_name,
             'email' => $user->email,
+            'avatar_path' => $user->avatar_path,
+            'phone' => $user->phone,
+            'country' => $user->country,
+            'city' => $user->city,
+            'postal_code' => $user->postal_code,
+            'address_line' => $user->address_line,
             'role' => $user->role,
             'stats' => [
                 'orders_count' => $user->orders_count ?? null,
@@ -30,7 +38,6 @@ class ProfileResource extends JsonResource
                 'cart_items_count' => $user->cart_items_count ?? null,
                 'wishlist_count' => $user->wishlist_items_count ?? null,
             ],
-            'addresses' => $user->relationLoaded('addresses') ? AddressResource::collection($user->addresses) : [],
             'payment_methods' => $user->relationLoaded('paymentMethods') ? PaymentMethodResource::collection($user->paymentMethods) : [],
         ];
     }
