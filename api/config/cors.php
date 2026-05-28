@@ -23,7 +23,7 @@ return [
 
     'allowed_origins' => array_filter(array_map(
         trim(...),
-        explode(',', (string) env('CORS_ALLOWED_ORIGINS', 'http://localhost:8002,http://localhost:8003')),
+        explode(',', (string) env('CORS_ALLOWED_ORIGINS', 'http://localhost:8001,http://localhost:8002,http://localhost:8003')),
     )),
 
     'allowed_origins_patterns' => [],

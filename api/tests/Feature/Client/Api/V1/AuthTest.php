@@ -41,6 +41,22 @@ class AuthTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
+    public function testSeededUserCanLogInFromApiDocsOrigin(): void
+    {
+        $user = User::query()->where('email', 'user@example.com')->firstOrFail();
+
+        $this->withServerVariables(['HTTP_HOST' => 'localhost:8001'])
+            ->withHeader('Origin', 'http://localhost:8001')
+            ->postJson('/api/v1/auth/login', [
+                'email' => 'user@example.com',
+                'password' => 'password',
+            ])
+            ->assertOk()
+            ->assertJsonPath('data.email', 'user@example.com');
+
+        $this->assertAuthenticatedAs($user);
+    }
+
     public function testInvalidCredentialsFailValidation(): void
     {
         $this->withHeader('Origin', 'http://localhost:8002')

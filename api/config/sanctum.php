@@ -7,6 +7,15 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Laravel\Sanctum\Http\Middleware\AuthenticateSession;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 
+$statefulDomains = (string) env('SANCTUM_STATEFUL_DOMAINS', sprintf(
+    '%s%s',
+    'localhost:8001,localhost:8002,localhost:8003,127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003',
+    Sanctum::currentApplicationUrlWithPort(),
+));
+
+// Keep same-origin API docs stateful even when APP_URL omits Docker's exposed port.
+$statefulDomains .= Sanctum::currentRequestHost();
+
 return [
 
     /*
@@ -20,14 +29,7 @@ return [
     |
     */
 
-    'stateful' => array_filter(array_map(
-        trim(...),
-        explode(',', (string) env('SANCTUM_STATEFUL_DOMAINS', sprintf(
-            '%s,%s',
-            'localhost:8002,localhost:8003,127.0.0.1:8002,127.0.0.1:8003',
-            Sanctum::currentApplicationUrlWithPort(),
-        ))),
-    )),
+    'stateful' => array_filter(array_map(trim(...), explode(',', $statefulDomains))),
 
     /*
     |--------------------------------------------------------------------------
