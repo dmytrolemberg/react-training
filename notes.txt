@@ -1,1 +1,3 @@
-// some notes 1
+1. React Compiler what is this, for what purpose?
+2. Life cycle of a React component? Like in Vue: created -> mounted -> updated -> destroyed.
+
