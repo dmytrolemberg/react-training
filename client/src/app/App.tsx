@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
 import './App.css';
-import Layout from '../Layout/Layout.tsx';
+import Layout from '@/layouts/Layout';
 
 function App(): ReactElement {
   return (

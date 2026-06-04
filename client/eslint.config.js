@@ -11,6 +11,7 @@ export default tseslint.config(
     files: ['**/*.{ts,tsx}'],
     extends: [
       js.configs.recommended,
+      ...tseslint.configs.recommended,
       ...tseslint.configs.strictTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
     ],
@@ -19,6 +20,7 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
     },
     languageOptions: {
+      ecmaVersion: '2023',
       parserOptions: {
         project: ['./tsconfig.app.json', './tsconfig.node.json'],
         tsconfigRootDir: import.meta.dirname,
