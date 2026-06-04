@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Shop - Register</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="auth-page">
+  <div class="app-shell">
+    <div class="page auth-page-frame">
+      <main class="auth-main">
+        <a class="auth-home-link" href="index.html" aria-label="Back to North Shop home">
+          <span class="brand-mark">N</span>
+          <span class="brand-text">North Shop</span>
+          <span class="auth-home-text">Home</span>
+        </a>
+
+        <section class="auth-compact-wrap" aria-labelledby="registerTitle">
+          <div class="auth-compact-panel">
+            <p class="eyebrow">New account</p>
+            <h1 class="title-lg" id="registerTitle">Join North Shop.</h1>
+            <p class="lead">Create an account to save orders, addresses, payment methods, and wishlist items.</p>
+
+            <form class="auth-form" id="registerForm">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="firstName">First name</label>
+                  <input class="input" id="firstName" name="firstName" autocomplete="given-name" placeholder="Dmytro" required />
+                </div>
+                <div class="form-field">
+                  <label for="lastName">Last name</label>
+                  <input class="input" id="lastName" name="lastName" autocomplete="family-name" placeholder="Orikhovskyi" required />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="dmytro@example.com" required />
+              </div>
+              <div class="form-field">
+                <label for="password">Password</label>
+                <input class="input" id="password" name="password" type="password" autocomplete="new-password" placeholder="Create password" required />
+              </div>
+
+              <label class="choice">
+                <input type="checkbox" checked />
+                <span class="choice-box" aria-hidden="true"></span>
+                Send product updates and order reminders
+              </label>
+
+              <button class="primary-button button-full" type="submit">Create account</button>
+              <div class="auth-message" id="registerMessage">Account created prototype state is ready.</div>
+            </form>
+
+            <p class="auth-note">Already have an account? <a class="auth-link" href="login.html">Sign in</a></p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', event => {
+      event.preventDefault();
+      document.getElementById('registerMessage').classList.add('is-visible');
+    });
+  </script>
+</body>
+</html>

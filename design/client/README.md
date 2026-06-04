@@ -10,6 +10,9 @@ This is a static HTML/CSS/JS prototype for an online shop pet project.
 - `brands.html` — brands and categories directory
 - `cart.html` — cart with quantity controls and totals
 - `checkout.html` — checkout form with custom delivery select, custom radio controls, and confirmation state
+- `login.html` — headerless sign-in page with home link and centered auth form
+- `register.html` — headerless account creation page with home link and centered auth form
+- `reset-password.html` — headerless password reset page with home link and reset steps
 - `profile.html` — user profile page
 - `orders.html` — orders list with status filters
 - `order.html` — single order details page with items, payment summary, address, and delivery timeline

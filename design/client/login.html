@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Shop - Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="auth-page">
+  <div class="app-shell">
+    <div class="page auth-page-frame">
+      <main class="auth-main">
+        <a class="auth-home-link" href="index.html" aria-label="Back to North Shop home">
+          <span class="brand-mark">N</span>
+          <span class="brand-text">North Shop</span>
+          <span class="auth-home-text">Home</span>
+        </a>
+
+        <section class="auth-compact-wrap" aria-labelledby="loginTitle">
+          <div class="auth-compact-panel">
+            <p class="eyebrow">Account access</p>
+            <h1 class="title-lg" id="loginTitle">Welcome back.</h1>
+            <p class="lead">Sign in to continue checkout, review orders, and manage saved products.</p>
+
+            <form class="auth-form" id="loginForm">
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="dmytro@example.com" required />
+              </div>
+              <div class="form-field">
+                <label for="password">Password</label>
+                <input class="input" id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required />
+              </div>
+
+              <div class="auth-form-row">
+                <label class="choice">
+                  <input type="checkbox" checked />
+                  <span class="choice-box" aria-hidden="true"></span>
+                  Keep me signed in
+                </label>
+                <a class="auth-link" href="reset-password.html">Forgot password?</a>
+              </div>
+
+              <button class="primary-button button-full" type="submit">Sign in</button>
+              <div class="auth-message" id="loginMessage">Signed in prototype state is ready.</div>
+            </form>
+
+            <p class="auth-note">New to North Shop? <a class="auth-link" href="register.html">Create an account</a></p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', event => {
+      event.preventDefault();
+      document.getElementById('loginMessage').classList.add('is-visible');
+    });
+  </script>
+</body>
+</html>
