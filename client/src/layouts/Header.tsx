@@ -38,6 +38,9 @@ function Header(): ReactElement {
         </a>
       </nav>
       <div className="header-actions">
+        <Link to={ROUTES.LOGIN}>
+          Login
+        </Link>
         <Link className="icon-button" to={ROUTES.PROFILE} aria-label="Profile">
           ◌
         </Link>
