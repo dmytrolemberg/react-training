@@ -1,0 +1,61 @@
+/* ================================
+   06. Page: Home
+================================ */
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.home-hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 580px;
+  padding: 46px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, var(--surface), var(--surface-soft));
+}
+
+.home-hero-side {
+  display: grid;
+  gap: 18px;
+}
+
+.home-featured-card {
+  min-height: 390px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.home-checkout-preview {
+  padding: 22px;
+  border-radius: var(--radius-xl);
+  background: var(--primary);
+  color: var(--primary-text);
+}
+
+.category-card {
+  min-height: 180px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+@media (max-width: 980px) {
+  .home-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero-copy {
+    min-height: auto;
+    padding: 32px;
+  }
+}

@@ -20,7 +20,7 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
     },
     languageOptions: {
-      ecmaVersion: '2023',
+      ecmaVersion: 2023,
       parserOptions: {
         project: ['./tsconfig.app.json', './tsconfig.node.json'],
         tsconfigRootDir: import.meta.dirname,
