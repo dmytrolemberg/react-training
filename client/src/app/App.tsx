@@ -1,12 +1,11 @@
 import { type ReactElement } from 'react';
 import './App.css';
 import Layout from '@/layouts/Layout';
-import Home from '@/pages/home';
-
+import { Outlet } from 'react-router-dom';
 function App(): ReactElement {
   return (
     <Layout>
-      <Home />
+      <Outlet />
     </Layout>
   );
 }

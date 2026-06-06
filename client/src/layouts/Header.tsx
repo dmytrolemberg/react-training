@@ -1,26 +1,32 @@
 import { type ReactElement } from 'react';
 import { BsAmazon } from 'react-icons/bs';
+import { Link, NavLink } from 'react-router-dom';
+import { ROUTES } from '@/shared/model/routes';
+
+function getNavLinkClassName({ isActive }: { isActive: boolean }): string {
+  return isActive ? 'nav-link is-active' : 'nav-link';
+}
 
 function Header(): ReactElement {
   return (
     <header className="site-header">
-      <a
+      <Link
         className="brand"
-        href="../index.html"
+        to={ROUTES.HOME}
         aria-label="North Shop home"
       >
         <span className="brand-mark">
           <BsAmazon />
         </span>
         <span className="brand-text">North Shop</span>
-      </a>
+      </Link>
       <nav className="site-nav" aria-label="Main navigation">
-        <a className="nav-link is-active" href="../index.html">
+        <NavLink className={getNavLinkClassName} to={ROUTES.HOME}>
           Home
-        </a>
-        <a className="nav-link" href="products.html">
+        </NavLink>
+        <NavLink className={getNavLinkClassName} to={ROUTES.PRODUCTS}>
           Products
-        </a>
+        </NavLink>
         <a className="nav-link" href="brands.html">
           Brands
         </a>
@@ -32,9 +38,9 @@ function Header(): ReactElement {
         </a>
       </nav>
       <div className="header-actions">
-        <a className="icon-button" href="profile.html" aria-label="Profile">
+        <Link className="icon-button" to={ROUTES.PROFILE} aria-label="Profile">
           ◌
-        </a>
+        </Link>
         <a className="icon-button" href="cart.html" aria-label="Cart">
           ⌁<span className="cart-count">2</span>
         </a>
