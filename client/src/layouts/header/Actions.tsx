@@ -1,6 +1,7 @@
 import { type ReactElement } from 'react';
 import { BsBoxArrowInRight, BsCart3, BsPersonCircle } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import { isAuthRoute } from '@/pages/auth/authRoutes.ts';
 import { ROUTES } from '@/shared/model/routes.ts';
 
 function getActionClassName({ isActive }: { isActive: boolean }): string {
@@ -8,11 +9,15 @@ function getActionClassName({ isActive }: { isActive: boolean }): string {
 }
 
 function Actions(): ReactElement {
+  const { pathname } = useLocation();
+  const isAuthPage = isAuthRoute(pathname);
 
   return (
     <div className="header-actions">
       <NavLink
-        className={getActionClassName}
+        className={({ isActive }) =>
+          getActionClassName({ isActive: isActive || isAuthPage })
+        }
         to={ROUTES.LOGIN}
         aria-label="Login"
       >
