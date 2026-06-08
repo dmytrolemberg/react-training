@@ -1,6 +1,6 @@
 import { type ReactElement, type ReactNode } from 'react';
 import './Layout.css';
-import Header from './Header.tsx';
+import Header from './header/Header'
 
 function Layout({ children }: { children: ReactNode }): ReactElement {
 

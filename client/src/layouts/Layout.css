@@ -243,8 +243,12 @@ button {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   min-width: max-content;
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface-soft);
 }
 
 .icon-button,
@@ -275,12 +279,19 @@ button {
   position: relative;
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--border);
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.icon-button:hover,
+.icon-button.is-active {
   background: var(--surface);
   color: var(--text);
+  box-shadow: var(--shadow-soft);
+  transform: none;
 }
 
 .cart-count {
@@ -778,11 +789,12 @@ button {
   }
 
   .icon-button {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
 
-  .site-nav {
+  .site-nav,
+  .header-actions {
     padding: 4px;
     border-radius: 18px;
   }
