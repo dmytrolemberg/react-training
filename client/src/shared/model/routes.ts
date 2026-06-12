@@ -9,12 +9,20 @@ export const ROUTES = {
   PRODUCTS: '/products',
   PRODUCT: '/products/:slug',
   CART: '/cart',
+  BRANDS: '/brands',
+  REVIEWS: '/reviews',
+  CHECKOUT: '/checkout',
+  ORDERS: '/orders',
+  ORDER: '/orders/:number',
 } as const;
 
 export interface PathParams {
   [ROUTES.PRODUCT]: {
     slug: string;
-  }
+  };
+  [ROUTES.ORDER]: {
+    number: string;
+  };
 }
 
 
