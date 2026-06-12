@@ -92,3 +92,31 @@
     font-size: 26px;
   }
 }
+
+/* Responsive */
+@media (max-width: 1180px) {
+  .reviews-layout {
+    grid-template-columns: 320px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 980px) {
+  .reviews-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .rating-score strong {
+    font-size: 46px;
+  }
+
+  .rating-bar {
+    grid-template-columns: 38px 1fr 32px;
+    gap: 8px;
+  }
+
+  .star-choice {
+    font-size: 26px;
+  }
+}

@@ -22,10 +22,10 @@ function Profile(): ReactElement {
           <h2 className="title-sm section">Dmytro Orikhovskyi</h2>
           <p className="muted text-small">dmytro@example.com</p>
           <div className="profile-list">
-            <a href="orders.html">
+            <Link to={ROUTES.ORDERS}>
               <span>Orders</span>
               <strong>12</strong>
-            </a>
+            </Link>
             <Link to={ROUTES.REVIEWS}>
               <span>Reviews</span>
               <strong>8</strong>

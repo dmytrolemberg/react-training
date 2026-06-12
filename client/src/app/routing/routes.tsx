@@ -87,6 +87,30 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: ROUTES.CHECKOUT,
+        lazy: async (): LazyRouteResult => {
+          const { default: Checkout } = await import('@/pages/checkout');
+
+          return { Component: Checkout };
+        },
+      },
+      {
+        path: ROUTES.ORDERS,
+        lazy: async (): LazyRouteResult => {
+          const { default: Orders } = await import('@/pages/orders');
+
+          return { Component: Orders };
+        },
+      },
+      {
+        path: ROUTES.ORDER,
+        lazy: async (): LazyRouteResult => {
+          const { default: Order } = await import('@/pages/order');
+
+          return { Component: Order };
+        },
+      },
+      {
         index: true,
         lazy: async (): LazyRouteResult => {
           const { default: Home } = await import('@/pages/home');

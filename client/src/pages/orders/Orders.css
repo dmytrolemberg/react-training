@@ -1,0 +1,54 @@
+/* ================================
+   12. Page: Orders
+================================ */
+.order-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.order-card {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.order-products {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.order-mini-product {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--surface-soft), var(--surface-muted));
+}
+
+/* Responsive */
+@media (max-width: 760px) {
+  .order-card .split {
+    align-items: flex-start;
+  }
+
+  .order-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .order-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .order-tabs .chip {
+    flex: 0 0 auto;
+  }
+}

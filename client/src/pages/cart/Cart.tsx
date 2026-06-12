@@ -159,12 +159,12 @@ function Cart(): ReactElement {
               {formatPrice(total)}
             </strong>
           </div>
-          <a
+          <Link
             className="primary-button button-full section"
-            href="checkout.html"
+            to={ROUTES.CHECKOUT}
           >
             Checkout
-          </a>
+          </Link>
           <p className="muted text-small">
             Secure payment, saved address, and order tracking.
           </p>

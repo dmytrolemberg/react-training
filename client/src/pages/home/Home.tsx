@@ -20,13 +20,10 @@ function Home(): ReactElement {
       <section className="home-hero">
         <div className="home-hero-copy">
           <p className="eyebrow">Minimal online shop</p>
-          <h1 className="title-xl">
-            Essentials, sorted with calm precision.
-          </h1>
+          <h1 className="title-xl">Essentials, sorted with calm precision.</h1>
           <p className="lead">
-            A clear e-commerce interface for products with categories,
-            brands, attributes, ratings, reviews, cart, checkout, profile,
-            and orders.
+            A clear e-commerce interface for products with categories, brands,
+            attributes, ratings, reviews, cart, checkout, profile, and orders.
           </p>
           <div className="cluster section">
             <Link className="primary-button" to={ROUTES.PRODUCTS}>
@@ -81,9 +78,9 @@ function Home(): ReactElement {
             <p className="text-small" style={{ opacity: 0.68 }}>
               Free delivery, saved address, secure payment, order tracking.
             </p>
-            <a className="secondary-button section" href="checkout.html">
+            <Link className="secondary-button section" to={ROUTES.CHECKOUT}>
               Continue checkout
-            </a>
+            </Link>
           </aside>
         </div>
       </section>
@@ -96,9 +93,9 @@ function Home(): ReactElement {
               Clear categories with useful attributes.
             </h2>
           </div>
-          <a className="ghost-button" href="brands.html">
+          <Link className="ghost-button" to={ROUTES.BRANDS}>
             See all →
-          </a>
+          </Link>
         </div>
         <div className="grid grid-4 section">
           <Link className="category-card" to={ROUTES.PRODUCTS}>
@@ -207,10 +204,7 @@ function Home(): ReactElement {
               <span className="rating">
                 <span className="stars">★★★★★</span> 4.9
               </span>
-              <Link
-                className="secondary-button"
-                to={EVERYDAY_CARRY_PACK_PATH}
-              >
+              <Link className="secondary-button" to={EVERYDAY_CARRY_PACK_PATH}>
                 Details
               </Link>
             </div>
