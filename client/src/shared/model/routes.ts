@@ -8,6 +8,7 @@ export const ROUTES = {
   PROFILE: '/profile',
   PRODUCTS: '/products',
   PRODUCT: '/products/:slug',
+  CART: '/cart',
 } as const;
 
 export interface PathParams {

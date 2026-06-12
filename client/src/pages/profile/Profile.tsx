@@ -1,5 +1,7 @@
 import { type ReactElement } from 'react';
 import './Profile.css';
+import { ROUTES } from '@/shared/model/routes.ts';
+import { Link } from 'react-router-dom';
 
 function Profile(): ReactElement {
 
@@ -28,10 +30,10 @@ function Profile(): ReactElement {
               <span>Reviews</span>
               <strong>8</strong>
             </a>
-            <a href="cart.html">
+            <Link to={ROUTES.CART}>
               <span>Cart</span>
               <strong>2</strong>
-            </a>
+            </Link>
             <button type="button">
               <span>Wishlist</span>
               <strong>5</strong>

@@ -1,4 +1,4 @@
-import { ROUTES } from '@/shared/model/routes';
+import { ROUTES } from '@/shared/model/routes.ts';
 import {
   createBrowserRouter,
   type LazyRouteFunction,
@@ -39,6 +39,14 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: ROUTES.PROFILE,
+        lazy: async (): LazyRouteResult => {
+          const { default: Profile } = await import('@/pages/profile');
+
+          return { Component: Profile };
+        },
+      },
+      {
         path: ROUTES.PRODUCTS,
         lazy: async (): LazyRouteResult => {
           const { default: Products } = await import('@/pages/products');
@@ -55,11 +63,11 @@ export const router = createBrowserRouter([
         },
       },
       {
-        path: ROUTES.PROFILE,
+        path: ROUTES.CART,
         lazy: async (): LazyRouteResult => {
-          const { default: Profile } = await import('@/pages/profile');
+          const { default: Cart } = await import('@/pages/cart');
 
-          return { Component: Profile };
+          return { Component: Cart };
         },
       },
       {

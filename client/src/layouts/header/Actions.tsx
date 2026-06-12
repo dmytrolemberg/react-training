@@ -30,10 +30,14 @@ function Actions(): ReactElement {
       >
         <BsPersonCircle aria-hidden="true" />
       </NavLink>
-      <a className="icon-button" href="cart.html" aria-label="Cart">
+      <NavLink
+        className={getActionClassName}
+        to={ROUTES.CART}
+        aria-label="Cart"
+      >
         <BsCart3 aria-hidden="true" />
         <span className="cart-count">2</span>
-      </a>
+      </NavLink>
     </div>
   );
 }
