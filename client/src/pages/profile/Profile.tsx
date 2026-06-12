@@ -26,18 +26,14 @@ function Profile(): ReactElement {
               <span>Orders</span>
               <strong>12</strong>
             </a>
-            <a href="reviews.html">
+            <Link to={ROUTES.REVIEWS}>
               <span>Reviews</span>
               <strong>8</strong>
-            </a>
+            </Link>
             <Link to={ROUTES.CART}>
               <span>Cart</span>
               <strong>2</strong>
             </Link>
-            <button type="button">
-              <span>Wishlist</span>
-              <strong>5</strong>
-            </button>
           </div>
         </aside>
 

@@ -21,9 +21,9 @@ function Navbar(): ReactElement {
       <a className="nav-link" href="orders.html">
         Orders
       </a>
-      <a className="nav-link" href="reviews.html">
+      <NavLink className={getNavLinkClassName} to={ROUTES.REVIEWS}>
         Reviews
-      </a>
+      </NavLink>
     </nav>
   );
 }
