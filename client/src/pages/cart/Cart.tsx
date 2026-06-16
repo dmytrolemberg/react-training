@@ -1,6 +1,6 @@
 import { type ReactElement, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes.ts';
+import Button from '@/shared/ui/Button.tsx';
 import './Cart.css';
 
 interface CartItem {
@@ -75,9 +75,9 @@ function Cart(): ReactElement {
           <h1 className="title-lg">Review your items.</h1>
           <p className="lead">Adjust quantities before moving to checkout.</p>
         </div>
-        <Link className="secondary-button" to={ROUTES.PRODUCTS}>
+        <Button className="secondary-button" to={ROUTES.PRODUCTS}>
           Continue shopping
-        </Link>
+        </Button>
       </section>
 
       <section className="cart-layout section">
@@ -159,12 +159,12 @@ function Cart(): ReactElement {
               {formatPrice(total)}
             </strong>
           </div>
-          <Link
+          <Button
             className="primary-button button-full section"
             to={ROUTES.CHECKOUT}
           >
             Checkout
-          </Link>
+          </Button>
           <p className="muted text-small">
             Secure payment, saved address, and order tracking.
           </p>

@@ -1,6 +1,7 @@
 import { type ReactElement } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes.ts';
+import Button from '@/shared/ui/Button.tsx';
 import './Order.css';
 
 type OrderStatus = 'processing' | 'shipped' | 'delivered';
@@ -196,9 +197,9 @@ function Order(): ReactElement {
 
   return (
     <>
-      <Link className="ghost-button" to={ROUTES.ORDERS}>
+      <Button className="ghost-button" to={ROUTES.ORDERS}>
         ← Back to orders
-      </Link>
+      </Button>
 
       <section className="order-detail-hero section">
         <div>
@@ -212,12 +213,12 @@ function Order(): ReactElement {
           <span className={getStatusClassName(order.status)}>
             {order.label}
           </span>
-          <button className="secondary-button" type="button">
+          <Button className="secondary-button">
             Download invoice
-          </button>
-          <button className="primary-button" type="button">
+          </Button>
+          <Button>
             Track delivery
-          </button>
+          </Button>
         </div>
       </section>
 
@@ -319,12 +320,12 @@ function Order(): ReactElement {
               tracking, and product review links.
             </p>
             <div className="cluster section">
-              <Link className="secondary-button" to={ROUTES.REVIEWS}>
+              <Button className="secondary-button" to={ROUTES.REVIEWS}>
                 Write review
-              </Link>
-              <button className="ghost-button" type="button">
+              </Button>
+              <Button className="ghost-button">
                 Contact support
-              </button>
+              </Button>
             </div>
           </article>
         </aside>

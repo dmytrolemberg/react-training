@@ -2,6 +2,7 @@ import { type ReactElement, useEffect, useMemo, useState } from 'react';
 import './Products.css';
 import { Link, href } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes.ts';
+import Button from '@/shared/ui/Button.tsx';
 
 type SelectName = 'rating' | 'sort';
 
@@ -381,12 +382,12 @@ function Products(): ReactElement {
                   </span>
                 </div>
                 <div className="cluster product-card-actions">
-                  <Link
+                  <Button
                     className="secondary-button"
                     to={href(ROUTES.PRODUCT, { slug: product.slug })}
                   >
                     Details
-                  </Link>
+                  </Button>
                   <button
                     className="primary-button add-to-cart"
                     type="button"

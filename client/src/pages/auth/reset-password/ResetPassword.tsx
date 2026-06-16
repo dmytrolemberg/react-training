@@ -3,6 +3,7 @@ import '../Auth.css';
 import './ResetPassword.css';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes.ts';
+import Button from '@/shared/ui/Button.tsx';
 
 function ResetPassword(): ReactElement {
 
@@ -32,9 +33,9 @@ function ResetPassword(): ReactElement {
             />
           </div>
 
-          <button className="primary-button button-full" type="submit">
+          <Button className="primary-button button-full" type="submit">
             Send reset link
-          </button>
+          </Button>
           <div className="auth-message" id="resetMessage">
             Reset link prototype state is ready.
           </div>

@@ -2,6 +2,7 @@ import { type ReactElement } from 'react';
 import './Brands.css';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes.ts';
+import Button from '@/shared/ui/Button.tsx';
 
 function Brands(): ReactElement {
   return (
@@ -15,9 +16,9 @@ function Brands(): ReactElement {
             attributes.
           </p>
         </div>
-        <Link to={ROUTES.PRODUCTS} className="primary-button">
+        <Button to={ROUTES.PRODUCTS}>
           Open catalog
-        </Link>
+        </Button>
       </section>
 
       <section className="section">

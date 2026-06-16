@@ -5,6 +5,7 @@ import {
   useMemo,
   useState,
 } from 'react';
+import Button from '@/shared/ui/Button.tsx';
 import './Reviews.css';
 
 type ReviewFilter = 'all' | '5' | '4';
@@ -287,9 +288,9 @@ function Reviews(): ReactElement {
                 required
               ></textarea>
             </div>
-            <button className="primary-button section" type="submit">
+            <Button className="primary-button section" type="submit">
               Submit review
-            </button>
+            </Button>
             <p className="muted text-small" id="reviewMessage">
               {reviewMessage}
             </p>

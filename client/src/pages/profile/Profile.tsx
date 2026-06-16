@@ -2,6 +2,7 @@ import { type ReactElement } from 'react';
 import './Profile.css';
 import { ROUTES } from '@/shared/model/routes.ts';
 import { Link } from 'react-router-dom';
+import Button from '@/shared/ui/Button.tsx';
 
 function Profile(): ReactElement {
 
@@ -56,9 +57,9 @@ function Profile(): ReactElement {
           <section className="card card-pad">
             <div className="split">
               <h2 className="title-sm">Saved addresses</h2>
-              <button className="secondary-button" type="button">
+              <Button className="secondary-button">
                 Add address
-              </button>
+              </Button>
             </div>
             <div className="grid grid-2 section">
               <div className="soft-card card-pad">
@@ -81,9 +82,9 @@ function Profile(): ReactElement {
           <section className="card card-pad">
             <div className="split">
               <h2 className="title-sm">Payment methods</h2>
-              <button className="secondary-button" type="button">
+              <Button className="secondary-button">
                 Add card
-              </button>
+              </Button>
             </div>
             <div className="grid grid-2 section">
               <div className="soft-card card-pad">

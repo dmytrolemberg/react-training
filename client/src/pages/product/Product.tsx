@@ -1,7 +1,7 @@
 import { type ReactElement, useState } from 'react';
 import './Product.css';
-import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes';
+import Button from '@/shared/ui/Button.tsx';
 
 type ProductTab = 'details' | 'attributes';
 
@@ -181,9 +181,9 @@ function Product(): ReactElement {
 
   return (
     <>
-      <Link className="ghost-button" to={ROUTES.PRODUCTS}>
+      <Button className="ghost-button" to={ROUTES.PRODUCTS}>
         ← Back to catalog
-      </Link>
+      </Button>
 
       <section className="product-detail-layout section">
         <div className="product-gallery">
@@ -253,12 +253,9 @@ function Product(): ReactElement {
                 +
               </button>
             </div>
-            <button
-              className="primary-button"
-              type="button"
-            >
+            <Button>
               Add to cart
-            </button>
+            </Button>
           </div>
         </aside>
       </section>
@@ -276,9 +273,9 @@ function Product(): ReactElement {
             <p className="eyebrow">Related</p>
             <h2 className="title-md">You may also like</h2>
           </div>
-          <a className="ghost-button" href="products.html">
+          <Button className="ghost-button" to={ROUTES.PRODUCTS}>
             View more →
-          </a>
+          </Button>
         </div>
         <div className="grid grid-3 section">
           <article className="product-card">

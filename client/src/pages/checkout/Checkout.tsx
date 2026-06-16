@@ -5,6 +5,7 @@ import {
   useMemo,
   useState,
 } from 'react';
+import Button from '@/shared/ui/Button.tsx';
 import './Checkout.css';
 
 type DeliveryMethod = 'standard' | 'express' | 'pickup';
@@ -272,9 +273,9 @@ function Checkout(): ReactElement {
             </label>
           </div>
 
-          <button className="primary-button button-full section" type="submit">
+          <Button className="primary-button button-full section" type="submit">
             Place order
-          </button>
+          </Button>
           <div
             className={`confirmation-box ${
               isConfirmationVisible ? 'is-visible' : ''

@@ -3,6 +3,7 @@ import '../Auth.css';
 import './Login.css';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes.ts';
+import Button from '@/shared/ui/Button.tsx';
 
 function Login(): ReactElement {
 
@@ -59,9 +60,9 @@ function Login(): ReactElement {
             </Link>
           </div>
 
-          <button className="primary-button button-full" type="submit">
+          <Button className="primary-button button-full" type="submit">
             Sign in
-          </button>
+          </Button>
           <div className="auth-message" id="loginMessage">
             Signed in prototype state is ready.
           </div>

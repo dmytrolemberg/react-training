@@ -1,6 +1,7 @@
 import { type ReactElement, useMemo, useState } from 'react';
-import { generatePath, Link } from 'react-router-dom';
+import { generatePath } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes.ts';
+import Button from '@/shared/ui/Button.tsx';
 import './Orders.css';
 
 type OrderStatus = 'processing' | 'shipped' | 'delivered';
@@ -97,9 +98,9 @@ function Orders(): ReactElement {
             links to review products.
           </p>
         </div>
-        <Link className="secondary-button" to={ROUTES.PRODUCTS}>
+        <Button className="secondary-button" to={ROUTES.PRODUCTS}>
           Shop again
-        </Link>
+        </Button>
       </section>
 
       <section className="section">
@@ -148,15 +149,15 @@ function Orders(): ReactElement {
                 ))}
               </div>
               <div className="cluster section">
-                <Link
+                <Button
                   className="secondary-button"
                   to={getOrderPath(order.number)}
                 >
                   View details
-                </Link>
-                <Link className="ghost-button" to={ROUTES.REVIEWS}>
+                </Button>
+                <Button className="ghost-button" to={ROUTES.REVIEWS}>
                   Write review →
-                </Link>
+                </Button>
               </div>
             </article>
           ))}

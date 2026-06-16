@@ -3,6 +3,7 @@ import '../Auth.css';
 import './Register.css';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes.ts';
+import Button from '@/shared/ui/Button.tsx';
 
 function Register(): ReactElement {
 
@@ -75,9 +76,9 @@ function Register(): ReactElement {
             Send product updates and order reminders
           </label>
 
-          <button className="primary-button button-full" type="submit">
+          <Button className="primary-button button-full" type="submit">
             Create account
-          </button>
+          </Button>
           <div className="auth-message" id="registerMessage">
             Account created prototype state is ready.
           </div>

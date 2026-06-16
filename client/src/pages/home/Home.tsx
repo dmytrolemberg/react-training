@@ -1,6 +1,7 @@
 import { type ReactElement } from 'react';
-import { generatePath, Link } from 'react-router-dom';
+import { generatePath } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes';
+import Button from '@/shared/ui/Button.tsx';
 import './Home.css';
 
 const AERO_KNIT_JACKET_PATH = generatePath(ROUTES.PRODUCT, {
@@ -26,12 +27,12 @@ function Home(): ReactElement {
             attributes, ratings, reviews, cart, checkout, profile, and orders.
           </p>
           <div className="cluster section">
-            <Link className="primary-button" to={ROUTES.PRODUCTS}>
+            <Button className="primary-button" to={ROUTES.PRODUCTS}>
               Explore products →
-            </Link>
-            <a className="secondary-button" href="brands.html">
+            </Button>
+            <Button className="secondary-button" to={ROUTES.BRANDS}>
               Browse brands
-            </a>
+            </Button>
           </div>
           <div className="search-box section" role="search">
             <span aria-hidden="true">⌕</span>
@@ -57,12 +58,12 @@ function Home(): ReactElement {
               <span className="badge">Water resistant</span>
               <span className="badge">4.9 rating</span>
             </div>
-            <Link
+            <Button
               className="primary-button button-full"
               to={EVERYDAY_CARRY_PACK_PATH}
             >
               View product
-            </Link>
+            </Button>
           </article>
 
           <aside className="home-checkout-preview">
@@ -78,9 +79,9 @@ function Home(): ReactElement {
             <p className="text-small" style={{ opacity: 0.68 }}>
               Free delivery, saved address, secure payment, order tracking.
             </p>
-            <Link className="secondary-button section" to={ROUTES.CHECKOUT}>
+            <Button className="secondary-button section" to={ROUTES.CHECKOUT}>
               Continue checkout
-            </Link>
+            </Button>
           </aside>
         </div>
       </section>
@@ -93,39 +94,39 @@ function Home(): ReactElement {
               Clear categories with useful attributes.
             </h2>
           </div>
-          <Link className="ghost-button" to={ROUTES.BRANDS}>
+          <Button className="ghost-button" to={ROUTES.BRANDS}>
             See all →
-          </Link>
+          </Button>
         </div>
         <div className="grid grid-4 section">
-          <Link className="category-card" to={ROUTES.PRODUCTS}>
+          <Button className="category-card" to={ROUTES.PRODUCTS}>
             <span className="badge">Outerwear</span>
             <h3 className="title-sm section">Weather-ready pieces</h3>
             <p className="muted text-small">
               Filter by material, size, color, season, and rating.
             </p>
-          </Link>
-          <Link className="category-card" to={ROUTES.PRODUCTS}>
+          </Button>
+          <Button className="category-card" to={ROUTES.PRODUCTS}>
             <span className="badge">Home</span>
             <h3 className="title-sm section">Quiet objects</h3>
             <p className="muted text-small">
               Lighting, desk tools, storage, and decor.
             </p>
-          </Link>
-          <Link className="category-card" to={ROUTES.PRODUCTS}>
+          </Button>
+          <Button className="category-card" to={ROUTES.PRODUCTS}>
             <span className="badge">Bags</span>
             <h3 className="title-sm section">Daily carry</h3>
             <p className="muted text-small">
               Volume, laptop size, textile, color, availability.
             </p>
-          </Link>
-          <Link className="category-card" to={ROUTES.PRODUCTS}>
+          </Button>
+          <Button className="category-card" to={ROUTES.PRODUCTS}>
             <span className="badge">Accessories</span>
             <h3 className="title-sm section">Small essentials</h3>
             <p className="muted text-small">
               Minimal add-ons with clean product details.
             </p>
-          </Link>
+          </Button>
         </div>
       </section>
 
@@ -135,9 +136,9 @@ function Home(): ReactElement {
             <p className="eyebrow">Featured products</p>
             <h2 className="title-md">High-rated products in stock.</h2>
           </div>
-          <Link className="ghost-button" to={ROUTES.PRODUCTS}>
+          <Button className="ghost-button" to={ROUTES.PRODUCTS}>
             View catalog →
-          </Link>
+          </Button>
         </div>
         <div className="grid grid-3 section">
           <article className="product-card">
@@ -158,9 +159,9 @@ function Home(): ReactElement {
               <span className="rating">
                 <span className="stars">★★★★★</span> 4.8
               </span>
-              <Link className="secondary-button" to={AERO_KNIT_JACKET_PATH}>
+              <Button className="secondary-button" to={AERO_KNIT_JACKET_PATH}>
                 Details
-              </Link>
+              </Button>
             </div>
           </article>
           <article className="product-card">
@@ -181,9 +182,9 @@ function Home(): ReactElement {
               <span className="rating">
                 <span className="stars">★★★★★</span> 4.7
               </span>
-              <Link className="secondary-button" to={MODULAR_DESK_LAMP_PATH}>
+              <Button className="secondary-button" to={MODULAR_DESK_LAMP_PATH}>
                 Details
-              </Link>
+              </Button>
             </div>
           </article>
           <article className="product-card">
@@ -204,9 +205,9 @@ function Home(): ReactElement {
               <span className="rating">
                 <span className="stars">★★★★★</span> 4.9
               </span>
-              <Link className="secondary-button" to={EVERYDAY_CARRY_PACK_PATH}>
+              <Button className="secondary-button" to={EVERYDAY_CARRY_PACK_PATH}>
                 Details
-              </Link>
+              </Button>
             </div>
           </article>
         </div>

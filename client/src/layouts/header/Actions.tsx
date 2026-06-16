@@ -1,7 +1,10 @@
 import { type ReactElement } from 'react';
 import { BsBoxArrowInRight, BsCart3, BsPersonCircle } from 'react-icons/bs';
 import { NavLink, useLocation } from 'react-router-dom';
-import { isAuthRoute } from '@/pages/auth/authRoutes.ts';
+import {
+  isAuthActionRoute,
+  isCartActionRoute,
+} from './headerActionRoutes.ts';
 import { ROUTES } from '@/shared/model/routes.ts';
 
 function getActionClassName({ isActive }: { isActive: boolean }): string {
@@ -10,13 +13,14 @@ function getActionClassName({ isActive }: { isActive: boolean }): string {
 
 function Actions(): ReactElement {
   const { pathname } = useLocation();
-  const isAuthPage = isAuthRoute(pathname);
+  const isAuthActionActive = isAuthActionRoute(pathname);
+  const isCartActionActive = isCartActionRoute(pathname);
 
   return (
     <div className="header-actions">
       <NavLink
         className={({ isActive }) =>
-          getActionClassName({ isActive: isActive || isAuthPage })
+          getActionClassName({ isActive: isActive || isAuthActionActive })
         }
         to={ROUTES.LOGIN}
         aria-label="Login"
@@ -31,7 +35,9 @@ function Actions(): ReactElement {
         <BsPersonCircle aria-hidden="true" />
       </NavLink>
       <NavLink
-        className={getActionClassName}
+        className={({ isActive }) =>
+          getActionClassName({ isActive: isActive || isCartActionActive })
+        }
         to={ROUTES.CART}
         aria-label="Cart"
       >
