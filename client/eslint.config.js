@@ -90,7 +90,7 @@ export default tseslint.config(
           ignoreEnums: true,
           ignoreNumericLiteralTypes: true,
           ignoreReadonlyClassProperties: true,
-          ignore: [-1, 0, 1],
+          ignore: [-1, 0, 1, 2],
         },
       ],
       '@typescript-eslint/explicit-function-return-type': 'error',

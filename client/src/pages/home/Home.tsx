@@ -1,19 +1,57 @@
 import { type ReactElement } from 'react';
-import { generatePath } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes';
 import Button from '@/shared/ui/Button.tsx';
 import './Home.css';
 import SearchForm from '@/shared/ui/SearchForm.tsx';
+import ProductCard from '@/shared/ui/ProductCard.tsx';
 
-const AERO_KNIT_JACKET_PATH = generatePath(ROUTES.PRODUCT, {
-  slug: 'aero-knit-jacket',
-});
-const MODULAR_DESK_LAMP_PATH = generatePath(ROUTES.PRODUCT, {
-  slug: 'modular-desk-lamp',
-});
-const EVERYDAY_CARRY_PACK_PATH = generatePath(ROUTES.PRODUCT, {
-  slug: 'everyday-carry-pack',
-});
+interface Product {
+  name: string;
+  slug: string;
+  brand: string;
+  category: string;
+  attribute_values: Record<number, string>;
+  price: number;
+  rating: number;
+  reviews: number;
+  stock: boolean;
+}
+
+const products: Product[] = [
+  {
+    name: 'Aero Knit Jacket',
+    slug: 'aero-knit-jacket',
+    brand: 'Northline',
+    category: 'Outerwear',
+    attribute_values: ['Graphite', 'Waterproof', 'XS–XL'],
+    price: 148,
+    rating: 4.2,
+    reviews: 120,
+    stock: true,
+  },
+  {
+    name: 'Modular Desk Lamp',
+    slug: 'modular-desk-lamp',
+    brand: 'Luma',
+    category: 'Home',
+    attribute_values: ['Aluminum', 'USB-C', 'Warm light'],
+    price: 89,
+    rating: 4.5,
+    reviews: 54,
+    stock: true,
+  },
+  {
+    name: 'Everyday Carry Pack',
+    slug: 'everyday-carry-pack',
+    brand: 'Mori',
+    category: 'Bags',
+    attribute_values: ['18L', 'Recycled', 'Laptop 15”'],
+    price: 112,
+    rating: 3.3,
+    reviews: 219,
+    stock: true,
+  },
+];
 
 function Home(): ReactElement {
 
@@ -58,7 +96,7 @@ function Home(): ReactElement {
             </div>
             <Button
               className="primary-button button-full"
-              to={EVERYDAY_CARRY_PACK_PATH}
+              to={'sdfsdf-sdf-sdf'}
             >
               View product
             </Button>
@@ -139,75 +177,9 @@ function Home(): ReactElement {
           </Button>
         </div>
         <div className="grid grid-3 section">
-          <article className="product-card">
-            <div className="product-media"></div>
-            <div className="split">
-              <div>
-                <h3 className="product-title">Aero Knit Jacket</h3>
-                <p className="product-meta">Northline · Outerwear</p>
-              </div>
-              <span className="price">$148</span>
-            </div>
-            <div className="attribute-list">
-              <span className="badge">Graphite</span>
-              <span className="badge">Waterproof</span>
-              <span className="badge">XS–XL</span>
-            </div>
-            <div className="split">
-              <span className="rating">
-                <span className="stars">★★★★★</span> 4.8
-              </span>
-              <Button className="secondary-button" to={AERO_KNIT_JACKET_PATH}>
-                Details
-              </Button>
-            </div>
-          </article>
-          <article className="product-card">
-            <div className="product-media"></div>
-            <div className="split">
-              <div>
-                <h3 className="product-title">Modular Desk Lamp</h3>
-                <p className="product-meta">Luma · Home</p>
-              </div>
-              <span className="price">$89</span>
-            </div>
-            <div className="attribute-list">
-              <span className="badge">Aluminum</span>
-              <span className="badge">USB-C</span>
-              <span className="badge">Warm light</span>
-            </div>
-            <div className="split">
-              <span className="rating">
-                <span className="stars">★★★★★</span> 4.7
-              </span>
-              <Button className="secondary-button" to={MODULAR_DESK_LAMP_PATH}>
-                Details
-              </Button>
-            </div>
-          </article>
-          <article className="product-card">
-            <div className="product-media"></div>
-            <div className="split">
-              <div>
-                <h3 className="product-title">Everyday Carry Pack</h3>
-                <p className="product-meta">Mori · Bags</p>
-              </div>
-              <span className="price">$112</span>
-            </div>
-            <div className="attribute-list">
-              <span className="badge">18L</span>
-              <span className="badge">Recycled</span>
-              <span className="badge">Laptop 15”</span>
-            </div>
-            <div className="split">
-              <span className="rating">
-                <span className="stars">★★★★★</span> 4.9
-              </span>
-              <Button className="secondary-button" to={EVERYDAY_CARRY_PACK_PATH}>
-                Details
-              </Button>
-            </div>
-          </article>
+          {products.map((product) => (
+            <ProductCard key={product.slug} product={product} />
+          ))}
         </div>
       </section>
     </>
