@@ -1,57 +1,9 @@
 import { type ReactElement } from 'react';
+import { ProductCard, PRODUCT_PREVIEWS } from '@/entities/product';
 import { ROUTES } from '@/shared/model/routes';
 import Button from '@/shared/ui/Button.tsx';
-import './Home.css';
 import SearchForm from '@/shared/ui/SearchForm.tsx';
-import ProductCard from '@/shared/ui/ProductCard.tsx';
-
-interface Product {
-  name: string;
-  slug: string;
-  brand: string;
-  category: string;
-  attribute_values: Record<number, string>;
-  price: number;
-  rating: number;
-  reviews: number;
-  stock: boolean;
-}
-
-const products: Product[] = [
-  {
-    name: 'Aero Knit Jacket',
-    slug: 'aero-knit-jacket',
-    brand: 'Northline',
-    category: 'Outerwear',
-    attribute_values: ['Graphite', 'Waterproof', 'XS–XL'],
-    price: 148,
-    rating: 4.2,
-    reviews: 120,
-    stock: true,
-  },
-  {
-    name: 'Modular Desk Lamp',
-    slug: 'modular-desk-lamp',
-    brand: 'Luma',
-    category: 'Home',
-    attribute_values: ['Aluminum', 'USB-C', 'Warm light'],
-    price: 89,
-    rating: 4.5,
-    reviews: 54,
-    stock: true,
-  },
-  {
-    name: 'Everyday Carry Pack',
-    slug: 'everyday-carry-pack',
-    brand: 'Mori',
-    category: 'Bags',
-    attribute_values: ['18L', 'Recycled', 'Laptop 15”'],
-    price: 112,
-    rating: 3.3,
-    reviews: 219,
-    stock: true,
-  },
-];
+import './Home.css';
 
 function Home(): ReactElement {
 
@@ -80,27 +32,7 @@ function Home(): ReactElement {
         </div>
 
         <div className="home-hero-side">
-          <article className="home-featured-card">
-            <div className="product-media"></div>
-            <div className="split">
-              <div>
-                <p className="product-title">Everyday Carry Pack</p>
-                <p className="product-meta">Mori · Bags · 18L · Recycled</p>
-              </div>
-              <span className="price">$112</span>
-            </div>
-            <div className="attribute-list">
-              <span className="badge">Laptop 15”</span>
-              <span className="badge">Water resistant</span>
-              <span className="badge">4.9 rating</span>
-            </div>
-            <Button
-              className="primary-button button-full"
-              to={'sdfsdf-sdf-sdf'}
-            >
-              View product
-            </Button>
-          </article>
+          <ProductCard product={PRODUCT_PREVIEWS[2]} />
 
           <aside className="home-checkout-preview">
             <p
@@ -177,7 +109,7 @@ function Home(): ReactElement {
           </Button>
         </div>
         <div className="grid grid-3 section">
-          {products.map((product) => (
+          {PRODUCT_PREVIEWS.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}
         </div>

@@ -1,64 +1,18 @@
 import { type ReactElement, useEffect, useMemo, useState } from 'react';
 import './Products.css';
-import { Link, href } from 'react-router-dom';
-import { ROUTES } from '@/shared/model/routes.ts';
-import Button from '@/shared/ui/Button.tsx';
+import {
+  ProductCard,
+  PRODUCT_PREVIEWS,
+  type ProductPreview,
+} from '@/entities/product';
 import SearchForm from '@/shared/ui/SearchForm.tsx';
 
 type SelectName = 'rating' | 'sort';
-
-interface Product {
-  slug: string;
-  name: string;
-  category: string;
-  brand: string;
-  price: number;
-  rating: number;
-  reviews: number;
-  stock: boolean;
-  attrs: string[];
-}
 
 interface SelectOption {
   value: string;
   label: string;
 }
-
-const PRODUCTS: Product[] = [
-  {
-    slug: 'aero-knit-jacket',
-    name: 'Aero Knit Jacket',
-    category: 'Outerwear',
-    brand: 'Northline',
-    price: 148,
-    rating: 4.8,
-    reviews: 126,
-    stock: true,
-    attrs: ['Graphite', 'Waterproof', 'XS–XL'],
-  },
-  {
-    slug: 'modular-desk-lamp',
-    name: 'Modular Desk Lamp',
-    category: 'Home',
-    brand: 'Luma',
-    price: 89,
-    rating: 4.7,
-    reviews: 84,
-    stock: true,
-    attrs: ['Aluminum', 'USB-C', 'Warm light'],
-  },
-  {
-    slug: 'everyday-carry-pack',
-    name: 'Everyday Carry Pack',
-    category: 'Bags',
-    brand: 'Mori',
-    price: 112,
-    rating: 4.9,
-    reviews: 219,
-    stock: true,
-    attrs: ['18L', 'Recycled', 'Laptop 15”'],
-  },
-];
 
 const RATING_OPTIONS = [
   { value: '0', label: 'Any rating' },
@@ -85,9 +39,9 @@ function Products(): ReactElement {
   const [ratingFilter, setRatingFilter] = useState('0');
   const [sortSelect, setSortSelect] = useState('featured');
 
-  const products = useMemo((): Product[] => {
+  const products = useMemo((): readonly ProductPreview[] => {
     const minRating = Number(ratingFilter);
-    const filteredProducts = PRODUCTS.filter(
+    const filteredProducts = PRODUCT_PREVIEWS.filter(
       (product) => product.rating >= minRating,
     );
 
@@ -314,45 +268,7 @@ function Products(): ReactElement {
 
           <div className="product-grid" id="productGrid">
             {products.map((product) => (
-              <article className="product-card" key={product.slug}>
-                <Link
-                  className="product-media"
-                  to={href(ROUTES.PRODUCT, { slug: product.slug })}
-                  aria-label={`View ${product.name}`}
-                />
-                <div className="split product-card-head">
-                  <div>
-                    <h2 className="product-title">{product.name}</h2>
-                    <p className="product-meta">
-                      {product.brand} · {product.category}
-                    </p>
-                  </div>
-                  <span className="price">${product.price}</span>
-                </div>
-                <div className="attribute-list">
-                  {product.attrs.map((attr) => (
-                    <span className="badge" key={attr}>
-                      {attr}
-                    </span>
-                  ))}
-                </div>
-                <div className="split product-card-meta">
-                  <span className="rating">
-                    <span className="stars">★★★★★</span> {product.rating} ({product.reviews})
-                  </span>
-                  <span className={`badge ${product.stock ? 'status-success' : 'status-danger'}`}>
-                    {product.stock ? 'In stock' : 'Out'}
-                  </span>
-                </div>
-                <div className="cluster product-card-actions">
-                  <Button className="secondary-button" to={href(ROUTES.PRODUCT, { slug: product.slug })}>
-                    Details
-                  </Button>
-                  <button className="primary-button add-to-cart" type="button" disabled={!product.stock}>
-                    Add
-                  </button>
-                </div>
-              </article>
+              <ProductCard key={product.slug} product={product} />
             ))}
           </div>
           <div className="empty-state card section" id="emptyState" hidden={products.length > 0}>

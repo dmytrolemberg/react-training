@@ -1,5 +1,6 @@
 import { type ReactElement, useState } from 'react';
 import './Product.css';
+import { ProductCard, RELATED_PRODUCT_PREVIEWS } from '@/entities/product';
 import { ROUTES } from '@/shared/model/routes';
 import Button from '@/shared/ui/Button.tsx';
 
@@ -278,48 +279,9 @@ function Product(): ReactElement {
           </Button>
         </div>
         <div className="grid grid-3 section">
-          <article className="product-card">
-            <div className="product-media"></div>
-            <div className="split">
-              <div>
-                <h3 className="product-title">Travel Tech Pouch</h3>
-                <p className="product-meta">Mori · Bags</p>
-              </div>
-              <span className="price">$58</span>
-            </div>
-            <div className="attribute-list">
-              <span className="badge">2L</span>
-              <span className="badge">Organizer</span>
-            </div>
-          </article>
-          <article className="product-card">
-            <div className="product-media"></div>
-            <div className="split">
-              <div>
-                <h3 className="product-title">Aero Knit Jacket</h3>
-                <p className="product-meta">Northline · Outerwear</p>
-              </div>
-              <span className="price">$148</span>
-            </div>
-            <div className="attribute-list">
-              <span className="badge">Graphite</span>
-              <span className="badge">Waterproof</span>
-            </div>
-          </article>
-          <article className="product-card">
-            <div className="product-media"></div>
-            <div className="split">
-              <div>
-                <h3 className="product-title">Soft Wool Beanie</h3>
-                <p className="product-meta">Northline · Accessories</p>
-              </div>
-              <span className="price">$36</span>
-            </div>
-            <div className="attribute-list">
-              <span className="badge">Merino</span>
-              <span className="badge">One size</span>
-            </div>
-          </article>
+          {RELATED_PRODUCT_PREVIEWS.map((product) => (
+            <ProductCard key={product.slug} product={product} />
+          ))}
         </div>
       </section>
     </>

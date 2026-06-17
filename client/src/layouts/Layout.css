@@ -551,6 +551,10 @@ button {
   margin: 14px 0;
 }
 
+.product-card-actions {
+  margin-top: 14px;
+}
+
 .kpi-card {
   padding: 18px;
   border: 1px solid var(--border);
