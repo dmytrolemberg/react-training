@@ -3,6 +3,7 @@ import { generatePath } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes';
 import Button from '@/shared/ui/Button.tsx';
 import './Home.css';
+import SearchForm from '@/shared/ui/SearchForm.tsx';
 
 const AERO_KNIT_JACKET_PATH = generatePath(ROUTES.PRODUCT, {
   slug: 'aero-knit-jacket',
@@ -34,13 +35,10 @@ function Home(): ReactElement {
               Browse brands
             </Button>
           </div>
-          <div className="search-box section" role="search">
-            <span aria-hidden="true">⌕</span>
-            <input
-              type="search"
-              placeholder="Search jackets, lamps, bags, accessories..."
-            />
-          </div>
+          <SearchForm
+            className={'section'}
+            placeholder={'Search products, brands, categories...'}
+          />
         </div>
 
         <div className="home-hero-side">

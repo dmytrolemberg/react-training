@@ -3,6 +3,7 @@ import './Brands.css';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes.ts';
 import Button from '@/shared/ui/Button.tsx';
+import SearchForm from '@/shared/ui/SearchForm.tsx';
 
 function Brands(): ReactElement {
   return (
@@ -11,14 +12,9 @@ function Brands(): ReactElement {
         <div>
           <p className="eyebrow">Brands & categories</p>
           <h1 className="title-lg">A simple structure for discovery.</h1>
-          <p className="lead">
-            Use this page as a directory for categories, brands, and key product
-            attributes.
-          </p>
+          <p className="lead">Use this page as a directory for categories, brands, and key product attributes.</p>
         </div>
-        <Button to={ROUTES.PRODUCTS}>
-          Open catalog
-        </Button>
+        <Button to={ROUTES.PRODUCTS}>Open catalog</Button>
       </section>
 
       <section className="section">
@@ -53,26 +49,13 @@ function Brands(): ReactElement {
             <p className="eyebrow">Brands</p>
             <h2 className="title-md">Focused brand cards.</h2>
           </div>
-          <div className="search-box" style={{ maxWidth: 360 }}>
-            <span aria-hidden="true">⌕</span>
-            <input
-              type="search"
-              id="brandSearch"
-              placeholder="Search brand..."
-            />
-          </div>
+          <SearchForm style={{ maxWidth: '400px' }} placeholder={'Search brands...'} id="brandSearch" />
         </div>
         <div className="brand-directory section" id="brandDirectory">
-          <Link
-            className="brand-card"
-            to={ROUTES.PRODUCTS}
-            data-brand="Northline"
-          >
+          <Link className="brand-card" to={ROUTES.PRODUCTS} data-brand="Northline">
             <div className="brand-logo">N</div>
             <h3 className="title-sm">Northline</h3>
-            <p className="muted text-small">
-              Outerwear and accessories focused on calm utility.
-            </p>
+            <p className="muted text-small">Outerwear and accessories focused on calm utility.</p>
             <div className="attribute-list">
               <span className="badge">Outerwear</span>
               <span className="badge">Accessories</span>
@@ -81,9 +64,7 @@ function Brands(): ReactElement {
           <Link className="brand-card" to={ROUTES.PRODUCTS} data-brand="Luma">
             <div className="brand-logo">L</div>
             <h3 className="title-sm">Luma</h3>
-            <p className="muted text-small">
-              Minimal home objects, lamps, and warm lighting.
-            </p>
+            <p className="muted text-small">Minimal home objects, lamps, and warm lighting.</p>
             <div className="attribute-list">
               <span className="badge">Home</span>
               <span className="badge">Lighting</span>
@@ -92,24 +73,16 @@ function Brands(): ReactElement {
           <Link className="brand-card" to={ROUTES.PRODUCTS} data-brand="Mori">
             <div className="brand-logo">M</div>
             <h3 className="title-sm">Mori</h3>
-            <p className="muted text-small">
-              Daily carry bags with recycled materials.
-            </p>
+            <p className="muted text-small">Daily carry bags with recycled materials.</p>
             <div className="attribute-list">
               <span className="badge">Bags</span>
               <span className="badge">Travel</span>
             </div>
           </Link>
-          <Link
-            className="brand-card"
-            to={ROUTES.PRODUCTS}
-            data-brand="Studio Base"
-          >
+          <Link className="brand-card" to={ROUTES.PRODUCTS} data-brand="Studio Base">
             <div className="brand-logo">S</div>
             <h3 className="title-sm">Studio Base</h3>
-            <p className="muted text-small">
-              Desk tools, organizers, and quiet workspace details.
-            </p>
+            <p className="muted text-small">Desk tools, organizers, and quiet workspace details.</p>
             <div className="attribute-list">
               <span className="badge">Desk</span>
               <span className="badge">Home</span>
@@ -118,24 +91,16 @@ function Brands(): ReactElement {
           <Link className="brand-card" to={ROUTES.PRODUCTS} data-brand="Ever">
             <div className="brand-logo">E</div>
             <h3 className="title-sm">Ever</h3>
-            <p className="muted text-small">
-              Timeless essentials for everyday use.
-            </p>
+            <p className="muted text-small">Timeless essentials for everyday use.</p>
             <div className="attribute-list">
               <span className="badge">Essentials</span>
               <span className="badge">Basics</span>
             </div>
           </Link>
-          <Link
-            className="brand-card"
-            to={ROUTES.PRODUCTS}
-            data-brand="Plain Works"
-          >
+          <Link className="brand-card" to={ROUTES.PRODUCTS} data-brand="Plain Works">
             <div className="brand-logo">P</div>
             <h3 className="title-sm">Plain Works</h3>
-            <p className="muted text-small">
-              Clear, simple objects with practical attributes.
-            </p>
+            <p className="muted text-small">Clear, simple objects with practical attributes.</p>
             <div className="attribute-list">
               <span className="badge">Objects</span>
               <span className="badge">Utility</span>

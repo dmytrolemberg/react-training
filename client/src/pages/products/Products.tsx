@@ -3,6 +3,7 @@ import './Products.css';
 import { Link, href } from 'react-router-dom';
 import { ROUTES } from '@/shared/model/routes.ts';
 import Button from '@/shared/ui/Button.tsx';
+import SearchForm from '@/shared/ui/SearchForm.tsx';
 
 type SelectName = 'rating' | 'sort';
 
@@ -138,8 +139,8 @@ function Products(): ReactElement {
           <p className="eyebrow">Catalog</p>
           <h1 className="title-lg">Search, filter, compare.</h1>
           <p className="lead">
-            Products are structured by category, brand, price, material,
-            attributes, availability, review count, and rating.
+            Products are structured by category, brand, price, material, attributes, availability, review count, and
+            rating.
           </p>
         </div>
         <span className="badge badge-dark" id="resultCount">
@@ -211,20 +212,13 @@ function Products(): ReactElement {
           <div className="filter-group">
             <span className="filter-title">Minimum rating</span>
             <div
-              className={`custom-select is-flipped ${
-                openSelect === 'rating' ? 'is-open' : ''
-              }`}
+              className={`custom-select is-flipped ${openSelect === 'rating' ? 'is-open' : ''}`}
               data-custom-select
               onClick={(event) => {
                 event.stopPropagation();
               }}
             >
-              <input
-                type="hidden"
-                id="ratingFilter"
-                value={ratingFilter}
-                readOnly
-              />
+              <input type="hidden" id="ratingFilter" value={ratingFilter} readOnly />
               <button
                 className="custom-select-button"
                 type="button"
@@ -234,23 +228,15 @@ function Products(): ReactElement {
                   toggleSelect('rating');
                 }}
               >
-                <span data-selected-label>
-                  {getSelectedLabel(RATING_OPTIONS, ratingFilter)}
-                </span>
+                <span data-selected-label>{getSelectedLabel(RATING_OPTIONS, ratingFilter)}</span>
               </button>
-              <div
-                className="custom-select-menu"
-                role="listbox"
-                aria-label="Minimum rating"
-              >
+              <div className="custom-select-menu" role="listbox" aria-label="Minimum rating">
                 {RATING_OPTIONS.map((option) => {
                   const isSelected = ratingFilter === option.value;
 
                   return (
                     <button
-                      className={`custom-select-option ${
-                        isSelected ? 'is-selected' : ''
-                      }`}
+                      className={`custom-select-option ${isSelected ? 'is-selected' : ''}`}
                       type="button"
                       data-value={option.value}
                       role="option"
@@ -281,19 +267,9 @@ function Products(): ReactElement {
 
         <div className="catalog-results">
           <div className="catalog-toolbar">
-            <div className="search-box" role="search">
-              <span aria-hidden="true">⌕</span>
-              <input
-                id="searchInput"
-                type="search"
-                placeholder="Search by name, category, brand, material..."
-              />
-            </div>
-
+            <SearchForm placeholder={'Search products...'} id={'searchInput'} />
             <div
-              className={`custom-select ${
-                openSelect === 'sort' ? 'is-open' : ''
-              }`}
+              className={`custom-select ${openSelect === 'sort' ? 'is-open' : ''}`}
               data-custom-select
               onClick={(event) => {
                 event.stopPropagation();
@@ -309,23 +285,15 @@ function Products(): ReactElement {
                   toggleSelect('sort');
                 }}
               >
-                <span data-selected-label>
-                  {getSelectedLabel(SORT_OPTIONS, sortSelect)}
-                </span>
+                <span data-selected-label>{getSelectedLabel(SORT_OPTIONS, sortSelect)}</span>
               </button>
-              <div
-                className="custom-select-menu custom-select-menu-right"
-                role="listbox"
-                aria-label="Sort products"
-              >
+              <div className="custom-select-menu custom-select-menu-right" role="listbox" aria-label="Sort products">
                 {SORT_OPTIONS.map((option) => {
                   const isSelected = sortSelect === option.value;
 
                   return (
                     <button
-                      className={`custom-select-option ${
-                        isSelected ? 'is-selected' : ''
-                      }`}
+                      className={`custom-select-option ${isSelected ? 'is-selected' : ''}`}
                       type="button"
                       data-value={option.value}
                       role="option"
@@ -370,44 +338,26 @@ function Products(): ReactElement {
                 </div>
                 <div className="split product-card-meta">
                   <span className="rating">
-                    <span className="stars">★★★★★</span> {product.rating} (
-                    {product.reviews})
+                    <span className="stars">★★★★★</span> {product.rating} ({product.reviews})
                   </span>
-                  <span
-                    className={`badge ${
-                      product.stock ? 'status-success' : 'status-danger'
-                    }`}
-                  >
+                  <span className={`badge ${product.stock ? 'status-success' : 'status-danger'}`}>
                     {product.stock ? 'In stock' : 'Out'}
                   </span>
                 </div>
                 <div className="cluster product-card-actions">
-                  <Button
-                    className="secondary-button"
-                    to={href(ROUTES.PRODUCT, { slug: product.slug })}
-                  >
+                  <Button className="secondary-button" to={href(ROUTES.PRODUCT, { slug: product.slug })}>
                     Details
                   </Button>
-                  <button
-                    className="primary-button add-to-cart"
-                    type="button"
-                    disabled={!product.stock}
-                  >
+                  <button className="primary-button add-to-cart" type="button" disabled={!product.stock}>
                     Add
                   </button>
                 </div>
               </article>
             ))}
           </div>
-          <div
-            className="empty-state card section"
-            id="emptyState"
-            hidden={products.length > 0}
-          >
+          <div className="empty-state card section" id="emptyState" hidden={products.length > 0}>
             <h2 className="title-sm">No products found</h2>
-            <p className="muted">
-              Try another search term or remove some filters.
-            </p>
+            <p className="muted">Try another search term or remove some filters.</p>
           </div>
         </div>
       </section>
