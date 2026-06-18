@@ -1,7 +1,7 @@
 import { type ReactElement } from 'react';
 import { ROUTES } from '@/shared/model/routes';
 import Button from '@/shared/ui/Button.tsx';
-import SearchForm from '@/shared/ui/SearchForm.tsx';
+import SearchForm from '@/widgets/SearchForm.tsx';
 
 function MinimalOnlineShop(): ReactElement {
   return (
@@ -17,7 +17,7 @@ function MinimalOnlineShop(): ReactElement {
           Explore products →
         </Button>
       </div>
-      <SearchForm className={'section'} placeholder={'Search products, brands, categories...'} />
+      <SearchForm className="section" />
     </div>
   );
 }

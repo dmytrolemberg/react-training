@@ -5,7 +5,7 @@ import {
   PRODUCT_PREVIEWS,
   type ProductPreview,
 } from '@/entities/product';
-import SearchForm from '@/shared/ui/SearchForm.tsx';
+import SearchForm from '@/widgets/SearchForm.tsx';
 
 type SelectName = 'rating' | 'sort';
 
@@ -221,7 +221,7 @@ function Products(): ReactElement {
 
         <div className="catalog-results">
           <div className="catalog-toolbar">
-            <SearchForm placeholder={'Search products...'} id={'searchInput'} />
+            <SearchForm />
             <div
               className={`custom-select ${openSelect === 'sort' ? 'is-open' : ''}`}
               data-custom-select
