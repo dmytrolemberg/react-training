@@ -1,8 +1,9 @@
 import { type ReactElement, useState } from 'react';
 import './Product.css';
-import { ProductCard, RELATED_PRODUCT_PREVIEWS } from '@/entities/product';
+import { RELATED_PRODUCT_PREVIEWS } from '@/entities/product';
 import { ROUTES } from '@/shared/model/routes';
 import Button from '@/shared/ui/Button.tsx';
+import ProductsList from '@/widgets/ProductsList.tsx';
 
 type ProductTab = 'details' | 'attributes';
 
@@ -180,6 +181,9 @@ function Product(): ReactElement {
   const [activeTab, setActiveTab] = useState<ProductTab>('details');
   const [activeGalleryThumb, setActiveGalleryThumb] = useState('1');
 
+  const relatedProducts = RELATED_PRODUCT_PREVIEWS;
+
+
   return (
     <>
       <Button className="ghost-button" to={ROUTES.PRODUCTS}>
@@ -192,11 +196,7 @@ function Product(): ReactElement {
           <div className="gallery-thumbs">
             {GALLERY_THUMBS.map((thumb) => (
               <button
-                className={
-                  thumb === activeGalleryThumb
-                    ? 'gallery-thumb is-active'
-                    : 'gallery-thumb'
-                }
+                className={thumb === activeGalleryThumb ? 'gallery-thumb is-active' : 'gallery-thumb'}
                 type="button"
                 aria-label={`Preview image ${thumb}`}
                 key={thumb}
@@ -216,8 +216,7 @@ function Product(): ReactElement {
           </div>
           <h1 className="title-lg section">Everyday Carry Pack</h1>
           <p className="lead product-short-description">
-            A minimal 18L pack built from recycled textile, designed for
-            everyday work, travel, and clean organization.
+            A minimal 18L pack built from recycled textile, designed for everyday work, travel, and clean organization.
           </p>
           <div className="split section product-buy-row">
             <span className="product-price-xl">$112</span>
@@ -233,9 +232,7 @@ function Product(): ReactElement {
                 type="button"
                 id="minus"
                 onClick={() => {
-                  setQuantity((currentQuantity) =>
-                    Math.max(1, currentQuantity - 1),
-                  );
+                  setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1));
                 }}
               >
                 −
@@ -254,36 +251,16 @@ function Product(): ReactElement {
                 +
               </button>
             </div>
-            <Button>
-              Add to cart
-            </Button>
+            <Button>Add to cart</Button>
           </div>
         </aside>
       </section>
 
       <section className="section product-information-section">
-        <ProductInformationTabs
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-        />
+        <ProductInformationTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </section>
 
-      <section className="section">
-        <div className="split">
-          <div>
-            <p className="eyebrow">Related</p>
-            <h2 className="title-md">You may also like</h2>
-          </div>
-          <Button className="ghost-button" to={ROUTES.PRODUCTS}>
-            View more →
-          </Button>
-        </div>
-        <div className="grid grid-3 section">
-          {RELATED_PRODUCT_PREVIEWS.map((product) => (
-            <ProductCard key={product.slug} product={product} />
-          ))}
-        </div>
-      </section>
+      <ProductsList products={relatedProducts} title="You may also like" label="Related" />
     </>
   );
 }
