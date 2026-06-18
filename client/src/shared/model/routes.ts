@@ -9,7 +9,6 @@ export const ROUTES = {
   PRODUCTS: '/products',
   PRODUCT: '/products/:slug',
   CART: '/cart',
-  BRANDS: '/brands',
   REVIEWS: '/reviews',
   CHECKOUT: '/checkout',
   ORDERS: '/orders',
@@ -24,7 +23,6 @@ export interface PathParams {
     number: string;
   };
 }
-
 
 declare module 'react-router-dom' {
   interface Register {

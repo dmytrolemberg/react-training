@@ -15,9 +15,6 @@ function Navbar(): ReactElement {
       <NavLink className={getNavLinkClassName} to={ROUTES.PRODUCTS}>
         Products
       </NavLink>
-      <NavLink className={getNavLinkClassName} to={ROUTES.BRANDS}>
-        Brands
-      </NavLink>
       <NavLink className={getNavLinkClassName} to={ROUTES.ORDERS}>
         Orders
       </NavLink>
