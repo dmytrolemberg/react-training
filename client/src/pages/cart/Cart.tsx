@@ -1,5 +1,5 @@
 import { type ReactElement, useMemo, useState } from 'react';
-import { ROUTES } from '@/shared/model/routes.ts';
+import { ROUTES } from '@/shared/config/routes/routes.ts';
 import Button from '@/shared/ui/Button.tsx';
 import './Cart.css';
 

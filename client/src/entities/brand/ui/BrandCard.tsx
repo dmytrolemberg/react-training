@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
 import type { BrandPreview } from '../model/types.ts';
-import { buildProductsRoute } from '@/shared/model/product';
+import { buildProductsRoute } from '@/shared/config/routes/product';
 import Button from '@/shared/ui/Button.tsx';
 
 interface BrandCardProps {

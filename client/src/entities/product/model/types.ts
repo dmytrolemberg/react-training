@@ -5,7 +5,14 @@ export interface ProductPreview {
   readonly brand: string;
   readonly price: number;
   readonly rating: number;
-  readonly reviews: number;
-  readonly stock: boolean;
-  readonly attributes: readonly string[];
+  readonly reviewsCount: number;
+  readonly isStock: boolean;
+  readonly attributeValues: readonly string[];
+  readonly image: string;
+}
+
+export interface Product extends ProductPreview {
+  readonly description: string;
+  readonly attributes: readonly Record<string, string>[];
+  readonly images: readonly string[];
 }

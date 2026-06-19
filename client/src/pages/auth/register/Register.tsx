@@ -2,7 +2,7 @@ import { type ReactElement } from 'react';
 import '../Auth.css';
 import './Register.css';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '@/shared/model/routes.ts';
+import { ROUTES } from '@/shared/config/routes/routes.ts';
 import Button from '@/shared/ui/Button.tsx';
 
 function Register(): ReactElement {

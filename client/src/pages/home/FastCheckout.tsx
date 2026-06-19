@@ -1,5 +1,5 @@
 import { type ReactElement } from 'react';
-import { ROUTES } from '@/shared/model/routes';
+import { ROUTES } from '@/shared/config/routes/routes.ts';
 import Button from '@/shared/ui/Button.tsx';
 
 function FastCheckout(): ReactElement {

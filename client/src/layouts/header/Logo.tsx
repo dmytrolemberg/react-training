@@ -1,7 +1,7 @@
 import { type ReactElement } from 'react';
 import { BsAmazon } from 'react-icons/bs';
 import { Link} from 'react-router-dom';
-import { ROUTES } from '@/shared/model/routes.ts';
+import { ROUTES } from '@/shared/config/routes/routes.ts';
 
 function Logo(): ReactElement {
 

@@ -1,7 +1,7 @@
 import { type ReactElement } from 'react';
 import { ProductCard, type ProductPreview } from '@/entities/product';
 import Button from '@/shared/ui/Button.tsx';
-import { ROUTES } from '@/shared/model/routes.ts';
+import { ROUTES } from '@/shared/config/routes/routes.ts';
 
 interface ProductsListProps {
   readonly products: readonly ProductPreview[];

@@ -1,4 +1,4 @@
-import { ROUTES } from '@/shared/model/routes.ts';
+import { ROUTES } from '@/shared/config/routes/routes.ts';
 import {
   createBrowserRouter,
   type LazyRouteFunction,

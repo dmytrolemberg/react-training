@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
 import './Profile.css';
-import { ROUTES } from '@/shared/model/routes.ts';
+import { ROUTES } from '@/shared/config/routes/routes.ts';
 import { Link } from 'react-router-dom';
 import Button from '@/shared/ui/Button.tsx';
 

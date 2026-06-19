@@ -5,7 +5,7 @@ import {
   isAuthActionRoute,
   isCartActionRoute,
 } from './headerActionRoutes.ts';
-import { ROUTES } from '@/shared/model/routes.ts';
+import { ROUTES } from '@/shared/config/routes/routes.ts';
 
 function getActionClassName({ isActive }: { isActive: boolean }): string {
   return isActive ? 'icon-button is-active' : 'icon-button';

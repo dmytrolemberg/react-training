@@ -3,7 +3,7 @@ import { Form, useNavigate } from 'react-router-dom';
 import {
   buildProductsRoute,
   PRODUCTS_SEARCH_PARAMS,
-} from '@/shared/model/product';
+} from '@/shared/config/routes/product';
 
 interface SearchFormProps {
   readonly className?: string;

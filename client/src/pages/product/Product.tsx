@@ -1,7 +1,7 @@
 import { type ReactElement, useState } from 'react';
 import './Product.css';
 import { RELATED_PRODUCT_PREVIEWS } from '@/entities/product';
-import { ROUTES } from '@/shared/model/routes';
+import { ROUTES } from '@/shared/config/routes/routes.ts';
 import Button from '@/shared/ui/Button.tsx';
 import ProductsList from '@/widgets/ProductsList.tsx';
 

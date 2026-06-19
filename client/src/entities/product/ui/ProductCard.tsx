@@ -2,7 +2,7 @@ import { type ReactElement } from 'react';
 import { BsCartPlus } from 'react-icons/bs';
 import { href, Link } from 'react-router-dom';
 import { type ProductPreview } from '../model/types.ts';
-import { ROUTES } from '@/shared/model/routes.ts';
+import { ROUTES } from '@/shared/config/routes/routes.ts';
 import Button from '@/shared/ui/Button.tsx';
 
 interface ProductCardProps {
@@ -41,7 +41,7 @@ function ProductCard({ product }: ProductCardProps): ReactElement {
         <span className="price">{formatPrice(product.price)}</span>
       </div>
       <div className="attribute-list">
-        {product.attributes.map((attribute) => (
+        {product.attributeValues.map((attribute) => (
           <span className="badge" key={`${product.slug}-${attribute}`}>
             {attribute}
           </span>
@@ -52,7 +52,7 @@ function ProductCard({ product }: ProductCardProps): ReactElement {
           <span className="stars">{'★'.repeat(Math.round(product.rating))} </span>
           {product.rating.toFixed(1)}
         </span>
-        <span className={getStockStatusClassName(product.stock)}>{product.stock ? 'In stock' : 'Out'}</span>
+        <span className={getStockStatusClassName(product.isStock)}>{product.isStock ? 'In stock' : 'Out'}</span>
       </div>
       <div className="cluster product-card-actions">
         <Button className="secondary-button" to={productDetailPath}>
@@ -62,7 +62,7 @@ function ProductCard({ product }: ProductCardProps): ReactElement {
           aria-label={`Add ${product.name} to cart`}
           className="primary-button add-to-cart"
           type="button"
-          disabled={!product.stock}
+          disabled={!product.isStock}
         >
           <BsCartPlus aria-hidden="true" />
         </button>
